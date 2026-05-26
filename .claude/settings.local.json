@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(awk '{total += $1} END {printf \"Total: %.2f MB en %d archivos\\\\n\", total/1024/1024, NR}')",
+      "Bash(npm run *)",
+      "Bash(npm list *)",
+      "Bash(npm install *)",
+      "Bash(node -e \"const os=require\\('os'\\); console.log\\('tmpdir:', os.tmpdir\\(\\)\\)\")",
+      "PowerShell(Get-PSDrive C | Select-Object Used, Free | ForEach-Object { \"Used: $\\([math]::Round\\($_.Used/1GB,1\\)\\) GB | Free: $\\([math]::Round\\($_.Free/1GB,1\\)\\) GB\" })",
+      "PowerShell(npm cache clean --force 2>&1)"
+    ],
+    "additionalDirectories": [
+      "D:\\"
+    ]
+  }
+}

@@ -1,9 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import PortfolioDiseno from '../views/PortfolioDiseno.vue'
-import PortfolioComunicacion from '../views/PortfolioComunicacion.vue'
-import PortfolioConsultoria from '../views/PortfolioConsultoria.vue'
-import PortfolioDesarrollo from '../views/PortfolioDesarrollo.vue' // ✅ nombre único
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,30 +12,26 @@ const router = createRouter({
     {
       path: '/diseno-grafico',
       name: 'diseno-grafico',
-      component: PortfolioDiseno
+      component: () => import('../views/PortfolioDiseno.vue')
     },
     {
       path: '/comunicacion-corporativa',
       name: 'comunicacion-corporativa',
-      component: PortfolioComunicacion
+      component: () => import('../views/PortfolioComunicacion.vue')
     },
     {
       path: '/consultoria-digital',
       name: 'consultoria-digital',
-      component: PortfolioConsultoria
+      component: () => import('../views/PortfolioConsultoria.vue')
     },
     {
-      path: '/desarrollo-software',       // ✅ ruta nueva
+      path: '/desarrollo-software',
       name: 'desarrollo-software',
-      component: PortfolioDesarrollo
+      component: () => import('../views/PortfolioDesarrollo.vue')
     }
   ],
   scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    } else {
-      return { top: 0, behavior: 'smooth' }
-    }
+    return savedPosition || { top: 0, behavior: 'smooth' }
   }
 })
 

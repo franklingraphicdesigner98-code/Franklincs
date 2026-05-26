@@ -1,0 +1,33 @@
+:root {
+  --bg-0: #000;
+  --bg-1: #0a0a0a;
+  --bg-2: #111;
+  --bg-3: #1a1612;
+
+  --gold: #e6b34a;
+  --gold-2: #f5cf7a;
+  --gold-3: #a47a23;
+  --gold-deep: #6b4d12;
+  --gold-glow: rgba(230, 179, 74, .55);
+
+  --fg: #f3f0ea;
+  --fg-dim: #b6b0a2;
+  --fg-mute: #7a766c;
+
+  --glass-bg: rgba(255, 255, 255, .04);
+  --glass-bg-strong: rgba(255, 255, 255, .06);
+  --glass-border: rgba(255, 255, 255, .10);
+  --glass-border-gold: rgba(230, 179, 74, .28);
+  --glass-shadow: 0 24px 60px rgba(0, 0, 0, .55);
+
+  --r-sm: 10px;
+  --r-md: 18px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+
+  --f-display: "Anton", "Inter", sans-serif;
+  --f-body: "Inter", system-ui, sans-serif;
+  --f-script: "Allura", cursive;
+
+  --container: 1240px;
+}

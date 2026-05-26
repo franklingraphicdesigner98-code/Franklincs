@@ -67,9 +67,12 @@
           >
             <!-- Image -->
             <div class="relative h-64 bg-black overflow-hidden">
-              <img 
+              <img
                 :src="project.image"
                 :alt="project.title"
+                loading="lazy"
+                width="800"
+                height="512"
                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               >
               <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300">
@@ -195,6 +198,7 @@
 
 <script setup>
 import { ref, computed } from 'vue';
+import { imgCard } from '../utils/cloudinary.js';
 
 const selectedCategory = ref('Todos');
 
@@ -208,7 +212,7 @@ const projects = ref([
     client: 'Empresa Retail',
     year: '2024',
     description: 'Estrategia integral de marketing digital con enfoque en redes sociales y contenido.',
-    image: '/img/Montessia.jpg',
+    image: imgCard('franklincs/montessia', '/img/Montessia.jpg'),
     tags: ['Marketing Digital', 'Campaña', 'Social Media']
   },
   {
@@ -218,7 +222,7 @@ const projects = ref([
     client: 'Startup Tech',
     year: '2024',
     description: 'Renovación completa de la estrategia de comunicación y posicionamiento de marca.',
-    image: '/img/Montessia.jpg',
+    image: imgCard('franklincs/montessia', '/img/Montessia.jpg'),
     tags: ['Estrategia', 'Rebranding', 'Comunicación']
   },
   {
@@ -228,7 +232,7 @@ const projects = ref([
     client: 'E-commerce',
     year: '2023',
     description: 'Creación y gestión de contenido para blog, redes sociales y newsletter.',
-    image: '/img/Montessia.jpg',
+    image: imgCard('franklincs/montessia', '/img/Montessia.jpg'),
     tags: ['Contenido', 'Blog', 'Newsletter']
   },
   {
@@ -238,7 +242,7 @@ const projects = ref([
     client: 'Marca de Moda',
     year: '2024',
     description: 'Estrategia de redes sociales con enfoque en Instagram y TikTok.',
-    image: '/img/Montessia.jpg',
+    image: imgCard('franklincs/montessia', '/img/Montessia.jpg'),
     tags: ['Instagram', 'TikTok', 'Engagement']
   },
   {
@@ -248,7 +252,7 @@ const projects = ref([
     client: 'Corporativo',
     year: '2024',
     description: 'Desarrollo de estrategia de comunicación interna y cultura organizacional.',
-    image: '/img/Montessia.jpg',
+    image: imgCard('franklincs/montessia', '/img/Montessia.jpg'),
     tags: ['Comunicación Interna', 'Cultura', 'Corporativo']
   },
   {
@@ -258,7 +262,7 @@ const projects = ref([
     client: 'Startup Fintech',
     year: '2023',
     description: 'Campaña completa de lanzamiento con estrategia digital y relaciones públicas.',
-    image: '/img/Montessia.jpg',
+    image: imgCard('franklincs/montessia', '/img/Montessia.jpg'),
     tags: ['Lanzamiento', 'PR', 'Digital']
   }
 ]);

@@ -44,9 +44,12 @@
           >
             <!-- Imagen -->
             <div class="aspect-[4/3] relative overflow-hidden">
-              <img 
-                :src="project.image" 
+              <img
+                :src="project.image"
                 :alt="project.title"
+                loading="lazy"
+                width="800"
+                height="600"
                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               >
               <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all"></div>
@@ -94,13 +97,14 @@
 
 <script setup>
 import { ref } from 'vue';
+import { imgCard } from '../utils/cloudinary.js';
 
 const projects = ref([
   {
     title: 'Página Web con Pasarela de Pago',
     category: 'Desarrollo Web',
     description: 'E-commerce con integración de pagos en línea',
-    image: '/img/Fortress.jpg',
+    image: imgCard('franklincs/fortress', '/img/Fortress.jpg'),
     link: 'https://fortressbga.com/'
   }
 ]);
