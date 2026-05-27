@@ -184,6 +184,8 @@
   font-size: clamp(2.8rem, 6.2vw, 5.6rem);
   margin-bottom: 1.4rem;
 }
+
+
 .hero-sub {
   font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
   font-size: .95rem; color: rgba(255,255,255,.88);
