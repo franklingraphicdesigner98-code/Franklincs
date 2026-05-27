@@ -12,7 +12,7 @@
       </div>
 
       <div class="portfolio-grid">
-        <router-link to="/diseno-grafico" class="pf p1 reveal">
+        <router-link to="/diseno-grafico" class="pf reveal">
           <img :src="imgCard('franklincs/montessia', '/img/Montessia.jpg')" alt="Montessia" loading="lazy" />
           <div class="ov"></div>
           <span class="tag-corner">Destacado</span>
@@ -25,7 +25,7 @@
           </div>
         </router-link>
 
-        <router-link to="/desarrollo-software" class="pf p2 reveal reveal-1">
+        <router-link to="/desarrollo-software" class="pf reveal reveal-1">
           <img :src="imgCard('franklincs/fortress', '/img/Fortress.jpg')" alt="Fortress" loading="lazy" />
           <div class="ov"></div>
           <span class="tag-corner">Branding</span>
@@ -38,7 +38,7 @@
           </div>
         </router-link>
 
-        <router-link to="/diseno-grafico" class="pf p3 reveal reveal-2">
+        <router-link to="/diseno-grafico" class="pf reveal reveal-2">
           <img :src="imgCard('franklincs/mrcream-cover', '/img/Mr_Cream_Logo.jpg')" alt="Mr Cream" loading="lazy" />
           <div class="ov"></div>
           <span class="tag-corner">Packaging</span>
@@ -51,7 +51,7 @@
           </div>
         </router-link>
 
-        <router-link to="/diseno-grafico" class="pf p4 reveal">
+        <router-link to="/diseno-grafico" class="pf reveal">
           <img src="/img/Project 2.jpg" alt="Project 1" loading="lazy" />
           <div class="ov"></div>
           <span class="tag-corner">Editorial</span>
@@ -64,7 +64,7 @@
           </div>
         </router-link>
 
-        <router-link to="/comunicacion-corporativa" class="pf p5 reveal reveal-1">
+        <router-link to="/comunicacion-corporativa" class="pf reveal reveal-1">
           <img src="/img/Project 3.jpg" alt="Project 3" loading="lazy" />
           <div class="ov"></div>
           <span class="tag-corner">Campaña</span>
@@ -77,7 +77,7 @@
           </div>
         </router-link>
 
-        <router-link to="/consultoria-digital" class="pf p6 reveal reveal-2">
+        <router-link to="/consultoria-digital" class="pf reveal reveal-2">
           <img src="/img/Project 5.jpg" alt="Project 5" loading="lazy" />
           <div class="ov"></div>
           <span class="tag-corner">Digital</span>
@@ -107,8 +107,10 @@ import { imgCard } from '../../utils/cloudinary.js';
 
 <style scoped>
 .portfolio-grid {
-  display: grid; grid-template-columns: repeat(12, 1fr); gap: 1rem;
-  grid-auto-rows: 160px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  grid-auto-rows: 280px;
 }
 .pf {
   position: relative; border-radius: var(--r-md); overflow: hidden;
@@ -147,12 +149,6 @@ import { imgCard } from '../../utils/cloudinary.js';
   border: 1px solid rgba(230,179,74,.35);
   color: var(--gold); font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
 }
-.pf.p1 { grid-column: span 5; grid-row: span 2 }
-.pf.p2 { grid-column: span 5; grid-row: span 2 }
-.pf.p3 { grid-column: span 5; grid-row: span 2 }
-.pf.p4 { grid-column: span 4; grid-row: span 2 }
-.pf.p5 { grid-column: span 4; grid-row: span 2 }
-.pf.p6 { grid-column: span 4; grid-row: span 2 }
 
 /* Stats */
 .stats-row {
@@ -173,13 +169,12 @@ import { imgCard } from '../../utils/cloudinary.js';
 .stat .lbl { color: #fff; font-size: .78rem; font-weight: 500; margin-top: .5rem; letter-spacing: .18em; text-transform: uppercase }
 
 @media (max-width: 1100px) {
-  .portfolio-grid { grid-auto-rows: 140px }
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 260px }
   .stats-row { grid-template-columns: repeat(2,1fr); gap: 2rem }
   .stat + .stat::before { display: none }
 }
 @media (max-width: 720px) {
   .portfolio-grid { grid-template-columns: 1fr; grid-auto-rows: 240px }
-  .pf { grid-column: span 1 !important; grid-row: span 1 !important }
   .stats-row { grid-template-columns: 1fr 1fr; padding: 1.8rem; gap: 1.2rem }
 }
 </style>
