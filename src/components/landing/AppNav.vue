@@ -8,8 +8,8 @@
       </a>
 
       <div class="nav-links">
-        <a href="#servicios">Servicios</a>
         <a href="#marca">Marca</a>
+        <a href="#servicios">Servicios</a>
         <a href="#proyectos">Proyectos</a>
         <a href="#proceso">Proceso</a>
         <a href="#contacto">Contacto</a>
@@ -28,8 +28,8 @@
 
     <!-- Mobile menu -->
     <div v-if="menuOpen" class="mobile-menu">
-      <a href="#servicios" @click="menuOpen=false">Servicios</a>
       <a href="#marca" @click="menuOpen=false">Marca</a>
+      <a href="#servicios" @click="menuOpen=false">Servicios</a>
       <a href="#proyectos" @click="menuOpen=false">Proyectos</a>
       <a href="#proceso" @click="menuOpen=false">Proceso</a>
       <a href="#contacto" @click="menuOpen=false">Contacto</a>

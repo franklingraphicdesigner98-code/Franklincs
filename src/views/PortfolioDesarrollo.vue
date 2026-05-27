@@ -4,8 +4,8 @@
 
   <!-- Back button -->
   <router-link to="/" class="back-btn">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-    Volver al inicio
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Volver
   </router-link>
 
   <!-- Nav -->
@@ -25,8 +25,9 @@
       <div>
         <span class="eyebrow">Portafolio · Desarrollo</span>
         <h1 class="display hero-display">
-          <span class="line"><span class="white">Desarrollo de Software</span></span>
-          <span class="line"><span class="gold">&amp; Soluciones Web</span></span>
+          <span class="line">
+            <span class="white">Desarrollo de </span><span class="gold typed-word">{{ typedText }}<span class="cursor"></span></span>
+          </span>
         </h1>
         <p class="lead">
           Construimos productos digitales a medida — desde sitios web hasta plataformas
@@ -60,7 +61,7 @@
   </header>
 
   <!-- Filters -->
-  <div class="filters-wrap">
+  <div class="filters-wrap" :style="{ top: navHidden ? '0px' : '62px' }">
     <div class="filters">
       <div class="filter-pills">
         <button
@@ -226,6 +227,20 @@
 
 <script setup>
 import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue';
+
+/* ── Typewriter ── */
+const typedText = ref('');
+const phrases = ['Software', '& Soluciones Web', 'Aplicaciones', 'Plataformas Web'];
+let phraseIdx = 0, charIdx = 0, isDeleting = false, typeTimer = null;
+const tick = () => {
+  const cur = phrases[phraseIdx];
+  typedText.value = isDeleting ? cur.slice(0, charIdx - 1) : cur.slice(0, charIdx + 1);
+  isDeleting ? charIdx-- : charIdx++;
+  let delay = isDeleting ? 55 : 95;
+  if (!isDeleting && charIdx === cur.length) { delay = 1800; isDeleting = true; }
+  else if (isDeleting && charIdx === 0) { isDeleting = false; phraseIdx = (phraseIdx + 1) % phrases.length; delay = 350; }
+  typeTimer = setTimeout(tick, delay);
+};
 import AppBackdrop from '../components/landing/AppBackdrop.vue';
 import { imgCard, imgGallery } from '../utils/cloudinary.js';
 import { useReveal } from '../composables/useReveal.js';
@@ -240,8 +255,8 @@ const onScroll = () => {
   navHidden.value = y > lastY && y > 80;
   lastY = y;
 };
-onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }));
-onUnmounted(() => window.removeEventListener('scroll', onScroll));
+onMounted(() => { window.addEventListener('scroll', onScroll, { passive: true }); typeTimer = setTimeout(tick, 700); });
+onUnmounted(() => { window.removeEventListener('scroll', onScroll); clearTimeout(typeTimer); });
 
 /* ── Keyboard ── */
 const onKey = (e) => {
@@ -373,13 +388,14 @@ const prevImage = () => {
 <style scoped>
 /* ── Back button ── */
 .back-btn {
-  position: fixed; top: 18px; left: 24px; z-index: 90;
-  display: inline-flex; align-items: center; gap: .6rem;
-  padding: .65rem 1.1rem; border-radius: 999px;
+  position: fixed; top: 14px; left: 24px; z-index: 200;
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .55rem .95rem; border-radius: 999px;
   background: linear-gradient(135deg, #f5cf7a, #e6b34a 50%, #b8862c);
-  color: #1a1207; font-weight: 700; font-size: .85rem; letter-spacing: .04em;
+  color: #1a1207; font-weight: 700; font-size: .8rem; letter-spacing: .04em;
   box-shadow: 0 8px 24px rgba(230,179,74,.4), inset 0 1px 0 rgba(255,255,255,.35);
   transition: all .25s ease;
+  pointer-events: auto;
 }
 .back-btn:hover { transform: translateX(-3px); box-shadow: 0 12px 32px rgba(230,179,74,.6), inset 0 1px 0 rgba(255,255,255,.4) }
 .back-btn svg { transition: transform .25s ease }
@@ -410,14 +426,18 @@ const prevImage = () => {
   max-width: 1280px; margin: 0 auto; padding: 0 32px;
   display: grid; grid-template-columns: 1.3fr 1fr; gap: 4rem; align-items: end;
 }
-.hero-display { font-size: clamp(3rem, 7.5vw, 6.8rem); margin-top: 1.5rem }
-.hero-display .line { display: block; overflow: hidden }
+.hero-display { font-size: clamp(2.2rem, 5.5vw, 4.8rem); margin-top: 1.5rem }
+.hero-display .line { display: block; overflow: visible }
 .hero-display .line > span {
-  display: inline-block; transform: translateY(110%); opacity: 0;
-  animation: rise 1s cubic-bezier(.2,.7,.2,1) forwards;
+  display: inline;
 }
-.hero-display .line:nth-child(1) > span { animation-delay: .2s }
-.hero-display .line:nth-child(2) > span { animation-delay: .4s }
+.typed-word { display: inline }
+.cursor {
+  display: inline-block; width: 3px; height: .85em;
+  background: var(--gold); margin-left: 3px; vertical-align: middle;
+  animation: blink .75s step-end infinite;
+}
+@keyframes blink { 0%,100% { opacity: 1 } 50% { opacity: 0 } }
 .hero p.lead { margin-top: 1.5rem; font-size: 1.05rem; color: var(--fg-dim); line-height: 1.75 }
 .hero-meta { display: grid; gap: 1.4rem }
 .hero-meta-item { padding: 1.2rem 1.4rem; display: flex; justify-content: space-between; align-items: center }
@@ -427,7 +447,8 @@ const prevImage = () => {
 
 /* ── Filters ── */
 .filters-wrap {
-  position: sticky; top: 62px; z-index: 40;
+  position: sticky; top: 62px; z-index: 60;
+  transition: top .3s ease;
   background: rgba(8,8,8,.55);
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
@@ -634,9 +655,9 @@ const prevImage = () => {
   .carousel { flex: 0 0 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,.06) }
 }
 @media (max-width: 720px) {
-  .back-btn { padding: .55rem .85rem; font-size: .78rem; top: 14px; left: 14px }
+  .back-btn { padding: .5rem .8rem; font-size: .75rem; top: 10px; left: 16px }
   .hero { padding: 7rem 0 4rem }
-  .filters-wrap { top: 58px }
+  .filters-wrap { top: 58px !important }
   .span-tall, .span-wide, .span-third, .span-half { grid-column: span 12 }
   .stats { grid-template-columns: 1fr 1fr; padding: 1.8rem; gap: 1.2rem }
   .cta-card { padding: 3rem 1.5rem }
