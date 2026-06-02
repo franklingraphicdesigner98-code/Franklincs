@@ -38,22 +38,22 @@
       <div class="hero-meta">
         <div class="glass hero-meta-item">
           <div>
-            <small>Proyectos</small>
-            <strong>+50 entregados</strong>
+            <small>Proyectos entregados</small>
+            <strong>200+</strong>
           </div>
           <div class="accent-bar"></div>
         </div>
         <div class="glass hero-meta-item">
           <div>
             <small>Categorías</small>
-            <strong>Branding · Editorial · Digital</strong>
+            <strong>Digital · Impresión · Packaging · Branding</strong>
           </div>
           <div class="accent-bar"></div>
         </div>
         <div class="glass hero-meta-item">
           <div>
             <small>Años de experiencia</small>
-            <strong>Desde 2021</strong>
+            <strong>Desde 2001</strong>
           </div>
           <div class="accent-bar"></div>
         </div>
@@ -143,7 +143,7 @@
   <!-- Signature -->
   <div class="signature">
     <div class="container">
-      <div class="sig-line"><span class="h"></span><span class="sig-mark">FP</span><span class="h right"></span></div>
+      <div class="sig-line"><span class="h"></span><img src="/img/ico_Mesa de trabajo 1_Mesa de trabajo 1.png" alt="FP" class="sig-mark" /><span class="h right"></span></div>
       <h3>Franklin Peña</h3>
       <p>Concept Studio</p>
     </div>
@@ -590,7 +590,7 @@ const prevImage = () => {
 .sig-line { display: flex; align-items: center; gap: 1.5rem; justify-content: center; margin-bottom: .8rem }
 .sig-line .h { width: 90px; height: 1px; background: linear-gradient(90deg,transparent,var(--gold)) }
 .sig-line .h.right { background: linear-gradient(90deg,var(--gold),transparent) }
-.sig-mark { font-family: var(--f-script); font-size: 3.2rem; color: var(--gold); line-height: 1; text-shadow: 0 0 24px rgba(230,179,74,.3) }
+.sig-mark { width: 72px; height: 72px; object-fit: contain; filter: drop-shadow(0 0 14px rgba(230,179,74,.4)) }
 .signature h3 { font-family: var(--f-display); font-size: 2rem; font-weight: 400; color: #fff; margin: .3rem 0 .2rem; letter-spacing: .02em }
 .signature p { margin: 0; color: var(--gold); font-size: .85rem; letter-spacing: .22em; text-transform: uppercase }
 

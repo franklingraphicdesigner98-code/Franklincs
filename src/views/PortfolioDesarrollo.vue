@@ -81,7 +81,7 @@
         <article
           v-for="p in filteredProjects" :key="p.id"
           :class="['project reveal', p.span]"
-          @click="openModal(p)"
+          @click="p.link ? openLink(p.link) : openModal(p)"
         >
           <div class="img-wrap">
             <img :src="p.image" :alt="p.title" loading="lazy" />
@@ -142,7 +142,7 @@
   <!-- Signature -->
   <div class="signature">
     <div class="container">
-      <div class="sig-line"><span class="h"></span><span class="sig-mark">FP</span><span class="h right"></span></div>
+      <div class="sig-line"><span class="h"></span><img src="/img/ico_Mesa de trabajo 1_Mesa de trabajo 1.png" alt="FP" class="sig-mark" /><span class="h right"></span></div>
       <h3>Franklin Peña</h3>
       <p>Concept Studio</p>
     </div>
@@ -269,81 +269,20 @@ onMounted(() => document.addEventListener('keydown', onKey));
 onUnmounted(() => document.removeEventListener('keydown', onKey));
 
 /* ── Data ── */
-const categories = ['Todos', 'Web', 'E-commerce', 'Landing', 'Branding Web', 'Consultoría'];
+const categories = ['Todos', 'E-commerce'];
 const selectedCat = ref('Todos');
 
 const allProjects = [
   {
-    id: 1, span: 'span-tall', category: 'E-commerce', year: '2024',
+    id: 1, span: 'span-wide', category: 'E-commerce', year: '2024',
     title: 'Fortress BGA', client: 'Fortress',
     subtitle: 'Tienda online · pasarela de pago',
     description: 'Sitio web corporativo con tienda integrada y pasarela de pago en línea para empresa de seguridad.',
     fullDesc: 'Desarrollo completo de sitio web corporativo para Fortress, incluyendo catálogo de productos, carrito de compras e integración de pasarela de pago. Diseño responsivo enfocado en conversión.',
     tags: ['Vue.js', 'E-commerce', 'Pasarela de pago', 'Responsivo'],
-    image: imgCard('franklincs/fortress', '/img/Fortress.jpg'),
-    gallery: [
-      imgGallery('franklincs/fortress', '/img/Fortress.jpg'),
-    ]
-  },
-  {
-    id: 2, span: 'span-wide', category: 'Landing', year: '2025',
-    title: 'Landing Corporativa', client: 'Cliente',
-    subtitle: 'Presentación de marca · captación de leads',
-    description: 'Landing page de alto impacto visual orientada a captación de leads y presentación de servicios.',
-    fullDesc: 'Diseño y desarrollo de landing page corporativa con animaciones, formulario de contacto integrado y optimización para motores de búsqueda.',
-    tags: ['Landing Page', 'Vue.js', 'SEO', 'Animaciones'],
-    image: imgCard('franklincs/coray-cover', '/img/Coray_Mesa de trabajo 1 copia 5.jpg'),
-    gallery: [
-      imgGallery('franklincs/coray-cover', '/img/Coray_Mesa de trabajo 1 copia 5.jpg'),
-    ]
-  },
-  {
-    id: 3, span: 'span-third', category: 'Web', year: '2025',
-    title: 'Sitio Institucional', client: 'Cliente',
-    subtitle: 'Presencia web · marca corporativa',
-    description: 'Desarrollo de sitio institucional con CMS integrado para gestión de contenido autónoma.',
-    fullDesc: 'Sitio web institucional con panel de administración para que el cliente gestione su propio contenido sin conocimientos técnicos.',
-    tags: ['Web', 'CMS', 'Responsivo'],
-    image: imgCard('franklincs/social-cover', '/img/Portfolio Español 2025_Mesa de trabajo 1 copia 2_Mesa de trabajo 1 copia 20.jpg'),
-    gallery: [
-      imgGallery('franklincs/social-cover', '/img/Portfolio Español 2025_Mesa de trabajo 1 copia 2_Mesa de trabajo 1 copia 20.jpg'),
-    ]
-  },
-  {
-    id: 4, span: 'span-third', category: 'Branding Web', year: '2026',
-    title: 'Identidad Digital', client: 'CoRay Dev',
-    subtitle: 'Web + branding · ecosistema digital',
-    description: 'Integración de identidad visual en plataforma web para comunidad de desarrolladores.',
-    fullDesc: 'Desarrollo web con identidad de marca integrada para CoRay Dev — comunidad de desarrolladores. Sitio responsivo con componentes de marca coherentes.',
-    tags: ['Vue.js', 'Branding', 'UI/UX'],
-    image: imgCard('franklincs/coray-g1', '/img/Coray_Mesa de trabajo 1 copia 6.jpg'),
-    gallery: [
-      imgGallery('franklincs/coray-g1', '/img/Coray_Mesa de trabajo 1 copia 6.jpg'),
-    ]
-  },
-  {
-    id: 5, span: 'span-half', category: 'Consultoría', year: '2026',
-    title: 'Auditoría Digital', client: 'Cliente',
-    subtitle: 'Estrategia web · consultoría',
-    description: 'Análisis y optimización de presencia digital: velocidad, SEO, UX y conversión.',
-    fullDesc: 'Consultoría integral de presencia digital — auditoría de sitio web, análisis de métricas, recomendaciones de SEO y plan de mejora de conversión.',
-    tags: ['Consultoría', 'SEO', 'UX', 'Análisis'],
-    image: imgCard('franklincs/seguros-cover', '/img/Sin título-2-06.jpg'),
-    gallery: [
-      imgGallery('franklincs/seguros-cover', '/img/Sin título-2-06.jpg'),
-    ]
-  },
-  {
-    id: 6, span: 'span-half', category: 'Web', year: '2025',
-    title: 'Plataforma Web', client: 'Cliente',
-    subtitle: 'Aplicación web · experiencia de usuario',
-    description: 'Plataforma web interactiva con panel de usuario, gestión de datos y diseño centrado en la experiencia.',
-    fullDesc: 'Desarrollo de plataforma web con autenticación, dashboard de usuario y gestión de datos en tiempo real. Interfaz intuitiva construida con Vue 3.',
-    tags: ['Vue 3', 'Node.js', 'API REST', 'Dashboard'],
-    image: imgCard('franklincs/montessia', '/img/Montessia.jpg'),
-    gallery: [
-      imgGallery('franklincs/montessia', '/img/Montessia.jpg'),
-    ]
+    link: 'https://fortressbga.com/',
+    image: imgCard('franklincs/fortress'),
+    gallery: [ imgGallery('franklincs/fortress') ]
   },
 ];
 
@@ -363,6 +302,8 @@ watch(filteredProjects, () => {
 const modalOpen = ref(false);
 const activeProject = ref(null);
 const imgIdx = ref(0);
+
+const openLink = (url) => window.open(url, '_blank', 'noopener,noreferrer');
 
 const openModal = (p) => {
   activeProject.value = p;
@@ -559,7 +500,7 @@ const prevImage = () => {
 .sig-line { display: flex; align-items: center; gap: 1.5rem; justify-content: center; margin-bottom: .8rem }
 .sig-line .h { width: 90px; height: 1px; background: linear-gradient(90deg,transparent,var(--gold)) }
 .sig-line .h.right { background: linear-gradient(90deg,var(--gold),transparent) }
-.sig-mark { font-family: var(--f-script); font-size: 3.2rem; color: var(--gold); line-height: 1; text-shadow: 0 0 24px rgba(230,179,74,.3) }
+.sig-mark { width: 72px; height: 72px; object-fit: contain; filter: drop-shadow(0 0 14px rgba(230,179,74,.4)) }
 .signature h3 { font-family: var(--f-display); font-size: 2rem; font-weight: 400; color: #fff; margin: .3rem 0 .2rem; letter-spacing: .02em }
 .signature p { margin: 0; color: var(--gold); font-size: .85rem; letter-spacing: .22em; text-transform: uppercase }
 

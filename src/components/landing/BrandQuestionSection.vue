@@ -19,16 +19,7 @@
             </p>
           </div>
           <div class="strategy-vis">
-            <div class="ring r1"></div>
-            <div class="ring r2"></div>
-            <div class="ring r3"></div>
-            <div class="center">
-              FP
-              <small>CONCEPT STUDIO</small>
-            </div>
-            <div class="orbit-dot d1"></div>
-            <div class="orbit-dot d2"></div>
-            <div class="orbit-dot d3"></div>
+            <img src="/img/ico_Mesa de trabajo 1_Mesa de trabajo 1.png" alt="Franklin Peña Concept Studio" class="brand-logo" />
           </div>
         </div>
       </div>
@@ -56,31 +47,8 @@
 .answer { font-size: 1.1rem; color: #fff; font-weight: 300; line-height: 1.55; max-width: 42ch }
 .answer .gold { color: var(--gold); font-weight: 500 }
 
-/* orbital visual */
-.strategy-vis { position: relative; display: grid; place-items: center; height: 380px }
-.ring {
-  position: absolute; border: 1px dashed rgba(230,179,74,.3); border-radius: 50%;
-  animation: spin 28s linear infinite;
-}
-.ring.r1 { width: 360px; height: 360px }
-.ring.r2 { width: 240px; height: 240px; animation-duration: 20s; animation-direction: reverse; border-style: solid; border-color: rgba(230,179,74,.18) }
-.ring.r3 { width: 140px; height: 140px; animation-duration: 14s }
-.center {
-  width: 140px; height: 140px; border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #f5cf7a, #e6b34a 40%, #5a3f0a 100%);
-  display: grid; place-items: center; color: #1a1207; font-family: var(--f-display);
-  box-shadow: 0 20px 60px rgba(230,179,74,.4), inset 0 2px 0 rgba(255,255,255,.3);
-  position: relative; z-index: 2;
-  font-size: 2rem; line-height: .9; text-align: center;
-}
-.center small { display: block; font-size: .55rem; letter-spacing: .2em; margin-top: .2rem; font-family: var(--f-body); font-weight: 600; opacity: .75 }
-.orbit-dot {
-  position: absolute; background: var(--gold); box-shadow: 0 0 12px var(--gold);
-  border-radius: 50%; animation: orbit 12s linear infinite;
-}
-.d1 { width: 14px; height: 14px; animation-delay: 0s }
-.d2 { width: 8px; height: 8px; animation-delay: -4s; background: #f5cf7a }
-.d3 { width: 10px; height: 10px; animation-delay: -8s }
+.strategy-vis { display: grid; place-items: center; height: 380px }
+.brand-logo { width: 100%; max-width: 320px; object-fit: contain; filter: drop-shadow(0 0 24px rgba(230,179,74,.35)) }
 
 @media (max-width: 1100px) {
   .brand-q-grid { grid-template-columns: 1fr; gap: 2rem }

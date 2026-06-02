@@ -3,7 +3,7 @@
     <div class="container">
       <div class="sig-line">
         <span class="h"></span>
-        <span class="sig-mark">FP</span>
+        <img src="/img/ico_Mesa de trabajo 1_Mesa de trabajo 1.png" alt="FP" class="sig-mark" />
         <span class="h right"></span>
       </div>
       <h2>Franklin Peña</h2>
@@ -24,9 +24,8 @@
 .sig-line .h { width: 90px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)) }
 .sig-line .h.right { background: linear-gradient(90deg, var(--gold), transparent) }
 .sig-mark {
-  font-family: var(--f-script); font-size: 3.6rem; color: var(--gold);
-  line-height: 1; letter-spacing: .02em;
-  text-shadow: 0 0 24px rgba(230,179,74,.3);
+  width: 80px; height: 80px; object-fit: contain;
+  filter: drop-shadow(0 0 16px rgba(230,179,74,.4));
 }
 .signature h2 {
   font-family: var(--f-display); font-size: 2.6rem; font-weight: 400;
