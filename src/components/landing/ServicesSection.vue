@@ -123,4 +123,5 @@
 
 @media (max-width: 1100px) { .svc-grid { grid-template-columns: 1fr } }
 @media (max-width: 720px) { .svc-card { padding: 1.8rem } }
+@media (max-width: 480px) { .svc-card { padding: 1.4rem 1.2rem } }
 </style>

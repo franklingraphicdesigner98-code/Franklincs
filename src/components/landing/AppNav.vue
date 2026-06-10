@@ -120,4 +120,8 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll));
   .save-btn { display: none }
   .hamburger { display: flex }
 }
+@media (max-width: 480px) {
+  .inner { padding: 0 16px }
+  .mobile-menu a { padding: .85rem 1.4rem }
+}
 </style>

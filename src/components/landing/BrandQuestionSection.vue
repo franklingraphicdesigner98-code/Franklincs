@@ -57,4 +57,9 @@
 @media (max-width: 720px) {
   .brand-q-card { padding: 2.5rem 1.8rem }
 }
+@media (max-width: 480px) {
+  .brand-q-card { padding: 1.8rem 1.2rem }
+  .strategy-vis { height: 200px }
+  .brand-logo { max-width: 180px }
+}
 </style>

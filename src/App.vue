@@ -36,4 +36,7 @@
   transform: scale(1.1);
   box-shadow: 0 10px 32px rgba(37,211,102,.6), 0 4px 12px rgba(0,0,0,.3);
 }
+@media (max-width: 480px) {
+  .wa-fab { width: 48px; height: 48px; bottom: 18px; right: 16px }
+}
 </style>

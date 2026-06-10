@@ -384,6 +384,15 @@
 }
 @media (max-width: 720px) {
   .hero { padding: 5rem 0 2.5rem }
-  .phones { height: 480px; transform: scale(.75) }
+  .phones { height: 380px; transform: scale(.65) }
+  .hero-features { grid-template-columns: 1fr; max-width: 100% }
+  .quick-nav { max-width: 100% }
+}
+@media (max-width: 480px) {
+  .phones { display: none }
+  .hero-features { grid-template-columns: 1fr }
+  .quick-nav { grid-template-columns: 1fr }
+  .qcard-title { white-space: normal }
+  .h1-mass { font-size: clamp(2.4rem, 9.5vw, 4rem) }
 }
 </style>

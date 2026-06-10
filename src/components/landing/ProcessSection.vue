@@ -59,4 +59,5 @@
 
 @media (max-width: 1100px) { .process-grid { grid-template-columns: repeat(2,1fr) } }
 @media (max-width: 720px)   { .process-grid { grid-template-columns: 1fr } }
+@media (max-width: 480px)   { .process-step { padding: 1.4rem 1.2rem } }
 </style>

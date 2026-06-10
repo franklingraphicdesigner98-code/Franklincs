@@ -44,4 +44,9 @@
 .cta-btns { display: flex; flex-wrap: wrap; gap: .85rem; justify-content: center }
 
 @media (max-width: 720px) { .cta-card { padding: 3rem 1.5rem } }
+@media (max-width: 480px) {
+  .cta-card { padding: 2.5rem 1.2rem }
+  .cta-btns { flex-direction: column; align-items: stretch }
+  .cta-btns .btn { justify-content: center }
+}
 </style>

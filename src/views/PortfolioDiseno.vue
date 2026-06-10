@@ -690,7 +690,11 @@ const prevImage = () => {
 @media (max-width: 720px) {
   .back-btn { padding: .5rem .8rem; font-size: .75rem; top: 10px; left: 16px }
   .hero { padding: 7rem 0 4rem }
+  .hero .inner { padding: 0 16px }
+  .hero-meta-item { padding: .9rem 1rem }
+  .hero-meta-item strong { font-size: 1rem }
   .filters-wrap { top: 58px !important }
+  .filters { padding: 0 16px }
   .span-tall, .span-wide, .span-third, .span-half { grid-column: span 12 }
   .stats { grid-template-columns: 1fr 1fr; padding: 1.8rem; gap: 1.2rem }
   .cta-card { padding: 3rem 1.5rem }
@@ -698,5 +702,13 @@ const prevImage = () => {
   .modal-head h2 { font-size: 1.1rem }
   .carousel { padding: .8rem }
   .details-grid { padding: 1rem }
+}
+@media (max-width: 480px) {
+  .hero-display { font-size: clamp(1.8rem, 7.5vw, 2.8rem) }
+  .hero-meta-item strong { font-size: .88rem; word-break: break-word }
+  .hero-meta-item small { font-size: .65rem }
+  .filters { flex-direction: column; align-items: flex-start; gap: .4rem }
+  .pill { padding: .45rem .9rem; font-size: .8rem }
+  .results-count { font-size: .82rem }
 }
 </style>

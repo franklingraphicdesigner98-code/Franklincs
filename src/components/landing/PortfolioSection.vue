@@ -177,4 +177,10 @@ import { imgCard } from '../../utils/cloudinary.js';
   .portfolio-grid { grid-template-columns: 1fr; grid-auto-rows: 240px }
   .stats-row { grid-template-columns: 1fr 1fr; padding: 1.8rem; gap: 1.2rem }
 }
+@media (max-width: 480px) {
+  .portfolio-grid { grid-auto-rows: 200px }
+  .stats-row { padding: 1.4rem 1rem; gap: .8rem }
+  .stat .num { font-size: 2rem }
+  .stat .lbl { font-size: .7rem }
+}
 </style>
