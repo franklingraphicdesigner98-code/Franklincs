@@ -3,10 +3,8 @@
   <AppNav />
   <main>
     <HeroSection />
-    <BrandQuestionSection />
     <ServicesSection />
-    <PortfolioSection />
-    <ProcessSection />
+    <BrandQuestionSection />
     <CTASection />
     <SignatureBlock />
   </main>
@@ -19,8 +17,6 @@ import AppNav               from '../components/landing/AppNav.vue';
 import HeroSection          from '../components/landing/HeroSection.vue';
 import BrandQuestionSection from '../components/landing/BrandQuestionSection.vue';
 import ServicesSection      from '../components/landing/ServicesSection.vue';
-import PortfolioSection     from '../components/landing/PortfolioSection.vue';
-import ProcessSection       from '../components/landing/ProcessSection.vue';
 import CTASection           from '../components/landing/CTASection.vue';
 import SignatureBlock        from '../components/landing/SignatureBlock.vue';
 import AppFooter            from '../components/landing/AppFooter.vue';

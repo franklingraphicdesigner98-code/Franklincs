@@ -8,17 +8,10 @@
       </a>
 
       <div class="nav-links">
-        <a href="#marca">Marca</a>
         <a href="#servicios">Servicios</a>
         <a href="#proyectos">Proyectos</a>
-        <a href="#proceso">Proceso</a>
         <a href="#contacto">Contacto</a>
       </div>
-
-      <a href="#contacto" class="save-btn">
-        Guarda
-        <svg viewBox="0 0 24 24"><path d="M6 2h12a1 1 0 0 1 1 1v19l-7-4-7 4V3a1 1 0 0 1 1-1z"/></svg>
-      </a>
 
       <!-- Mobile hamburger -->
       <button class="hamburger" @click="menuOpen = !menuOpen" aria-label="Menú">
@@ -55,24 +48,31 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll));
 <style scoped>
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 80;
-  transition: background .3s ease, border-color .3s ease, padding .3s ease;
-  background: transparent; border-bottom: 1px solid transparent; padding: 1.4rem 0;
+  transition: padding .3s ease;
+  background: transparent;
+  padding: 1.2rem 1.2rem;
 }
 .nav.scrolled {
-  background: rgba(8,8,8,.78);
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  border-bottom: 1px solid rgba(230,179,74,.12);
-  padding: .85rem 0;
+  padding: 0.85rem 1.2rem;
 }
 .inner {
   display: flex; align-items: center; justify-content: space-between;
-  max-width: var(--container); margin: 0 auto; padding: 0 32px;
+  max-width: var(--container); margin: 0 auto; padding: 1rem 32px;
+  background: rgba(8,8,8,.75);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(230,179,74,.25);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.1);
+  transition: all .3s ease;
 }
 .brand {
   display: flex; align-items: center; gap: .5rem;
   font-weight: 600; font-size: 1.05rem; letter-spacing: -.01em;
+  text-decoration: none;
+  transition: opacity .2s ease;
 }
+.brand:hover { opacity: .8 }
 .brand .b1 { color: #fff }
 .brand .b2 { color: var(--gold) }
 .brand .dot {
@@ -82,8 +82,8 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll));
 }
 .nav-links { display: flex; align-items: center; gap: 2.2rem }
 .nav-links a {
-  font-size: .88rem; color: var(--fg-dim); font-weight: 500;
-  transition: color .2s ease; position: relative;
+  font-size: .88rem; color: rgba(255,255,255,.7); font-weight: 500;
+  transition: color .2s ease; position: relative; text-decoration: none;
 }
 .nav-links a:hover { color: #fff }
 .nav-links a::after {
@@ -92,6 +92,28 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll));
   transition: width .25s ease; box-shadow: 0 0 8px var(--gold-glow);
 }
 .nav-links a:hover::after { width: 100% }
+
+.save-btn {
+  display: inline-flex; align-items: center; gap: .6rem;
+  padding: .65rem 1.4rem;
+  background: linear-gradient(135deg, rgba(245,207,122,.15), rgba(255,255,255,.05));
+  border: 1px solid rgba(230,179,74,.4);
+  border-radius: 999px;
+  color: var(--gold);
+  font-size: .85rem; font-weight: 600; letter-spacing: .05em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .2s ease;
+  text-transform: uppercase;
+}
+.save-btn:hover {
+  background: linear-gradient(135deg, rgba(245,207,122,.25), rgba(255,255,255,.1));
+  border-color: var(--gold);
+  box-shadow: 0 6px 16px rgba(230,179,74,.2);
+}
+.save-btn svg {
+  width: 16px; height: 16px; stroke: currentColor; stroke-width: 2;
+}
 
 .hamburger {
   display: none; flex-direction: column; gap: 5px;
@@ -105,23 +127,32 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll));
 
 .mobile-menu {
   display: flex; flex-direction: column; gap: 0;
-  background: rgba(8,8,8,.95); backdrop-filter: blur(18px);
-  border-top: 1px solid rgba(230,179,74,.12); padding: .5rem 0;
+  position: fixed; top: 90px; left: 12px; right: 12px;
+  background: rgba(8,8,8,.85); backdrop-filter: blur(20px);
+  border: 1px solid rgba(230,179,74,.25);
+  border-radius: 16px;
+  padding: .5rem 0;
+  box-shadow: 0 8px 32px rgba(0,0,0,.4);
 }
 .mobile-menu a {
-  padding: .9rem 2rem; font-size: .95rem; color: var(--fg-dim);
+  padding: .9rem 2rem; font-size: .95rem; color: rgba(255,255,255,.7);
   border-bottom: 1px solid rgba(255,255,255,.04);
-  transition: color .2s, background .2s;
+  transition: color .2s, background .2s; text-decoration: none;
 }
-.mobile-menu a:hover { color: var(--gold); background: rgba(230,179,74,.04) }
+.mobile-menu a:last-child { border-bottom: none }
+.mobile-menu a:hover { color: var(--gold); background: rgba(230,179,74,.08) }
 
 @media (max-width: 720px) {
   .nav-links { display: none }
   .save-btn { display: none }
   .hamburger { display: flex }
+  .inner { padding: 0.9rem 20px }
 }
 @media (max-width: 480px) {
-  .inner { padding: 0 16px }
-  .mobile-menu a { padding: .85rem 1.4rem }
+  .nav { padding: 0.8rem 0.8rem }
+  .inner { padding: 0.85rem 16px }
+  .mobile-menu a { padding: .85rem 1.4rem; font-size: .9rem }
+  .brand { font-size: 0.95rem }
+  .hamburger { width: 28px }
 }
 </style>

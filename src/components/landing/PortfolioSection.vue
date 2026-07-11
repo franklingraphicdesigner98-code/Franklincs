@@ -108,17 +108,31 @@ import { imgCard } from '../../utils/cloudinary.js';
 <style scoped>
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem;
-  grid-auto-rows: 280px;
 }
 .pf {
-  position: relative; border-radius: var(--r-md); overflow: hidden;
-  isolation: isolate; cursor: pointer; transition: transform .4s ease;
+  position: relative;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  isolation: isolate;
+  cursor: pointer;
+  transition: transform .4s ease, box-shadow .4s ease;
+  aspect-ratio: 4 / 3;
+  min-height: 280px;
+  background: #0d0d0d;
 }
-.pf:hover { transform: translateY(-4px) }
+.pf:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 60px rgba(0,0,0,.35);
+}
 .pf img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   transition: transform .8s ease, filter .4s ease;
   filter: saturate(.92) brightness(.9);
 }

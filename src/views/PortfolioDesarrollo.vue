@@ -3,7 +3,7 @@
   <AppBackdrop />
 
   <!-- Back button -->
-  <router-link to="/" class="back-btn">
+  <router-link to="/" class="back-btn" @click="closeModal">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
     Volver
   </router-link>
@@ -269,7 +269,7 @@ onMounted(() => document.addEventListener('keydown', onKey));
 onUnmounted(() => document.removeEventListener('keydown', onKey));
 
 /* ── Data ── */
-const categories = ['Todos', 'E-commerce'];
+const categories = ['Todos', 'E-commerce', 'Corporativo'];
 const selectedCat = ref('Todos');
 
 const allProjects = [
@@ -283,6 +283,17 @@ const allProjects = [
     link: 'https://fortressbga.com/',
     image: imgCard('franklincs/fortress'),
     gallery: [ imgGallery('franklincs/fortress') ]
+  },
+  {
+    id: 2, span: 'span-wide', category: 'Corporativo', year: '2026',
+    title: 'CoRay Dev', client: 'CoRay Dev',
+    subtitle: 'Software a la medida · sitio corporativo',
+    description: 'Sitio web corporativo para empresa de desarrollo de software, comunicando su propuesta de valor: "Construimos software a la medida".',
+    fullDesc: 'Desarrollo del sitio web corporativo de CoRay Dev, una compañía de desarrollo de software a la medida. El diseño y la construcción del sitio refuerzan su posicionamiento como socio tecnológico flexible, capaz de crear soluciones digitales personalizadas para cada cliente.',
+    tags: ['Vue.js', 'Corporativo', 'Software a la medida', 'Responsivo'],
+    link: 'https://coraydev.com/',
+    image: imgCard('franklincs/coray-cover'),
+    gallery: [ imgGallery('franklincs/coray-cover') ]
   },
 ];
 
@@ -324,6 +335,10 @@ const prevImage = () => {
   if (!activeProject.value) return;
   imgIdx.value = (imgIdx.value - 1 + activeProject.value.gallery.length) % activeProject.value.gallery.length;
 };
+
+// The back button sits above the modal overlay, so it can be clicked while
+// a project is open — make sure navigating away doesn't leave scroll locked.
+onUnmounted(() => { document.body.style.overflow = ''; });
 </script>
 
 <style scoped>

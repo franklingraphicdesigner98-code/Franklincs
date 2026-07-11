@@ -206,7 +206,7 @@ section.s {
 @keyframes rise { to { transform: translateY(0); opacity: 1 } }
 @keyframes floaty {
   0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)) }
-  50%       { transform: translateY(-12px) rotate(var(--rot, 0deg)) }
+  50%       { transform: tra  nslateY(-12px) rotate(var(--rot, 0deg)) }
 }
 @keyframes spin { to { transform: rotate(360deg) } }
 @keyframes orbit {

@@ -3,7 +3,7 @@
   <AppBackdrop />
 
   <!-- Back button -->
-  <router-link to="/" class="back-btn">
+  <router-link to="/" class="back-btn" @click="closeModal">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
     Volver
   </router-link>
@@ -53,7 +53,7 @@
         <div class="glass hero-meta-item">
           <div>
             <small>Años de experiencia</small>
-            <strong>Desde 2001</strong>
+            <strong>Desde 2022</strong>
           </div>
           <div class="accent-bar"></div>
         </div>
@@ -416,6 +416,10 @@ const prevImage = () => {
   if (!activeProject.value) return;
   imgIdx.value = (imgIdx.value - 1 + activeProject.value.gallery.length) % activeProject.value.gallery.length;
 };
+
+// The back button sits above the modal overlay, so it can be clicked while
+// a project is open — make sure navigating away doesn't leave scroll locked.
+onUnmounted(() => { document.body.style.overflow = ''; });
 </script>
 
 <style scoped>
