@@ -12,12 +12,12 @@ const router = createRouter({
     {
       path: '/identidad-marca',
       name: 'identidad-marca',
-      component: () => import('../views/IdentidadMarca.vue')
+      component: () => import('../views/PortfolioDiseno.vue')
     },
     {
       path: '/diseno-grafico',
       name: 'diseno-grafico',
-      component: () => import('../views/PortfolioDiseno.vue')
+      component: () => import('../views/IdentidadMarca.vue')
     },
     {
       path: '/diseno-empaques',

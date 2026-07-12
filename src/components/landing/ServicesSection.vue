@@ -36,14 +36,14 @@
 <script setup>
 const services = [
   {
-    id: 1, link: '/identidad-marca', image: '/img/Portada_identidad.png', alt: 'Identidad de Marca',
+    id: 2, link: '/identidad-marca', image: '/img/Portada_identidad.png', alt: 'Identidad de Marca',
     titleLine1: 'IDENTIDAD', titleLine2: 'DE MARCA',
-    includes: ['Logotipo', 'Papelería corporativa', 'Menús y cartas', 'Señalética y ambientación de locales']
+    includes: ['Flyers y volantes', 'Piezas para redes sociales', 'Publicidad impresa', 'Piezas digitales']
   },
   {
-    id: 2, link: '/diseno-grafico', image: '/img/Portada-diseño.jpg', alt: 'Diseño Gráfico',
+    id: 1, link: '/diseno-grafico', image: '/img/Portada-diseño.jpg', alt: 'Diseño Gráfico',
     titleLine1: 'DISEÑO', titleLine2: 'GRÁFICO',
-    includes: ['Flyers y volantes', 'Piezas para redes sociales', 'Publicidad impresa', 'Piezas digitales']
+    includes: ['Logotipo', 'Papelería corporativa', 'Menús y cartas', 'Señalética y ambientación de locales']
   },
   {
     id: 3, link: '/diseno-empaques', image: '/img/Project 2.jpg', alt: 'Diseño de Empaques',

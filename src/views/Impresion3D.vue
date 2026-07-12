@@ -62,38 +62,34 @@
     </div>
   </section>
 
-  <!-- Proceso -->
-  <section class="process-section">
+  <!-- Videos del proceso -->
+  <section class="video-section">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow reveal">Cómo trabajamos</span>
+        <span class="eyebrow reveal">En video</span>
         <h2 class="display reveal reveal-1" style="font-size:clamp(1.8rem, 3.6vw, 2.8rem)">
-          <span class="white">NUESTRO</span> <span class="gold">PROCESO</span>
+          <span class="white">MIRA EL</span> <span class="gold">PROCESO</span>
         </h2>
         <p class="lead reveal reveal-2">
-          Cuatro etapas para llevar tu pieza del modelo digital al objeto terminado.
+          Del modelo digital a la pieza terminada — así se ve el modelado y la impresión 3D en acción.
         </p>
       </div>
 
-      <div class="process-grid">
-        <div v-for="(step, i) in processSteps" :key="step.title" :class="['glass process-card reveal', `reveal-${i % 4}`]">
-          <span class="process-num">{{ String(i + 1).padStart(2, '0') }}</span>
-          <h3>{{ step.title }}</h3>
-          <p>{{ step.desc }}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Showcase -->
-  <section class="showcase-section">
-    <div class="container">
-      <div class="showcase reveal">
-        <img src="/img/Impresion 3d.jpg" alt="Impresión 3D en taller" loading="lazy" />
-        <div class="showcase-overlay">
-          <span class="mockup-tag">En el taller</span>
-          <h3>Precisión capa por capa</h3>
-        </div>
+      <div class="video-grid">
+        <a
+          v-for="(v, i) in videos" :key="v.title"
+          :href="v.link" target="_blank" rel="noopener noreferrer"
+          :class="['video-card reveal', `reveal-${i % 4}`]"
+        >
+          <img :src="v.image" :alt="v.title" loading="lazy" />
+          <div class="video-play">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+          <div class="video-overlay">
+            <span class="mockup-tag">Ver en TikTok</span>
+            <h3>{{ v.title }}</h3>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -115,7 +111,7 @@
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
             Iniciar proyecto
           </a>
-          <router-link to="/diseno-grafico" class="btn btn-outline">Ver portafolio completo</router-link>
+          <router-link to="/identidad-marca" class="btn btn-outline">Ver portafolio completo</router-link>
         </div>
       </div>
     </div>
@@ -195,12 +191,11 @@ const whyItems = [
   }
 ];
 
-/* ── Proceso de trabajo ── */
-const processSteps = [
-  { title: 'Modelado 3D', desc: 'Diseñamos el modelo digital de tu pieza con el software y precisión adecuados.' },
-  { title: 'Preparación & slicing', desc: 'Optimizamos orientación, soportes y parámetros de impresión para el mejor resultado.' },
-  { title: 'Impresión', desc: 'Fabricamos la pieza capa por capa con la tecnología y material ideales para tu proyecto.' },
-  { title: 'Acabado & ensamblaje', desc: 'Lijado, pintura o ensamblaje final según los requerimientos de cada pieza.' }
+/* ── Videos del proceso (TikTok) ── */
+const videos = [
+  { title: 'Llavero con diseño de uñas', image: '/img/llavero_uñas.jpg', link: 'https://www.tiktok.com/@franklin_designer/video/7619540097372884242' },
+  { title: 'Modelado de anillos', image: '/img/modelado_anillos.jpg', link: 'https://www.tiktok.com/@franklin_designer/video/7157501696548031749' },
+  { title: 'Impresora 3D en acción', image: '/img/impresora_3d.jpg', link: 'https://www.tiktok.com/@franklin_designer/video/7575952082771938568' },
 ];
 </script>
 
@@ -271,35 +266,40 @@ const processSteps = [
 .why-card h3 { font-family: var(--f-display); font-weight: 400; font-size: 1.25rem; text-transform: uppercase; letter-spacing: .03em; color: #fff; margin: 0 0 .6rem }
 .why-card p { color: var(--fg-mute); font-size: .9rem; line-height: 1.65; margin: 0 }
 
-/* ── Process section ── */
-.process-section { padding: 0 0 5rem }
-.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem }
-.process-card { padding: 2rem 1.6rem; text-align: left; position: relative }
-.process-num {
-  display: block; font-family: var(--f-display); font-weight: 400;
-  font-size: 2.4rem; margin-bottom: 1rem; letter-spacing: .01em;
-  background: linear-gradient(180deg,#f5cf7a 0%,#e6b34a 60%,#a47a23 100%);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
-.process-card h3 { font-family: var(--f-display); font-weight: 400; font-size: 1.15rem; text-transform: uppercase; letter-spacing: .03em; color: #fff; margin: 0 0 .6rem }
-.process-card p { color: var(--fg-mute); font-size: .88rem; line-height: 1.6; margin: 0 }
-
-/* ── Showcase ── */
-.showcase-section { padding: 0 0 5rem }
-.showcase {
-  position: relative; border-radius: var(--r-lg); overflow: hidden;
+/* ── Videos del proceso ── */
+.video-section { padding: 0 0 5rem }
+.video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem }
+.video-card {
+  position: relative; display: block; border-radius: var(--r-lg); overflow: hidden;
   min-height: 340px; isolation: isolate;
   border: 1px solid rgba(230,179,74,.2);
+  transition: transform .4s ease, box-shadow .4s ease;
 }
-.showcase img { width: 100%; height: 100%; max-height: 480px; object-fit: cover; display: block; filter: saturate(.95) brightness(.9) }
-.showcase::after {
+.video-card:hover { transform: translateY(-6px); box-shadow: 0 30px 70px rgba(0,0,0,.7), 0 0 0 1px rgba(230,179,74,.25) }
+.video-card img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  transition: transform .8s ease, filter .4s ease;
+  filter: saturate(.95) brightness(.85);
+}
+.video-card:hover img { transform: scale(1.06); filter: saturate(1.1) brightness(1) }
+.video-card::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.75) 100%);
   pointer-events: none;
 }
-.showcase-overlay { position: absolute; left: 1.6rem; right: 1.6rem; bottom: 1.4rem; z-index: 2 }
+.video-play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;
+  width: 60px; height: 60px; border-radius: 50%;
+  display: grid; place-items: center; color: #1a1207;
+  background: linear-gradient(135deg, #f5cf7a, #e6b34a 50%, #b8862c);
+  box-shadow: 0 10px 30px rgba(230,179,74,.45), inset 0 1px 0 rgba(255,255,255,.35);
+  transition: transform .3s ease;
+}
+.video-card:hover .video-play { transform: translate(-50%, -50%) scale(1.1) }
+.video-play svg { margin-left: 3px }
+.video-overlay { position: absolute; left: 1.4rem; right: 1.4rem; bottom: 1.2rem; z-index: 2 }
 .mockup-tag { display: inline-block; padding: .3rem .7rem; border-radius: 999px; background: rgba(0,0,0,.55); backdrop-filter: blur(8px); border: 1px solid rgba(230,179,74,.35); color: var(--gold); font-size: .68rem; font-weight: 600; letter-spacing: .06em; margin-bottom: .6rem }
-.showcase-overlay h3 { font-family: var(--f-display); font-weight: 400; font-size: 1.6rem; letter-spacing: .02em; text-transform: uppercase; margin: 0; color: #fff }
+.video-overlay h3 { font-family: var(--f-display); font-weight: 400; font-size: 1.3rem; letter-spacing: .02em; text-transform: uppercase; margin: 0; color: #fff }
 
 /* ── CTA ── */
 .cta-section { padding: 2rem 0 6rem }
@@ -334,14 +334,14 @@ const processSteps = [
   .hero .inner { grid-template-columns: 1fr; gap: 2.5rem }
   .hero-image { order: -1 }
   .why-grid { grid-template-columns: repeat(2, 1fr) }
-  .process-grid { grid-template-columns: repeat(2, 1fr) }
+  .video-grid { grid-template-columns: repeat(2, 1fr) }
 }
 @media (max-width: 720px) {
   .back-btn { padding: .5rem .8rem; font-size: .75rem; top: 10px; left: 16px }
   .hero { padding: 7rem 0 4rem }
   .hero .inner { padding: 0 16px }
   .why-grid { grid-template-columns: 1fr }
-  .process-grid { grid-template-columns: 1fr }
+  .video-grid { grid-template-columns: 1fr }
   .cta-card { padding: 3rem 1.5rem }
 }
 </style>

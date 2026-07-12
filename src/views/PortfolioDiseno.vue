@@ -61,26 +61,12 @@
     </div>
   </header>
 
-  <!-- Filters -->
-  <div class="filters-wrap" :style="{ top: navHidden ? '0px' : '62px' }">
-    <div class="filters">
-      <div class="filter-pills">
-        <button
-          v-for="cat in categories" :key="cat"
-          :class="['pill', { active: selectedCat === cat }]"
-          @click="selectedCat = cat"
-        >{{ cat }}</button>
-      </div>
-      <div class="results-count"><b>{{ filteredProjects.length }}</b> proyecto{{ filteredProjects.length !== 1 ? 's' : '' }}</div>
-    </div>
-  </div>
-
   <!-- Projects Grid -->
   <section class="projects-section">
     <div class="container">
       <div class="projects-grid">
         <article
-          v-for="p in filteredProjects" :key="p.id"
+          v-for="p in allProjects" :key="p.id"
           :class="['project reveal', p.span]"
           @click="openModal(p)"
         >
@@ -227,7 +213,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import AppBackdrop from '../components/landing/AppBackdrop.vue';
 import { imgCard, imgGallery } from '../utils/cloudinary.js';
 import { useReveal } from '../composables/useReveal.js';
@@ -270,9 +256,6 @@ onMounted(() => document.addEventListener('keydown', onKey));
 onUnmounted(() => document.removeEventListener('keydown', onKey));
 
 /* ── Data ── */
-const categories = ['Todos', 'Branding', 'Editorial', 'Packaging', 'Digital', 'Redesign'];
-const selectedCat = ref('Todos');
-
 const allProjects = [
   {
     id: 1, span: 'span-half', category: 'Branding', year: '2024',
@@ -380,18 +363,6 @@ const allProjects = [
   },
 ];
 
-const filteredProjects = computed(() =>
-  selectedCat.value === 'Todos'
-    ? allProjects
-    : allProjects.filter(p => p.category === selectedCat.value)
-);
-
-watch(filteredProjects, () => {
-  nextTick(() => {
-    document.querySelectorAll('.projects-grid .reveal:not(.in)').forEach(el => el.classList.add('in'));
-  });
-});
-
 /* ── Modal ── */
 const modalOpen = ref(false);
 const activeProject = ref(null);
@@ -479,34 +450,6 @@ onUnmounted(() => { document.body.style.overflow = ''; });
 .hero-meta-item small { display: block; color: var(--fg-mute); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; margin-bottom: .25rem }
 .hero-meta-item strong { font-family: var(--f-display); font-size: 1.4rem; font-weight: 400; letter-spacing: .04em; color: #fff }
 .accent-bar { width: 3px; height: 40px; background: linear-gradient(180deg, var(--gold-2), var(--gold-3)); border-radius: 2px; box-shadow: 0 0 8px var(--gold-glow) }
-
-/* ── Filters ── */
-.filters-wrap {
-  position: sticky; top: 62px; z-index: 60;
-  transition: top .3s ease;
-  background: rgba(8,8,8,.55);
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
-  border-top: 1px solid rgba(230,179,74,.08);
-  border-bottom: 1px solid rgba(230,179,74,.08);
-  padding: 1rem 0;
-}
-.filters { max-width: 1280px; margin: 0 auto; padding: 0 32px; display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; justify-content: space-between }
-.filter-pills { display: flex; flex-wrap: wrap; gap: .5rem }
-.pill {
-  padding: .55rem 1.2rem; border-radius: 999px;
-  font-size: .85rem; font-weight: 500; letter-spacing: .04em;
-  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); color: var(--fg-dim);
-  transition: all .2s ease;
-}
-.pill:hover { border-color: rgba(230,179,74,.4); color: var(--gold); background: rgba(230,179,74,.06) }
-.pill.active {
-  background: linear-gradient(135deg, #f5cf7a, #e6b34a 50%, #b8862c);
-  color: #1a1207; font-weight: 700; border-color: transparent;
-  box-shadow: 0 6px 20px rgba(230,179,74,.35), inset 0 1px 0 rgba(255,255,255,.3);
-}
-.results-count { font-family: var(--f-body); color: var(--fg-mute); font-size: .82rem; letter-spacing: .05em }
-.results-count b { color: var(--gold); font-weight: 600; font-family: var(--f-display); font-size: 1.1rem; margin-right: .2rem }
 
 /* ── Projects grid ── */
 .projects-section { padding: 4rem 0 6rem }
@@ -697,8 +640,6 @@ onUnmounted(() => { document.body.style.overflow = ''; });
   .hero .inner { padding: 0 16px }
   .hero-meta-item { padding: .9rem 1rem }
   .hero-meta-item strong { font-size: 1rem }
-  .filters-wrap { top: 58px !important }
-  .filters { padding: 0 16px }
   .span-tall, .span-wide, .span-third, .span-half { grid-column: span 12 }
   .stats { grid-template-columns: 1fr 1fr; padding: 1.8rem; gap: 1.2rem }
   .cta-card { padding: 3rem 1.5rem }
@@ -711,8 +652,5 @@ onUnmounted(() => { document.body.style.overflow = ''; });
   .hero-display { font-size: clamp(1.8rem, 7.5vw, 2.8rem) }
   .hero-meta-item strong { font-size: .88rem; word-break: break-word }
   .hero-meta-item small { font-size: .65rem }
-  .filters { flex-direction: column; align-items: flex-start; gap: .4rem }
-  .pill { padding: .45rem .9rem; font-size: .8rem }
-  .results-count { font-size: .82rem }
 }
 </style>
