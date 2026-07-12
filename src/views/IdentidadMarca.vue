@@ -145,9 +145,10 @@ const mockups = [
   { title: 'Tarjetas de presentación', tag: 'Papelería', span: 'span-third', image: '/img/Tarjetas de presentacion yolima.png' },
   { title: 'Menús & material impreso', tag: 'Editorial', span: 'span-third', image: '/img/menu_mr_cream.png', link: 'https://www.instagram.com/mrcream35/' },
   { title: 'Ambientación gráfica', tag: 'Espacio', span: 'span-third', image: '/img/socios-02.jpg', link: 'https://www.tiktok.com/@franklin_designer/video/7642957503138909448' },
-  { title: 'Packaging', tag: 'Producto', span: 'span-third', image: '/img/portada_packaging.jpg', link: '/diseno-empaques' },
-  { title: 'Piezas digitales', tag: 'Social Media', span: 'span-third', image: '/img/Sin título-1-05-04.jpg' },
-  { title: 'Señalética', tag: 'Ambientación', span: 'span-third', image: '/img/Señaletica.png' },
+  { title: 'Packaging', tag: 'Producto', span: 'span-quarter', image: '/img/portada_packaging.jpg', link: '/diseno-empaques' },
+  { title: 'Piezas digitales', tag: 'Social Media', span: 'span-quarter', image: '/img/redes_sociales_cam_network.jpg' },
+  { title: 'Señalética', tag: 'Ambientación', span: 'span-quarter', image: '/img/Señaletica.png' },
+  { title: 'Diseño Gran Formato', tag: 'Impresión', span: 'span-quarter', image: '/img/Project 5.jpg' },
 ];
 </script>
 
@@ -236,6 +237,7 @@ const mockups = [
 
 .span-half  { grid-column: span 6 }
 .span-third { grid-column: span 4 }
+.span-quarter { grid-column: span 3 }
 .mockup-hero { min-height: 440px }
 
 /* ── CTA ── */
@@ -270,13 +272,13 @@ const mockups = [
 @media (max-width: 1080px) {
   .hero .inner { grid-template-columns: 1fr; gap: 2.5rem }
   .hero-image { order: -1 }
-  .span-half, .span-third { grid-column: span 6 }
+  .span-half, .span-third, .span-quarter { grid-column: span 6 }
 }
 @media (max-width: 720px) {
   .back-btn { padding: .5rem .8rem; font-size: .75rem; top: 10px; left: 16px }
   .hero { padding: 7rem 0 4rem }
   .hero .inner { padding: 0 16px }
-  .span-half, .span-third { grid-column: span 12 }
+  .span-half, .span-third, .span-quarter { grid-column: span 12 }
   .mockup-hero { min-height: 320px }
   .cta-card { padding: 3rem 1.5rem }
 }
