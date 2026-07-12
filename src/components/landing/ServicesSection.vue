@@ -95,13 +95,6 @@ const services = [
   cursor: pointer;
 }
 
-.spec-card:hover {
-  transform: translateY(-10px);
-  border-color: rgba(230,179,74,.45);
-  background: rgba(8,8,8,.65);
-  box-shadow: 0 25px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
-}
-
 .spec-card::before {
   content: "";
   position: absolute;
@@ -116,8 +109,19 @@ const services = [
   z-index: 0;
 }
 
-.spec-card:hover::before {
-  opacity: 1;
+/* Hover-only effects gated behind (hover: hover) so touch devices don't
+   require a "first tap = hover, second tap = click" sequence (iOS Safari). */
+@media (hover: hover) and (pointer: fine) {
+  .spec-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(230,179,74,.45);
+    background: rgba(8,8,8,.65);
+    box-shadow: 0 25px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+  }
+
+  .spec-card:hover::before {
+    opacity: 1;
+  }
 }
 
 .spec-card > * {
@@ -144,8 +148,10 @@ const services = [
   transition: transform 0.4s ease;
 }
 
-.spec-card:hover .card-image img {
-  transform: scale(1.05);
+@media (hover: hover) and (pointer: fine) {
+  .spec-card:hover .card-image img {
+    transform: scale(1.05);
+  }
 }
 
 .card-content {
