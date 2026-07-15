@@ -28,11 +28,11 @@ export default {
     items: {
       identidad: {
         titleLine1: 'IDENTIDAD', titleLine2: 'DE MARCA',
-        includes: ['Flyers y volantes', 'Piezas para redes sociales', 'Publicidad impresa', 'Piezas digitales']
+        includes: ['Logotipo', 'Paleta de Color', 'Tipografía', 'Elementos Gráficos']
       },
       diseno: {
         titleLine1: 'DISEÑO', titleLine2: 'GRÁFICO',
-        includes: ['Logotipo', 'Papelería corporativa', 'Menús y cartas', 'Señalética y ambientación de locales']
+        includes: ['Flyers y Volantes', 'Carnets Corporativos', 'Publicidad Impresa', 'Piezas para Redes Sociales']
       },
       empaques: {
         titleLine1: 'DISEÑO DE', titleLine2: 'EMPAQUES',

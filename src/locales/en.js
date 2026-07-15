@@ -28,11 +28,11 @@ export default {
     items: {
       identidad: {
         titleLine1: 'BRAND', titleLine2: 'IDENTITY',
-        includes: ['Flyers', 'Social media pieces', 'Printed ads', 'Digital pieces']
+        includes: ['Logo', 'Color Palette', 'Typography', 'Graphic Elements']
       },
       diseno: {
         titleLine1: 'GRAPHIC', titleLine2: 'DESIGN',
-        includes: ['Logo', 'Corporate stationery', 'Menus & cards', 'Signage & venue branding']
+        includes: ['Flyers & Leaflets', 'Corporate ID Cards', 'Printed Advertising', 'Social Media Pieces']
       },
       empaques: {
         titleLine1: 'PACKAGING', titleLine2: 'DESIGN',
