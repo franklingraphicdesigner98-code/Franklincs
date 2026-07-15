@@ -8,9 +8,10 @@
       </a>
 
       <div class="nav-links">
-        <a href="#servicios">Servicios</a>
-        <a href="#proyectos">Proyectos</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#servicios">{{ t('nav.servicios') }}</a>
+        <a href="#proyectos">{{ t('nav.proyectos') }}</a>
+        <a href="#contacto">{{ t('nav.contacto') }}</a>
+        <LanguageSwitcher />
       </div>
 
       <!-- Mobile hamburger -->
@@ -21,17 +22,22 @@
 
     <!-- Mobile menu -->
     <div v-if="menuOpen" class="mobile-menu">
-      <a href="#marca" @click="menuOpen=false">Marca</a>
-      <a href="#servicios" @click="menuOpen=false">Servicios</a>
-      <a href="#proyectos" @click="menuOpen=false">Proyectos</a>
-      <a href="#proceso" @click="menuOpen=false">Proceso</a>
-      <a href="#contacto" @click="menuOpen=false">Contacto</a>
+      <a href="#marca" @click="menuOpen=false">{{ t('nav.marca') }}</a>
+      <a href="#servicios" @click="menuOpen=false">{{ t('nav.servicios') }}</a>
+      <a href="#proyectos" @click="menuOpen=false">{{ t('nav.proyectos') }}</a>
+      <a href="#proceso" @click="menuOpen=false">{{ t('nav.proceso') }}</a>
+      <a href="#contacto" @click="menuOpen=false">{{ t('nav.contacto') }}</a>
+      <div class="mobile-lang"><LanguageSwitcher /></div>
     </div>
   </nav>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+import { useI18n } from 'vue-i18n';
+import LanguageSwitcher from './LanguageSwitcher.vue';
+
+const { t } = useI18n();
 
 const isScrolled = ref(false);
 const menuOpen = ref(false);
@@ -141,6 +147,7 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll));
 }
 .mobile-menu a:last-child { border-bottom: none }
 .mobile-menu a:hover { color: var(--gold); background: rgba(230,179,74,.08) }
+.mobile-lang { padding: .9rem 2rem }
 
 @media (max-width: 720px) {
   .nav-links { display: none }

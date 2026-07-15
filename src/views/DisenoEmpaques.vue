@@ -5,7 +5,7 @@
   <!-- Back button -->
   <router-link to="/" class="back-btn">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-    Volver
+    {{ t('nav.volver') }}
   </router-link>
 
   <!-- Nav -->
@@ -16,6 +16,7 @@
         <span class="b1">Franklin</span>
         <span class="b2"> Studio</span>
       </a>
+      <LanguageSwitcher class="page-lang" />
     </div>
   </nav>
 
@@ -23,65 +24,44 @@
   <header class="hero">
     <div class="inner">
       <div>
-        <span class="eyebrow">Especialidad · 03</span>
+        <span class="eyebrow">{{ t('disenoEmpaques.eyebrow') }}</span>
         <h1 class="display hero-display">
-          <span class="white">Diseño de</span> <span class="gold">Empaques</span>
+          <span class="white">{{ t('disenoEmpaques.titleWhite') }}</span> <span class="gold">{{ t('disenoEmpaques.titleGold') }}</span>
         </h1>
         <p class="lead">
-          El empaque es el primer contacto físico entre tu producto y tu cliente. Diseñamos
-          packaging que protege, comunica y vende — desde la estructura y el troquel hasta
-          el acabado gráfico final.
+          {{ t('disenoEmpaques.lead') }}
         </p>
       </div>
       <div class="hero-image">
-        <img src="/img/portada_packaging.jpg" alt="Diseño de Empaques" />
+        <img src="/img/portada_packaging.jpg" :alt="t('disenoEmpaques.titleGold')" />
       </div>
     </div>
   </header>
-
-  <!-- Importancia -->
-  <section class="why-section">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow reveal">¿Por qué importa?</span>
-        <h2 class="display reveal reveal-1" style="font-size:clamp(1.8rem, 3.6vw, 2.8rem)">
-          <span class="white">EL EMPAQUE ES TU</span> <span class="gold">MEJOR VENDEDOR</span>
-        </h2>
-        <p class="lead reveal reveal-2">
-          En el punto de venta, el empaque comunica antes que nadie — protege, seduce y convence.
-        </p>
-      </div>
-
-      <div class="why-grid">
-        <div v-for="(item, i) in whyItems" :key="item.title" :class="['glass why-card reveal', `reveal-${i % 4}`]">
-          <div class="why-icon" v-html="item.icon"></div>
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.desc }}</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Mockups -->
   <section class="mockups-section">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow reveal">Proyectos reales</span>
+        <span class="eyebrow reveal">{{ t('disenoEmpaques.mockupsEyebrow') }}</span>
         <h2 class="display reveal reveal-1" style="font-size:clamp(1.8rem, 3.6vw, 2.8rem)">
-          <span class="white">PACKAGING EN</span> <span class="gold">ACCIÓN</span>
+          <span class="white">{{ t('disenoEmpaques.mockupsTitleWhite') }}</span> <span class="gold">{{ t('disenoEmpaques.mockupsTitleGold') }}</span>
         </h2>
         <p class="lead reveal reveal-2">
-          Desde bolsas de café hasta empaques de producto y su estructura técnica —
-          cada proyecto piensa en marca, función y producción.
+          {{ t('disenoEmpaques.mockupsLead') }}
         </p>
       </div>
 
       <div class="mockups-grid">
-        <article v-for="(m, i) in mockups" :key="m.title" :class="['mockup reveal', m.span, `reveal-${i % 4}`]">
-          <img :src="m.image" :alt="m.title" loading="lazy" />
+        <article v-for="(m, i) in mockups" :key="m.key" :class="['mockup reveal', m.span, `reveal-${i % 4}`]">
+          <img v-if="!m.images" :src="m.image" :alt="t(`disenoEmpaques.mockups.${m.key}.title`)" loading="lazy" />
+          <img
+            v-for="(src, idx) in (m.images || [])" :key="src"
+            :src="src" :alt="t(`disenoEmpaques.mockups.${m.key}.title`)" loading="lazy"
+            :class="['carousel-frame', { active: idx === frame % m.images.length }]"
+          />
           <div class="mockup-overlay">
-            <span class="mockup-tag">{{ m.tag }}</span>
-            <h3>{{ m.title }}</h3>
+            <span class="mockup-tag">{{ t(`disenoEmpaques.mockups.${m.key}.tag`) }}</span>
+            <h3>{{ t(`disenoEmpaques.mockups.${m.key}.title`) }}</h3>
           </div>
         </article>
       </div>
@@ -92,20 +72,19 @@
   <section class="cta-section">
     <div class="container">
       <div class="glass-gold cta-card reveal">
-        <span class="eyebrow" style="margin-bottom:1.4rem">Hablemos</span>
+        <span class="eyebrow" style="margin-bottom:1.4rem">{{ t('disenoEmpaques.ctaEyebrow') }}</span>
         <h2 class="display h-cta">
-          <span class="white">¿Listo para empacar</span> <span class="gold">tu producto?</span>
+          <span class="white">{{ t('disenoEmpaques.ctaTitleWhite') }}</span> <span class="gold">{{ t('disenoEmpaques.ctaTitleGold') }}</span>
         </h2>
         <p class="lead">
-          Diseñemos juntos un empaque que proteja tu producto y venda tu marca — desde el
-          concepto y la estructura hasta el arte final listo para producción.
+          {{ t('disenoEmpaques.ctaLead') }}
         </p>
         <div class="cta-btns">
           <a href="https://api.whatsapp.com/send/?phone=%2B573223003840&text=Hola%2C%20quiero%20un%20proyecto%20de%20dise%C3%B1o%20de%20empaques" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-            Iniciar proyecto
+            {{ t('cta.whatsapp') }}
           </a>
-          <router-link to="/identidad-marca" class="btn btn-outline">Ver portafolio completo</router-link>
+          <router-link to="/identidad-marca" class="btn btn-outline">{{ t('disenoEmpaques.verPortafolio') }}</router-link>
         </div>
       </div>
     </div>
@@ -115,15 +94,15 @@
   <div class="signature">
     <div class="container">
       <div class="sig-line"><span class="h"></span><img src="/img/ico_Mesa de trabajo 1_Mesa de trabajo 1.png" alt="FP" class="sig-mark" /><span class="h right"></span></div>
-      <h3>Franklin Peña</h3>
-      <p>Concept Studio</p>
+      <h3>{{ t('signature.name') }}</h3>
+      <p>{{ t('signature.role') }}</p>
     </div>
   </div>
 
   <!-- Footer -->
   <footer class="foot">
     <div class="inner">
-      <small>© 2026 Franklin Peña — Concept Studio</small>
+      <small>{{ t('footer.copyrightShort') }}</small>
       <nav>
         <a href="https://www.behance.net/gallery/220454209/Portfolio" target="_blank" rel="noopener noreferrer">Behance</a>
         <a href="https://www.instagram.com/franklinp.cs/" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -135,10 +114,13 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+import { useI18n } from 'vue-i18n';
 import AppBackdrop from '../components/landing/AppBackdrop.vue';
+import LanguageSwitcher from '../components/landing/LanguageSwitcher.vue';
 import { useReveal } from '../composables/useReveal.js';
 
 useReveal();
+const { t } = useI18n();
 
 /* ── Nav hide on scroll ── */
 const navHidden = ref(false);
@@ -151,47 +133,19 @@ const onScroll = () => {
 onMounted(() => window.addEventListener('scroll', onScroll, { passive: true }));
 onUnmounted(() => window.removeEventListener('scroll', onScroll));
 
-/* ── Importancia del empaque ── */
-const whyItems = [
-  {
-    title: 'Protección',
-    desc: 'Cuida tu producto durante el transporte y almacenamiento sin sacrificar el atractivo visual.',
-    icon: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>'
-  },
-  {
-    title: 'Vendedor silencioso',
-    desc: 'En el anaquel, el empaque es el primer —y a veces único— vendedor de tu marca.',
-    icon: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>'
-  },
-  {
-    title: 'Diferenciación',
-    desc: 'Un diseño distintivo hace que tu producto destaque frente a la competencia.',
-    icon: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 1-4.5 4.5L18 20l-6-3-6 3 1.5-6.5L3 9l6-1z"/></svg>'
-  },
-  {
-    title: 'Experiencia unboxing',
-    desc: 'Abrir el empaque se convierte en un momento memorable que conecta al cliente con la marca.',
-    icon: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="1.5"/><path d="M3 8l2-5h14l2 5"/><path d="M12 8v13"/></svg>'
-  },
-  {
-    title: 'Comunica valor',
-    desc: 'Transmite con claridad el uso, los beneficios y la calidad del producto que envuelve.',
-    icon: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="10" x2="12" y2="16"/><circle cx="12" cy="7" r=".6" fill="currentColor" stroke="none"/></svg>'
-  },
-  {
-    title: 'Estructura & función',
-    desc: 'Materiales y troquel pensados para ser prácticos, resistentes y responsables con el entorno.',
-    icon: '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 6 6 9 6 13a6 6 0 0 0 12 0c0-4-2-7-6-11z"/></svg>'
-  }
-];
+/* ── Carrusel de imágenes dentro de una tarjeta ── */
+const frame = ref(0);
+let carouselTimer = null;
+onMounted(() => { carouselTimer = setInterval(() => { frame.value++; }, 2800); });
+onUnmounted(() => clearInterval(carouselTimer));
 
 /* ── Mockups / proyectos de empaques ── */
 const mockups = [
-  { title: 'Bolsa & vaso · Montessia', tag: 'Food & Beverage', span: 'span-half', image: '/img/portada_packaging.jpg' },
-  { title: 'Empaque tech · Street style', tag: 'Tecnología', span: 'span-half', image: '/img/graffiti_audifono.jpg' },
-  { title: 'Empaque audífonos · Espacial', tag: 'Tecnología', span: 'span-third', image: '/img/espacio_audifono.jpg' },
-  { title: 'Mr Cream · Identidad de empaque', tag: 'Gastronomía', span: 'span-third', image: '/img/Sin_título-1-05-01.jpg' },
-  { title: 'Troquel & estructura técnica', tag: 'Producción', span: 'span-third', image: '/img/Mr_Cream_Reticula.jpg' },
+  { key: 'montessia', span: 'span-half', images: ['/img/Project 4.jpg', '/img/Project 3.jpg'] },
+  { key: 'smartwatch', span: 'span-half', images: ['/img/Caja_reloj.png', '/img/caja_reloj_morado.png'] },
+  { key: 'tech', span: 'span-third', image: '/img/graffiti_audifono.jpg' },
+  { key: 'audifonos', span: 'span-third', image: '/img/espacio_audifono.jpg' },
+  { key: 'carne', span: 'span-third', image: '/img/empaque_carne.jpg' },
 ];
 </script>
 
@@ -222,9 +176,11 @@ const mockups = [
 }
 .nav.hidden { transform: translateY(-100%) }
 .nav .inner {
+  position: relative;
   max-width: 1280px; margin: 0 auto;
   padding: 1rem 32px; display: flex; justify-content: center; align-items: center; gap: .5rem;
 }
+.page-lang { position: absolute; right: 32px; top: 50%; transform: translateY(-50%) }
 .brand { font-size: 1.25rem; font-weight: 600; letter-spacing: -.01em; display: flex; align-items: center; gap: .5rem }
 .brand .dot { width: 9px; height: 9px; border-radius: 50%; background: linear-gradient(135deg,#f5cf7a,#a47a23); box-shadow: 0 0 14px var(--gold-glow) }
 .brand .b1 { color: #fff }
@@ -249,18 +205,6 @@ const mockups = [
 .section-head { max-width: 720px; margin: 0 auto 3rem; text-align: center }
 .section-head .lead { margin-top: 1rem; color: var(--fg-dim); font-size: 1rem; line-height: 1.7 }
 
-/* ── Why section ── */
-.why-section { padding: 4rem 0 5rem }
-.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem }
-.why-card { padding: 2rem 1.8rem; text-align: left }
-.why-icon {
-  width: 52px; height: 52px; border-radius: 14px; margin-bottom: 1.2rem;
-  display: grid; place-items: center; color: var(--gold);
-  background: rgba(230,179,74,.08); border: 1px solid rgba(230,179,74,.25);
-}
-.why-card h3 { font-family: var(--f-display); font-weight: 400; font-size: 1.25rem; text-transform: uppercase; letter-spacing: .03em; color: #fff; margin: 0 0 .6rem }
-.why-card p { color: var(--fg-mute); font-size: .9rem; line-height: 1.65; margin: 0 }
-
 /* ── Mockups section ── */
 .mockups-section { padding: 2rem 0 5rem }
 .mockups-grid {
@@ -279,6 +223,8 @@ const mockups = [
   filter: saturate(.9) brightness(.85);
 }
 .mockup:hover img { transform: scale(1.06); filter: saturate(1.1) brightness(1) }
+.mockup img.carousel-frame { opacity: 0; transition: opacity 1.2s ease, transform .8s ease, filter .4s ease }
+.mockup img.carousel-frame.active { opacity: 1 }
 .mockup::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.75) 100%);
@@ -323,14 +269,12 @@ const mockups = [
 @media (max-width: 1080px) {
   .hero .inner { grid-template-columns: 1fr; gap: 2.5rem }
   .hero-image { order: -1 }
-  .why-grid { grid-template-columns: repeat(2, 1fr) }
   .span-half, .span-third { grid-column: span 6 }
 }
 @media (max-width: 720px) {
   .back-btn { padding: .5rem .8rem; font-size: .75rem; top: 10px; left: 16px }
   .hero { padding: 7rem 0 4rem }
   .hero .inner { padding: 0 16px }
-  .why-grid { grid-template-columns: 1fr }
   .span-half, .span-third { grid-column: span 12 }
   .cta-card { padding: 3rem 1.5rem }
 }

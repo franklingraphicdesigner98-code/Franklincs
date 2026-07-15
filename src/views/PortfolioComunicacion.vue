@@ -8,12 +8,13 @@
             <span class="text-white">Franklin</span>
             <span class="text-yellow-500"> Studio</span>
           </div>
-          <router-link 
+          <router-link
             to="/"
             class="bg-yellow-500 text-black px-6 py-2 rounded-lg hover:bg-yellow-400 transition-colors font-semibold"
           >
-            ← Volver
+            ← {{ t('nav.volver') }}
           </router-link>
+          <LanguageSwitcher class="ml-4" />
         </div>
       </div>
     </nav>
@@ -22,14 +23,13 @@
     <section class="bg-gradient-to-br from-yellow-900/30 via-black to-black text-white py-20 px-6 border-b border-gray-800">
       <div class="max-w-7xl mx-auto">
         <div class="max-w-3xl">
-          <p class="text-yellow-500 font-semibold mb-3">Portfolio</p>
+          <p class="text-yellow-500 font-semibold mb-3">{{ t('comunicacion.portafolio') }}</p>
           <h1 class="text-5xl md:text-6xl font-bold mb-6">
-            Comunicación Corporativa &<br>
-            <span class="text-yellow-500">Marketing Digital</span>
+            {{ t('comunicacion.titleWhite') }}<br>
+            <span class="text-yellow-500">{{ t('comunicacion.titleGold') }}</span>
           </h1>
           <p class="text-gray-400 text-lg leading-relaxed">
-            Estrategias de comunicación efectivas que fortalecen tu presencia corporativa 
-            y conectan con tu audiencia de manera significativa.
+            {{ t('comunicacion.lead') }}
           </p>
         </div>
       </div>
@@ -50,7 +50,7 @@
                 : 'bg-black border border-gray-700 text-gray-300 hover:border-yellow-500/50 hover:text-yellow-500'
             ]"
           >
-            {{ cat }}
+            {{ t(`comunicacion.categories.${cat}`) }}
           </button>
         </div>
       </div>
@@ -94,25 +94,25 @@
             <div class="p-6">
               <div class="flex items-center justify-between mb-3">
                 <span class="text-yellow-500 font-semibold text-sm">
-                  {{ project.category }}
+                  {{ t(`comunicacion.categories.${project.category}`) }}
                 </span>
                 <span class="text-gray-500 text-sm">{{ project.year }}</span>
               </div>
-              
+
               <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-yellow-500 transition-colors">
-                {{ project.title }}
+                {{ t(`comunicacion.projects.${project.key}.title`) }}
               </h3>
-              
+
               <p class="text-gray-400 text-sm mb-2 font-medium">
-                {{ project.client }}
+                {{ t(`comunicacion.projects.${project.key}.client`) }}
               </p>
-              
+
               <p class="text-gray-500 leading-relaxed mb-4">
-                {{ project.description }}
+                {{ t(`comunicacion.projects.${project.key}.description`) }}
               </p>
-              
+
               <button class="text-yellow-500 font-semibold hover:text-yellow-400 transition-colors inline-flex items-center">
-                Ver proyecto
+                {{ t('comunicacion.verProyecto') }}
                 <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
@@ -123,46 +123,22 @@
       </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="bg-zinc-900 py-16 px-6 border-t border-gray-800">
-      <div class="max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-4 gap-8 text-center">
-          <div>
-            <div class="text-4xl font-bold text-yellow-500 mb-2">40+</div>
-            <div class="text-gray-400">Campañas</div>
-          </div>
-          <div>
-            <div class="text-4xl font-bold text-yellow-500 mb-2">25+</div>
-            <div class="text-gray-400">Clientes</div>
-          </div>
-          <div>
-            <div class="text-4xl font-bold text-yellow-500 mb-2">500K+</div>
-            <div class="text-gray-400">Alcance</div>
-          </div>
-          <div>
-            <div class="text-4xl font-bold text-yellow-500 mb-2">98%</div>
-            <div class="text-gray-400">Satisfacción</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- CTA Section -->
     <section class="bg-gradient-to-br from-yellow-500 to-yellow-600 py-20 px-6">
       <div class="max-w-4xl mx-auto text-center">
         <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
-          ¿Listo para potenciar tu comunicación?
+          {{ t('comunicacion.ctaTitle') }}
         </h2>
         <p class="text-yellow-50 text-lg mb-8 max-w-2xl mx-auto">
-          Desarrollemos juntos una estrategia de comunicación que conecte con tu audiencia.
+          {{ t('comunicacion.ctaLead') }}
         </p>
-        <a 
+        <a
           href="https://api.whatsapp.com/send/?phone=%2B573223003840&text=Hola%2C%20quiero%20un%20proyecto%20de%20comunicación%20corporativa&type=phone_number&app_absent=0"
           target="_blank"
           rel="noopener noreferrer"
           class="inline-flex items-center bg-white text-yellow-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl"
         >
-          Iniciar Proyecto
+          {{ t('comunicacion.iniciarProyecto') }}
           <svg class="ml-3 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </svg>
@@ -178,7 +154,7 @@
           <span class="text-yellow-500"> Studio</span>
         </div>
         <p class="text-gray-400 mb-6">
-          Transformando ideas en experiencias visuales extraordinarias
+          {{ t('comunicacion.tagline') }}
         </p>
         <div class="flex justify-center gap-6">
           <a href="https://www.behance.net/gallery/220454209/Portfolio" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-yellow-500 transition-colors">
@@ -198,77 +174,27 @@
 
 <script setup>
 import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 import { imgCard } from '../utils/cloudinary.js';
+import LanguageSwitcher from '../components/landing/LanguageSwitcher.vue';
 
-const selectedCategory = ref('Todos');
+const { t } = useI18n();
 
-const categories = ['Todos', 'Estrategia', 'Marketing', 'Contenido', 'Social Media'];
+const selectedCategory = ref('todos');
+
+const categories = ['todos', 'estrategia', 'marketing', 'contenido', 'social'];
 
 const projects = ref([
-  {
-    id: 1,
-    title: 'Campaña Digital 360°',
-    category: 'Marketing',
-    client: 'Empresa Retail',
-    year: '2024',
-    description: 'Estrategia integral de marketing digital con enfoque en redes sociales y contenido.',
-    image: imgCard('franklincs/montessia', '/img/Montessia.jpg'),
-    tags: ['Marketing Digital', 'Campaña', 'Social Media']
-  },
-  {
-    id: 2,
-    title: 'Rebranding Corporativo',
-    category: 'Estrategia',
-    client: 'Startup Tech',
-    year: '2024',
-    description: 'Renovación completa de la estrategia de comunicación y posicionamiento de marca.',
-    image: imgCard('franklincs/montessia', '/img/Montessia.jpg'),
-    tags: ['Estrategia', 'Rebranding', 'Comunicación']
-  },
-  {
-    id: 3,
-    title: 'Gestión de Contenidos',
-    category: 'Contenido',
-    client: 'E-commerce',
-    year: '2023',
-    description: 'Creación y gestión de contenido para blog, redes sociales y newsletter.',
-    image: imgCard('franklincs/montessia', '/img/Montessia.jpg'),
-    tags: ['Contenido', 'Blog', 'Newsletter']
-  },
-  {
-    id: 4,
-    title: 'Social Media Strategy',
-    category: 'Social Media',
-    client: 'Marca de Moda',
-    year: '2024',
-    description: 'Estrategia de redes sociales con enfoque en Instagram y TikTok.',
-    image: imgCard('franklincs/montessia', '/img/Montessia.jpg'),
-    tags: ['Instagram', 'TikTok', 'Engagement']
-  },
-  {
-    id: 5,
-    title: 'Plan de Comunicación Interna',
-    category: 'Estrategia',
-    client: 'Corporativo',
-    year: '2024',
-    description: 'Desarrollo de estrategia de comunicación interna y cultura organizacional.',
-    image: imgCard('franklincs/montessia', '/img/Montessia.jpg'),
-    tags: ['Comunicación Interna', 'Cultura', 'Corporativo']
-  },
-  {
-    id: 6,
-    title: 'Lanzamiento de Producto',
-    category: 'Marketing',
-    client: 'Startup Fintech',
-    year: '2023',
-    description: 'Campaña completa de lanzamiento con estrategia digital y relaciones públicas.',
-    image: imgCard('franklincs/montessia', '/img/Montessia.jpg'),
-    tags: ['Lanzamiento', 'PR', 'Digital']
-  }
+  { id: 1, key: 'campania', category: 'marketing', year: '2024', image: imgCard('franklincs/montessia', '/img/Montessia.jpg'), tags: ['Marketing Digital', 'Campaña', 'Social Media'] },
+  { id: 2, key: 'rebranding', category: 'estrategia', year: '2024', image: imgCard('franklincs/montessia', '/img/Montessia.jpg'), tags: ['Estrategia', 'Rebranding', 'Comunicación'] },
+  { id: 3, key: 'contenidos', category: 'contenido', year: '2023', image: imgCard('franklincs/montessia', '/img/Montessia.jpg'), tags: ['Contenido', 'Blog', 'Newsletter'] },
+  { id: 4, key: 'social', category: 'social', year: '2024', image: imgCard('franklincs/montessia', '/img/Montessia.jpg'), tags: ['Instagram', 'TikTok', 'Engagement'] },
+  { id: 5, key: 'interna', category: 'estrategia', year: '2024', image: imgCard('franklincs/montessia', '/img/Montessia.jpg'), tags: ['Comunicación Interna', 'Cultura', 'Corporativo'] },
+  { id: 6, key: 'lanzamiento', category: 'marketing', year: '2023', image: imgCard('franklincs/montessia', '/img/Montessia.jpg'), tags: ['Lanzamiento', 'PR', 'Digital'] }
 ]);
 
 const filteredProjects = computed(() => {
-  if (selectedCategory.value === 'Todos') {
+  if (selectedCategory.value === 'todos') {
     return projects.value;
   }
   return projects.value.filter(p => p.category === selectedCategory.value);

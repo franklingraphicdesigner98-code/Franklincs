@@ -6,17 +6,15 @@
     </div>
     <div class="hero-content">
       <div class="glass-card">
-        <p class="eyebrow">MATERIALIZA TUS IDEAS</p>
+        <p class="eyebrow">{{ t('hero.eyebrow') }}</p>
         <h1 class="hero-title">
-          ¿Tu marca habla visualmente?
+          {{ t('hero.title') }}
         </h1>
         <p class="hero-description">
-          Integramos branding, diseño, tecnología<br />
-          y fabricación digital para construir<br />
-          marcas con impacto.
+          {{ t('hero.description') }}
         </p>
         <a href="#servicios" class="cta-btn">
-          CONOCE MAS
+          {{ t('hero.cta') }}
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>
@@ -28,6 +26,8 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
 </script>
 
 <style scoped>

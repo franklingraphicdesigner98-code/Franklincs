@@ -5,7 +5,7 @@
   <!-- Back button -->
   <router-link to="/" class="back-btn" @click="closeModal">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-    Volver
+    {{ t('nav.volver') }}
   </router-link>
 
   <!-- Nav -->
@@ -16,6 +16,7 @@
         <span class="b1">Franklin</span>
         <span class="b2"> Studio</span>
       </a>
+      <LanguageSwitcher class="page-lang" />
     </div>
   </nav>
 
@@ -23,37 +24,35 @@
   <header class="hero">
     <div class="inner">
       <div>
-        <span class="eyebrow">Portafolio · Diseño</span>
+        <span class="eyebrow">{{ t('disenoGrafico.eyebrow') }}</span>
         <h1 class="display hero-display">
           <span class="line">
-            <span class="white">Diseño </span><span class="gold typed-word">{{ typedText }}<span class="cursor"></span></span>
+            <span class="white">{{ t('disenoGrafico.titleWhite') }}</span><span class="gold typed-word">{{ typedText }}<span class="cursor"></span></span>
           </span>
         </h1>
         <p class="lead">
-          Creamos identidades visuales únicas que comunican la esencia de cada marca.
-          Desde el concepto inicial hasta la implementación final, cada proyecto es una
-          historia visual cuidadosamente elaborada.
+          {{ t('disenoGrafico.lead') }}
         </p>
       </div>
       <div class="hero-meta">
         <div class="glass hero-meta-item">
           <div>
-            <small>Proyectos entregados</small>
+            <small>{{ t('disenoGrafico.proyectosEntregados') }}</small>
             <strong>200+</strong>
           </div>
           <div class="accent-bar"></div>
         </div>
         <div class="glass hero-meta-item">
           <div>
-            <small>Categorías</small>
-            <strong>Digital · Impresión · Packaging · Branding</strong>
+            <small>{{ t('disenoGrafico.categorias') }}</small>
+            <strong>Digital · {{ locale === 'en' ? 'Printing' : 'Impresión' }} · Packaging · Branding</strong>
           </div>
           <div class="accent-bar"></div>
         </div>
         <div class="glass hero-meta-item">
           <div>
-            <small>Años de experiencia</small>
-            <strong>Desde 2022</strong>
+            <small>{{ t('disenoGrafico.aniosExperiencia') }}</small>
+            <strong>{{ t('disenoGrafico.desde') }}</strong>
           </div>
           <div class="accent-bar"></div>
         </div>
@@ -82,25 +81,16 @@
               <span class="cat">{{ p.category }}</span>
               <span class="client-sm">{{ p.client }}</span>
             </div>
-            <h3>{{ p.title }}</h3>
-            <p class="client">{{ p.subtitle }}</p>
-            <p class="desc">{{ p.description }}</p>
-            <span class="view">Ver proyecto
+            <h3>{{ t(`disenoGrafico.projects.${p.key}.title`) }}</h3>
+            <p class="client">{{ t(`disenoGrafico.projects.${p.key}.subtitle`) }}</p>
+            <p class="desc">{{ t(`disenoGrafico.projects.${p.key}.description`) }}</p>
+            <span class="view">{{ t('disenoGrafico.verProyecto') }}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </span>
           </div>
         </article>
       </div>
 
-      <!-- Stats -->
-      <div class="stats-wrap">
-        <div class="glass-gold stats reveal">
-          <div class="stat"><div class="num">+50</div><div class="lbl">Proyectos</div></div>
-          <div class="stat"><div class="num">+30</div><div class="lbl">Clientes</div></div>
-          <div class="stat"><div class="num">5+</div><div class="lbl">Años</div></div>
-          <div class="stat"><div class="num">100%</div><div class="lbl">Satisfacción</div></div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -108,19 +98,19 @@
   <section class="cta-section">
     <div class="container">
       <div class="glass-gold cta-card reveal">
-        <span class="eyebrow" style="margin-bottom:1.4rem">Hablemos</span>
+        <span class="eyebrow" style="margin-bottom:1.4rem">{{ t('disenoGrafico.ctaEyebrow') }}</span>
         <h2 class="display h-cta">
-          <span class="white">¿Listo para crear</span> <span class="gold">algo increíble?</span>
+          <span class="white">{{ t('disenoGrafico.ctaTitleWhite') }}</span> <span class="gold">{{ t('disenoGrafico.ctaTitleGold') }}</span>
         </h2>
         <p class="lead">
-          Trabajemos juntos para desarrollar la identidad visual que tu marca merece — desde el concepto hasta la implementación final.
+          {{ t('disenoGrafico.ctaLead') }}
         </p>
         <div class="cta-btns">
           <a href="https://api.whatsapp.com/send/?phone=%2B573223003840&text=Hola%2C%20quiero%20un%20proyecto%20de%20dise%C3%B1o%20gr%C3%A1fico" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-            Iniciar proyecto
+            {{ t('cta.whatsapp') }}
           </a>
-          <a href="https://www.behance.net/gallery/220454209/Portfolio" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Ver más en Behance</a>
+          <a href="https://www.behance.net/gallery/220454209/Portfolio" target="_blank" rel="noopener noreferrer" class="btn btn-outline">{{ t('disenoGrafico.verBehance') }}</a>
         </div>
       </div>
     </div>
@@ -130,15 +120,15 @@
   <div class="signature">
     <div class="container">
       <div class="sig-line"><span class="h"></span><img src="/img/ico_Mesa de trabajo 1_Mesa de trabajo 1.png" alt="FP" class="sig-mark" /><span class="h right"></span></div>
-      <h3>Franklin Peña</h3>
-      <p>Concept Studio</p>
+      <h3>{{ t('signature.name') }}</h3>
+      <p>{{ t('signature.role') }}</p>
     </div>
   </div>
 
   <!-- Footer -->
   <footer class="foot">
     <div class="inner">
-      <small>© 2026 Franklin Peña — Concept Studio</small>
+      <small>{{ t('footer.copyrightShort') }}</small>
       <nav>
         <a href="https://www.behance.net/gallery/220454209/Portfolio" target="_blank" rel="noopener noreferrer">Behance</a>
         <a href="https://www.instagram.com/franklinp.cs/" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -153,10 +143,10 @@
       <div class="modal">
         <div class="modal-head">
           <div>
-            <h2>{{ activeProject?.title }}</h2>
+            <h2>{{ activeProject ? t(`disenoGrafico.projects.${activeProject.key}.title`) : '' }}</h2>
             <div class="modal-client">{{ activeProject?.client }}</div>
           </div>
-          <button class="close-btn" @click="closeModal" aria-label="Cerrar">
+          <button class="close-btn" @click="closeModal" :aria-label="locale === 'en' ? 'Close' : 'Cerrar'">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </button>
         </div>
@@ -191,18 +181,18 @@
 
           <div class="details-grid">
             <div>
-              <h4>Descripción</h4>
-              <p class="desc">{{ activeProject?.fullDesc }}</p>
+              <h4>{{ t('disenoGrafico.descripcion') }}</h4>
+              <p class="desc">{{ activeProject ? t(`disenoGrafico.projects.${activeProject.key}.fullDesc`) : '' }}</p>
               <div class="modal-tags">
-                <span v-for="t in activeProject?.tags" :key="t">{{ t }}</span>
+                <span v-for="tag in activeProject?.tags" :key="tag">{{ tag }}</span>
               </div>
             </div>
             <div>
-              <h4>Detalles</h4>
+              <h4>{{ t('disenoGrafico.detalles') }}</h4>
               <div class="info-list">
-                <div class="info-row"><small>Categoría</small><strong>{{ activeProject?.category }}</strong></div>
-                <div class="info-row"><small>Cliente</small><strong>{{ activeProject?.client }}</strong></div>
-                <div class="info-row"><small>Año</small><strong>{{ activeProject?.year }}</strong></div>
+                <div class="info-row"><small>{{ t('disenoGrafico.categoria') }}</small><strong>{{ activeProject?.category }}</strong></div>
+                <div class="info-row"><small>{{ t('disenoGrafico.cliente') }}</small><strong>{{ activeProject?.client }}</strong></div>
+                <div class="info-row"><small>{{ t('disenoGrafico.anio') }}</small><strong>{{ activeProject?.year }}</strong></div>
               </div>
             </div>
           </div>
@@ -214,11 +204,14 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+import { useI18n } from 'vue-i18n';
 import AppBackdrop from '../components/landing/AppBackdrop.vue';
+import LanguageSwitcher from '../components/landing/LanguageSwitcher.vue';
 import { imgCard, imgGallery } from '../utils/cloudinary.js';
 import { useReveal } from '../composables/useReveal.js';
 
 useReveal();
+const { t, locale } = useI18n();
 
 /* ── Typewriter ── */
 const typedText = ref('');
@@ -258,11 +251,8 @@ onUnmounted(() => document.removeEventListener('keydown', onKey));
 /* ── Data ── */
 const allProjects = [
   {
-    id: 1, span: 'span-half', category: 'Branding', year: '2024',
-    title: 'Montessia', client: 'Montessia Cafe Gourmet',
-    subtitle: 'Café gourmet · sistema visual completo',
-    description: 'Identidad visual completa para café gourmet, incluyendo logo, paleta de colores, packaging y aplicaciones de marca.',
-    fullDesc: 'Identidad visual completa para café gourmet, incluyendo logo, paleta de colores, packaging y aplicaciones de marca. Construimos un sistema visual coherente que eleva la percepción de calidad del producto.',
+    id: 1, key: 'montessia', span: 'span-half', category: 'Branding', year: '2024',
+    client: 'Montessia Cafe Gourmet',
     tags: ['Identidad Visual', 'Branding', 'Gastronomía', 'Packaging'],
     image: imgCard('franklincs/montessia', '/img/Montessia.jpg'),
     gallery: [
@@ -274,11 +264,8 @@ const allProjects = [
     ]
   },
   {
-    id: 2, span: 'span-wide', category: 'Branding', year: '2026',
-    title: 'CoRay Dev', client: 'CoRay Dev',
-    subtitle: 'Comunidad de desarrolladores · identidad',
-    description: 'Identificador visual y logo construyendo una identidad de marca sólida y memorable para una comunidad tech.',
-    fullDesc: 'Diseño de identificador visual y logo para CoRay Dev, construyendo una identidad de marca sólida y memorable para una comunidad de desarrolladores.',
+    id: 2, key: 'coray', span: 'span-wide', category: 'Branding', year: '2026',
+    client: 'CoRay Dev',
     tags: ['Identidad Visual', 'Logo', 'Branding', 'Tech'],
     image: imgCard('franklincs/coray-cover', '/img/Coray_Mesa de trabajo 1 copia 5.jpg'),
     gallery: [
@@ -289,11 +276,8 @@ const allProjects = [
     ]
   },
   {
-    id: 3, span: 'span-third', category: 'Packaging', year: '2026',
-    title: 'Mr Cream', client: 'Postres Nacionales',
-    subtitle: 'Postres & cremas · rebranding',
-    description: 'Rediseño completo de marca para empresa de postres, modernizando su imagen para atraer a un público joven.',
-    fullDesc: 'Rediseño de marca para empresa de postres nacionales, enfocándose en modernizar su imagen y atraer a un público más joven.',
+    id: 3, key: 'mrcream', span: 'span-third', category: 'Packaging', year: '2026',
+    client: 'Postres Nacionales',
     tags: ['Rebranding', 'Food', 'Packaging'],
     image: imgCard('franklincs/mrcream-cover', '/img/Sin_título-1-05-01.jpg'),
     gallery: [
@@ -304,11 +288,8 @@ const allProjects = [
     ]
   },
   {
-    id: 4, span: 'span-third', category: 'Digital', year: '2026',
-    title: 'Social Media', client: 'Cam Network',
-    subtitle: 'Cam Network · piezas digitales',
-    description: 'Banners, posts y anuncios digitales para campañas de marketing y papelería corporativa.',
-    fullDesc: 'Diseño de piezas para redes sociales y papelería corporativa, incluyendo banners, posts y anuncios digitales para campañas de marketing.',
+    id: 4, key: 'social', span: 'span-third', category: 'Digital', year: '2026',
+    client: 'Cam Network',
     tags: ['Digital', 'Branding', 'Marketing'],
     image: imgCard('franklincs/social-cover', '/img/Portfolio Español 2025_Mesa de trabajo 1 copia 2_Mesa de trabajo 1 copia 20.jpg'),
     gallery: [
@@ -318,11 +299,8 @@ const allProjects = [
     ]
   },
   {
-    id: 5, span: 'span-third', category: 'Branding', year: '2026',
-    title: 'Los Socios', client: 'Los Socios',
-    subtitle: 'Identidad & sistema visual',
-    description: 'Identidad visual completa: identificador, paleta y sistema visual que refleja la esencia del negocio.',
-    fullDesc: 'Desarrollo de identidad visual completa: identificador de marca, paleta de colores y sistema visual que refleja la esencia del negocio.',
+    id: 5, key: 'socios', span: 'span-third', category: 'Branding', year: '2026',
+    client: 'Los Socios',
     tags: ['Identidad Visual', 'Logo', 'Branding'],
     image: imgCard('franklincs/socios-cover', '/img/portada_socios.jpg'),
     gallery: [
@@ -332,11 +310,8 @@ const allProjects = [
     ]
   },
   {
-    id: 6, span: 'span-half', category: 'Redesign', year: '2025',
-    title: 'Rebranding', client: 'Seguros',
-    subtitle: 'Compañía de seguros · imagen corporativa',
-    description: 'Rediseño completo de identidad visual, modernizando logo y materiales de marketing para mayor alcance.',
-    fullDesc: 'Rediseño completo de identidad visual para una compañía de seguros, modernizando su logo y materiales de marketing.',
+    id: 6, key: 'seguros', span: 'span-half', category: 'Redesign', year: '2025',
+    client: 'Seguros',
     tags: ['Editorial', 'Revista', 'Layout'],
     image: imgCard('franklincs/seguros-cover', '/img/Sin título-2-06.jpg'),
     gallery: [
@@ -345,20 +320,6 @@ const allProjects = [
       imgGallery('franklincs/seguros-g2', '/img/Sin título-2-03.jpg'),
       imgGallery('franklincs/seguros-g3', '/img/Sin título-2-04.jpg'),
       imgGallery('franklincs/seguros-g4', '/img/Sin título-2-05.jpg'),
-    ]
-  },
-  {
-    id: 7, span: 'span-half', category: 'Editorial', year: '2024',
-    title: 'Montessia Print', client: 'Montessia',
-    subtitle: 'Material editorial · papelería',
-    description: 'Sistema editorial impreso para Montessia: menús, tarjetas, papelería corporativa con identidad consistente.',
-    fullDesc: 'Sistema editorial impreso para Montessia: menús, tarjetas y papelería corporativa con identidad consistente.',
-    tags: ['Editorial', 'Print', 'Papelería'],
-    image: imgGallery('franklincs/montessia-g1', '/img/Poryecto montessia linke_Mesa de trabajo 1-2.jpg'),
-    gallery: [
-      imgGallery('franklincs/montessia-g1', '/img/Poryecto montessia linke_Mesa de trabajo 1-2.jpg'),
-      imgGallery('franklincs/montessia-g2', '/img/Project 2.jpg'),
-      imgGallery('franklincs/montessia-g3', '/img/Project 3.jpg'),
     ]
   },
 ];
@@ -420,9 +381,11 @@ onUnmounted(() => { document.body.style.overflow = ''; });
 }
 .nav.hidden { transform: translateY(-100%) }
 .nav .inner {
+  position: relative;
   max-width: 1280px; margin: 0 auto;
   padding: 1rem 32px; display: flex; justify-content: center; align-items: center; gap: .5rem;
 }
+.page-lang { position: absolute; right: 32px; top: 50%; transform: translateY(-50%) }
 .brand { font-size: 1.25rem; font-weight: 600; letter-spacing: -.01em; display: flex; align-items: center; gap: .5rem }
 .brand .dot { width: 9px; height: 9px; border-radius: 50%; background: linear-gradient(135deg,#f5cf7a,#a47a23); box-shadow: 0 0 14px var(--gold-glow) }
 .brand .b1 { color: #fff }
@@ -507,19 +470,6 @@ onUnmounted(() => { document.body.style.overflow = ''; });
 .span-wide  { grid-column: span 6 }
 .span-third { grid-column: span 4 }
 .span-half  { grid-column: span 6 }
-
-/* ── Stats ── */
-.stats-wrap { margin: 5rem 0 2rem }
-.stats { padding: 2.5rem 3rem; display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem }
-.stat { position: relative; text-align: center }
-.stat + .stat::before { content: ""; position: absolute; left: 0; top: 15%; height: 70%; width: 1px; background: linear-gradient(180deg, transparent, rgba(230,179,74,.35), transparent) }
-.stat .num {
-  font-family: var(--f-display); font-weight: 400;
-  font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1; letter-spacing: .01em;
-  background: linear-gradient(180deg,#f5cf7a 0%,#e6b34a 60%,#a47a23 100%);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
-.stat .lbl { color: #fff; font-size: .78rem; font-weight: 500; margin-top: .5rem; letter-spacing: .18em; text-transform: uppercase }
 
 /* ── CTA ── */
 .cta-section { padding: 4rem 0 6rem }

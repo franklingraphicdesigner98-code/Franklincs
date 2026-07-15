@@ -1,12 +1,12 @@
 <template>
   <footer class="foot">
     <div class="inner">
-      <small>© 2026 Franklin Peña — Concept Studio. Transformamos ideas en experiencias visuales y digitales extraordinarias.</small>
+      <small>{{ t('footer.copyright') }}</small>
       <nav>
-        <a href="#servicios">Servicios</a>
-        <a href="#proyectos">Proyectos</a>
-        <a href="#proceso">Proceso</a>
-        <a href="#contacto">Contacto</a>
+        <a href="#servicios">{{ t('nav.servicios') }}</a>
+        <a href="#proyectos">{{ t('nav.proyectos') }}</a>
+        <a href="#proceso">{{ t('nav.proceso') }}</a>
+        <a href="#contacto">{{ t('nav.contacto') }}</a>
       </nav>
       <div class="socials">
         <a href="https://www.instagram.com/franklinp.cs/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -27,6 +27,8 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
 </script>
 
 <style scoped>

@@ -5,7 +5,7 @@
   <!-- Back button -->
   <router-link to="/" class="back-btn">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-    Volver
+    {{ t('nav.volver') }}
   </router-link>
 
   <!-- Nav -->
@@ -16,6 +16,7 @@
         <span class="b1">Franklin</span>
         <span class="b2"> Studio</span>
       </a>
+      <LanguageSwitcher class="page-lang" />
     </div>
   </nav>
 
@@ -23,18 +24,16 @@
   <header class="hero">
     <div class="inner">
       <div>
-        <span class="eyebrow">Especialidad · 01</span>
+        <span class="eyebrow">{{ t('identidadMarca.eyebrow') }}</span>
         <h1 class="display hero-display">
-          <span class="white">Identidad</span> <span class="gold">de Marca</span>
+          <span class="white">{{ t('identidadMarca.titleWhite') }}</span> <span class="gold">{{ t('identidadMarca.titleGold') }}</span>
         </h1>
         <p class="lead">
-          Una marca no es solo un logo: es la manera en que tu negocio se ve, se siente y se recuerda
-          en cada punto de contacto. Construimos sistemas visuales completos — estrategia, concepto
-          y aplicación — para que tu identidad sea coherente, memorable y confiable.
+          {{ t('identidadMarca.lead') }}
         </p>
       </div>
       <div class="hero-image">
-        <img src="/img/Portada_identidad.png" alt="Identidad de Marca" />
+        <img src="/img/Portada_identidad.png" :alt="t('identidadMarca.titleWhite')" />
       </div>
     </div>
   </header>
@@ -43,30 +42,34 @@
   <section class="mockups-section">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow reveal">Aplicaciones reales</span>
+        <span class="eyebrow reveal">{{ t('identidadMarca.mockupsEyebrow') }}</span>
         <h2 class="display reveal reveal-1" style="font-size:clamp(1.8rem, 3.6vw, 2.8rem)">
-          <span class="white">SISTEMA VISUAL EN</span> <span class="gold">ACCIÓN</span>
+          <span class="white">{{ t('identidadMarca.mockupsTitleWhite') }}</span> <span class="gold">{{ t('identidadMarca.mockupsTitleGold') }}</span>
         </h2>
         <p class="lead reveal reveal-2">
-          Así se ve una identidad de marca llevada a sus piezas: tarjetas de presentación, menús,
-          papelería, empaques y ambientación gráfica — todo hablando el mismo idioma visual.
+          {{ t('identidadMarca.mockupsLead') }}
         </p>
       </div>
 
       <div class="mockups-grid">
         <component
           :is="!m.link ? 'article' : isExternal(m.link) ? 'a' : 'router-link'"
-          v-for="(m, i) in mockups" :key="m.title"
+          v-for="(m, i) in mockups" :key="m.key"
           :href="m.link && isExternal(m.link) ? m.link : undefined"
           :to="m.link && !isExternal(m.link) ? m.link : undefined"
           :target="m.link && isExternal(m.link) ? '_blank' : undefined"
           :rel="m.link && isExternal(m.link) ? 'noopener noreferrer' : undefined"
           :class="['mockup reveal', m.span, `reveal-${i % 4}`, { 'mockup-clickable': m.link }]"
         >
-          <img :src="m.image" :alt="m.title" loading="lazy" />
+          <img v-if="!m.images" :src="m.image" :alt="t(`identidadMarca.mockups.${m.key}.title`)" loading="lazy" />
+          <img
+            v-for="(src, idx) in (m.images || [])" :key="src"
+            :src="src" :alt="t(`identidadMarca.mockups.${m.key}.title`)" loading="lazy"
+            :class="['carousel-frame', { active: idx === frame % m.images.length }]"
+          />
           <div class="mockup-overlay">
-            <span class="mockup-tag">{{ m.tag }}</span>
-            <h3>{{ m.title }}</h3>
+            <span class="mockup-tag">{{ platformTag(m) }}</span>
+            <h3>{{ t(`identidadMarca.mockups.${m.key}.title`) }}</h3>
           </div>
         </component>
       </div>
@@ -77,20 +80,19 @@
   <section class="cta-section">
     <div class="container">
       <div class="glass-gold cta-card reveal">
-        <span class="eyebrow" style="margin-bottom:1.4rem">Hablemos</span>
+        <span class="eyebrow" style="margin-bottom:1.4rem">{{ t('identidadMarca.ctaEyebrow') }}</span>
         <h2 class="display h-cta">
-          <span class="white">¿Listo para construir</span> <span class="gold">tu identidad?</span>
+          <span class="white">{{ t('identidadMarca.ctaTitleWhite') }}</span> <span class="gold">{{ t('identidadMarca.ctaTitleGold') }}</span>
         </h2>
         <p class="lead">
-          Desarrollemos juntos el sistema visual completo de tu marca — desde el concepto hasta cada
-          pieza de papelería, packaging y ambientación gráfica.
+          {{ t('identidadMarca.ctaLead') }}
         </p>
         <div class="cta-btns">
           <a href="https://api.whatsapp.com/send/?phone=%2B573223003840&text=Hola%2C%20quiero%20un%20proyecto%20de%20identidad%20de%20marca" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-            Iniciar proyecto
+            {{ t('cta.whatsapp') }}
           </a>
-          <router-link to="/identidad-marca" class="btn btn-outline">Ver portafolio completo</router-link>
+          <router-link to="/identidad-marca" class="btn btn-outline">{{ t('identidadMarca.verPortafolio') }}</router-link>
         </div>
       </div>
     </div>
@@ -100,15 +102,15 @@
   <div class="signature">
     <div class="container">
       <div class="sig-line"><span class="h"></span><img src="/img/ico_Mesa de trabajo 1_Mesa de trabajo 1.png" alt="FP" class="sig-mark" /><span class="h right"></span></div>
-      <h3>Franklin Peña</h3>
-      <p>Concept Studio</p>
+      <h3>{{ t('signature.name') }}</h3>
+      <p>{{ t('signature.role') }}</p>
     </div>
   </div>
 
   <!-- Footer -->
   <footer class="foot">
     <div class="inner">
-      <small>© 2026 Franklin Peña — Concept Studio</small>
+      <small>{{ t('footer.copyrightShort') }}</small>
       <nav>
         <a href="https://www.behance.net/gallery/220454209/Portfolio" target="_blank" rel="noopener noreferrer">Behance</a>
         <a href="https://www.instagram.com/franklinp.cs/" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -120,10 +122,13 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
+import { useI18n } from 'vue-i18n';
 import AppBackdrop from '../components/landing/AppBackdrop.vue';
+import LanguageSwitcher from '../components/landing/LanguageSwitcher.vue';
 import { useReveal } from '../composables/useReveal.js';
 
 useReveal();
+const { t } = useI18n();
 
 /* ── Nav hide on scroll ── */
 const navHidden = ref(false);
@@ -138,17 +143,30 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll));
 
 const isExternal = (link) => /^https?:\/\//.test(link);
 
+const platformTag = (m) => {
+  if (!m.link) return t(`identidadMarca.mockups.${m.key}.tag`);
+  if (m.link.includes('instagram.com')) return t('identidadMarca.verEnInstagram');
+  if (m.link.includes('tiktok.com')) return t('identidadMarca.verEnTiktok');
+  return t(`identidadMarca.mockups.${m.key}.tag`);
+};
+
+/* ── Carrusel de imágenes dentro de una tarjeta ── */
+const frame = ref(0);
+let carouselTimer = null;
+onMounted(() => { carouselTimer = setInterval(() => { frame.value++; }, 2800); });
+onUnmounted(() => clearInterval(carouselTimer));
+
 /* ── Mockups / aplicaciones de marca ── */
 const mockups = [
-  { title: 'Logotipo & identificador', tag: 'Branding', span: 'span-half mockup-hero', image: '/img/logo_socios.png', link: 'https://www.instagram.com/reel/DXSfA-0jmPG/' },
-  { title: 'Sistema visual completo', tag: 'Identidad', span: 'span-half mockup-hero', image: '/img/Papeleria variedades.jpg' },
-  { title: 'Tarjetas de presentación', tag: 'Papelería', span: 'span-third', image: '/img/Tarjetas de presentacion yolima.png' },
-  { title: 'Menús & material impreso', tag: 'Editorial', span: 'span-third', image: '/img/menu_mr_cream.png', link: 'https://www.instagram.com/mrcream35/' },
-  { title: 'Ambientación gráfica', tag: 'Espacio', span: 'span-third', image: '/img/socios-02.jpg', link: 'https://www.tiktok.com/@franklin_designer/video/7642957503138909448' },
-  { title: 'Packaging', tag: 'Producto', span: 'span-quarter', image: '/img/portada_packaging.jpg', link: '/diseno-empaques' },
-  { title: 'Piezas digitales', tag: 'Social Media', span: 'span-quarter', image: '/img/redes_sociales_cam_network.jpg' },
-  { title: 'Señalética', tag: 'Ambientación', span: 'span-quarter', image: '/img/Señaletica.png' },
-  { title: 'Diseño Gran Formato', tag: 'Impresión', span: 'span-quarter', image: '/img/Project 5.jpg' },
+  { key: 'logotipo', span: 'span-half mockup-hero', image: '/img/logo_socios.png', link: 'https://www.instagram.com/reel/DXSfA-0jmPG/' },
+  { key: 'sistemaVisual', span: 'span-half mockup-hero', image: '/img/Papeleria variedades.jpg' },
+  { key: 'tarjetas', span: 'span-third', images: ['/img/Tarjetas de presentacion yolima.png', '/img/redes_sociales_cam_network (2).jpg', '/img/tarjetas_abogada.png'] },
+  { key: 'menus', span: 'span-third', image: '/img/menu_mr_cream.png', link: 'https://www.instagram.com/mrcream35/' },
+  { key: 'ambientacion', span: 'span-third', image: '/img/socios-02.jpg', link: 'https://www.tiktok.com/@franklin_designer/video/7642957503138909448' },
+  { key: 'packaging', span: 'span-quarter', image: '/img/portada_packaging.jpg', link: '/diseno-empaques' },
+  { key: 'piezasDigitales', span: 'span-quarter', image: '/img/redes_sociales_cam_network.jpg' },
+  { key: 'senaletica', span: 'span-quarter', image: '/img/Señaletica.png' },
+  { key: 'granFormato', span: 'span-quarter', image: '/img/Project 5.jpg' },
 ];
 </script>
 
@@ -179,9 +197,11 @@ const mockups = [
 }
 .nav.hidden { transform: translateY(-100%) }
 .nav .inner {
+  position: relative;
   max-width: 1280px; margin: 0 auto;
   padding: 1rem 32px; display: flex; justify-content: center; align-items: center; gap: .5rem;
 }
+.page-lang { position: absolute; right: 32px; top: 50%; transform: translateY(-50%) }
 .brand { font-size: 1.25rem; font-weight: 600; letter-spacing: -.01em; display: flex; align-items: center; gap: .5rem }
 .brand .dot { width: 9px; height: 9px; border-radius: 50%; background: linear-gradient(135deg,#f5cf7a,#a47a23); box-shadow: 0 0 14px var(--gold-glow) }
 .brand .b1 { color: #fff }
@@ -226,6 +246,8 @@ const mockups = [
   filter: saturate(.9) brightness(.85);
 }
 .mockup:hover img { transform: scale(1.06); filter: saturate(1.1) brightness(1) }
+.mockup img.carousel-frame { opacity: 0; transition: opacity 1.2s ease, transform .8s ease, filter .4s ease }
+.mockup img.carousel-frame.active { opacity: 1 }
 .mockup::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.75) 100%);

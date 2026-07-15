@@ -5,7 +5,7 @@
   <!-- Back button -->
   <router-link to="/" class="back-btn" @click="closeModal">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-    Volver
+    {{ t('nav.volver') }}
   </router-link>
 
   <!-- Nav -->
@@ -16,6 +16,7 @@
         <span class="b1">Franklin</span>
         <span class="b2"> Studio</span>
       </a>
+      <LanguageSwitcher class="page-lang" />
     </div>
   </nav>
 
@@ -23,36 +24,21 @@
   <header class="hero">
     <div class="inner">
       <div>
-        <span class="eyebrow">Portafolio · Desarrollo</span>
+        <span class="eyebrow">{{ t('desarrollo.eyebrow') }}</span>
         <h1 class="display hero-display">
           <span class="line">
-            <span class="white">Desarrollo de </span><span class="gold typed-word">{{ typedText }}<span class="cursor"></span></span>
+            <span class="white">{{ t('desarrollo.titleWhite') }}</span><span class="gold typed-word">{{ typedText }}<span class="cursor"></span></span>
           </span>
         </h1>
         <p class="lead">
-          Construimos productos digitales a medida — desde sitios web hasta plataformas
-          completas. Código limpio, diseño funcional y resultados que impulsan tu negocio.
+          {{ t('desarrollo.lead') }}
         </p>
       </div>
       <div class="hero-meta">
         <div class="glass hero-meta-item">
           <div>
-            <small>Proyectos</small>
-            <strong>+20 entregados</strong>
-          </div>
-          <div class="accent-bar"></div>
-        </div>
-        <div class="glass hero-meta-item">
-          <div>
-            <small>Tecnologías</small>
-            <strong>Vue · React · Node</strong>
-          </div>
-          <div class="accent-bar"></div>
-        </div>
-        <div class="glass hero-meta-item">
-          <div>
-            <small>Experiencia</small>
-            <strong>Desde 2021</strong>
+            <small>{{ t('desarrollo.tecnologias') }}</small>
+            <strong>{{ t('desarrollo.tecnologiasValue') }}</strong>
           </div>
           <div class="accent-bar"></div>
         </div>
@@ -70,7 +56,7 @@
           @click="selectedCat = cat"
         >{{ cat }}</button>
       </div>
-      <div class="results-count"><b>{{ filteredProjects.length }}</b> proyecto{{ filteredProjects.length !== 1 ? 's' : '' }}</div>
+      <div class="results-count"><b>{{ filteredProjects.length }}</b> {{ locale === 'en' ? (filteredProjects.length !== 1 ? 'projects' : 'project') : `proyecto${filteredProjects.length !== 1 ? 's' : ''}` }}</div>
     </div>
   </div>
 
@@ -95,25 +81,16 @@
               <span class="cat">{{ p.category }}</span>
               <span class="client-sm">{{ p.client }}</span>
             </div>
-            <h3>{{ p.title }}</h3>
-            <p class="client">{{ p.subtitle }}</p>
-            <p class="desc">{{ p.description }}</p>
-            <span class="view">Ver proyecto
+            <h3>{{ t(`desarrollo.projects.${p.key}.title`) }}</h3>
+            <p class="client">{{ t(`desarrollo.projects.${p.key}.subtitle`) }}</p>
+            <p class="desc">{{ t(`desarrollo.projects.${p.key}.description`) }}</p>
+            <span class="view">{{ t('desarrollo.verProyecto') }}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </span>
           </div>
         </article>
       </div>
 
-      <!-- Stats -->
-      <div class="stats-wrap">
-        <div class="glass-gold stats reveal">
-          <div class="stat"><div class="num">+20</div><div class="lbl">Proyectos</div></div>
-          <div class="stat"><div class="num">+15</div><div class="lbl">Clientes</div></div>
-          <div class="stat"><div class="num">5+</div><div class="lbl">Años</div></div>
-          <div class="stat"><div class="num">100%</div><div class="lbl">Satisfacción</div></div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -121,19 +98,19 @@
   <section class="cta-section">
     <div class="container">
       <div class="glass-gold cta-card reveal">
-        <span class="eyebrow" style="margin-bottom:1.4rem">Hablemos</span>
+        <span class="eyebrow" style="margin-bottom:1.4rem">{{ t('cta.eyebrow') }}</span>
         <h2 class="display h-cta">
-          <span class="white">¿Listo para construir</span> <span class="gold">tu producto?</span>
+          <span class="white">{{ t('desarrollo.ctaTitleWhite') }}</span> <span class="gold">{{ t('desarrollo.ctaTitleGold') }}</span>
         </h2>
         <p class="lead">
-          Cuéntanos tu idea y la convertimos en una solución digital real — desde el diseño hasta el código, con acompañamiento en cada paso.
+          {{ t('desarrollo.ctaLead') }}
         </p>
         <div class="cta-btns">
           <a href="https://api.whatsapp.com/send/?phone=%2B573223003840&text=Hola%2C%20quiero%20un%20proyecto%20de%20desarrollo%20de%20software" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-            Iniciar proyecto
+            {{ t('cta.whatsapp') }}
           </a>
-          <a href="https://www.behance.net/gallery/220454209/Portfolio" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Ver más en Behance</a>
+          <a href="https://www.behance.net/gallery/220454209/Portfolio" target="_blank" rel="noopener noreferrer" class="btn btn-outline">{{ t('desarrollo.verBehance') }}</a>
         </div>
       </div>
     </div>
@@ -143,15 +120,15 @@
   <div class="signature">
     <div class="container">
       <div class="sig-line"><span class="h"></span><img src="/img/ico_Mesa de trabajo 1_Mesa de trabajo 1.png" alt="FP" class="sig-mark" /><span class="h right"></span></div>
-      <h3>Franklin Peña</h3>
-      <p>Concept Studio</p>
+      <h3>{{ t('signature.name') }}</h3>
+      <p>{{ t('signature.role') }}</p>
     </div>
   </div>
 
   <!-- Footer -->
   <footer class="foot">
     <div class="inner">
-      <small>© 2026 Franklin Peña — Concept Studio</small>
+      <small>{{ t('footer.copyrightShort') }}</small>
       <nav>
         <a href="https://www.behance.net/gallery/220454209/Portfolio" target="_blank" rel="noopener noreferrer">Behance</a>
         <a href="https://www.instagram.com/franklinp.cs/" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -166,10 +143,10 @@
       <div class="modal">
         <div class="modal-head">
           <div>
-            <h2>{{ activeProject?.title }}</h2>
+            <h2>{{ activeProject ? t(`desarrollo.projects.${activeProject.key}.title`) : '' }}</h2>
             <div class="modal-client">{{ activeProject?.client }}</div>
           </div>
-          <button class="close-btn" @click="closeModal" aria-label="Cerrar">
+          <button class="close-btn" @click="closeModal" :aria-label="locale === 'en' ? 'Close' : 'Cerrar'">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
           </button>
         </div>
@@ -204,18 +181,18 @@
 
           <div class="details-grid">
             <div>
-              <h4>Descripción</h4>
-              <p class="desc">{{ activeProject?.fullDesc }}</p>
+              <h4>{{ t('disenoGrafico.descripcion') }}</h4>
+              <p class="desc">{{ activeProject ? t(`desarrollo.projects.${activeProject.key}.fullDesc`) : '' }}</p>
               <div class="modal-tags">
-                <span v-for="t in activeProject?.tags" :key="t">{{ t }}</span>
+                <span v-for="tag in activeProject?.tags" :key="tag">{{ tag }}</span>
               </div>
             </div>
             <div>
-              <h4>Detalles</h4>
+              <h4>{{ t('disenoGrafico.detalles') }}</h4>
               <div class="info-list">
-                <div class="info-row"><small>Categoría</small><strong>{{ activeProject?.category }}</strong></div>
-                <div class="info-row"><small>Cliente</small><strong>{{ activeProject?.client }}</strong></div>
-                <div class="info-row"><small>Año</small><strong>{{ activeProject?.year }}</strong></div>
+                <div class="info-row"><small>{{ t('disenoGrafico.categoria') }}</small><strong>{{ activeProject?.category }}</strong></div>
+                <div class="info-row"><small>{{ t('disenoGrafico.cliente') }}</small><strong>{{ activeProject?.client }}</strong></div>
+                <div class="info-row"><small>{{ t('disenoGrafico.anio') }}</small><strong>{{ activeProject?.year }}</strong></div>
               </div>
             </div>
           </div>
@@ -241,11 +218,14 @@ const tick = () => {
   else if (isDeleting && charIdx === 0) { isDeleting = false; phraseIdx = (phraseIdx + 1) % phrases.length; delay = 350; }
   typeTimer = setTimeout(tick, delay);
 };
+import { useI18n } from 'vue-i18n';
 import AppBackdrop from '../components/landing/AppBackdrop.vue';
+import LanguageSwitcher from '../components/landing/LanguageSwitcher.vue';
 import { imgCard, imgGallery } from '../utils/cloudinary.js';
 import { useReveal } from '../composables/useReveal.js';
 
 useReveal();
+const { t, locale } = useI18n();
 
 /* ── Nav hide on scroll ── */
 const navHidden = ref(false);
@@ -274,22 +254,16 @@ const selectedCat = ref('Todos');
 
 const allProjects = [
   {
-    id: 1, span: 'span-wide', category: 'E-commerce', year: '2024',
-    title: 'Fortress BGA', client: 'Fortress',
-    subtitle: 'Tienda online · pasarela de pago',
-    description: 'Sitio web corporativo con tienda integrada y pasarela de pago en línea para empresa de seguridad.',
-    fullDesc: 'Desarrollo completo de sitio web corporativo para Fortress, incluyendo catálogo de productos, carrito de compras e integración de pasarela de pago. Diseño responsivo enfocado en conversión.',
+    id: 1, key: 'fortress', span: 'span-wide', category: 'E-commerce', year: '2024',
+    client: 'Fortress',
     tags: ['Vue.js', 'E-commerce', 'Pasarela de pago', 'Responsivo'],
     link: 'https://fortressbga.com/',
     image: imgCard('franklincs/fortress'),
     gallery: [ imgGallery('franklincs/fortress') ]
   },
   {
-    id: 2, span: 'span-wide', category: 'Corporativo', year: '2026',
-    title: 'CoRay Dev', client: 'CoRay Dev',
-    subtitle: 'Software a la medida · sitio corporativo',
-    description: 'Sitio web corporativo para empresa de desarrollo de software, comunicando su propuesta de valor: "Construimos software a la medida".',
-    fullDesc: 'Desarrollo del sitio web corporativo de CoRay Dev, una compañía de desarrollo de software a la medida. El diseño y la construcción del sitio refuerzan su posicionamiento como socio tecnológico flexible, capaz de crear soluciones digitales personalizadas para cada cliente.',
+    id: 2, key: 'coray', span: 'span-wide', category: 'Corporativo', year: '2026',
+    client: 'CoRay Dev',
     tags: ['Vue.js', 'Corporativo', 'Software a la medida', 'Responsivo'],
     link: 'https://coraydev.com/',
     image: imgCard('franklincs/coray-cover'),
@@ -368,9 +342,11 @@ onUnmounted(() => { document.body.style.overflow = ''; });
 }
 .nav.hidden { transform: translateY(-100%) }
 .nav .inner {
+  position: relative;
   max-width: 1280px; margin: 0 auto;
   padding: 1rem 32px; display: flex; justify-content: center; align-items: center; gap: .5rem;
 }
+.page-lang { position: absolute; right: 32px; top: 50%; transform: translateY(-50%) }
 .brand { font-size: 1.25rem; font-weight: 600; letter-spacing: -.01em; display: flex; align-items: center; gap: .5rem }
 .brand .dot { width: 9px; height: 9px; border-radius: 50%; background: linear-gradient(135deg,#f5cf7a,#a47a23); box-shadow: 0 0 14px var(--gold-glow) }
 .brand .b1 { color: #fff }
@@ -485,19 +461,6 @@ onUnmounted(() => { document.body.style.overflow = ''; });
 .span-wide  { grid-column: span 6 }
 .span-third { grid-column: span 4 }
 .span-half  { grid-column: span 6 }
-
-/* ── Stats ── */
-.stats-wrap { margin: 5rem 0 2rem }
-.stats { padding: 2.5rem 3rem; display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem }
-.stat { position: relative; text-align: center }
-.stat + .stat::before { content: ""; position: absolute; left: 0; top: 15%; height: 70%; width: 1px; background: linear-gradient(180deg, transparent, rgba(230,179,74,.35), transparent) }
-.stat .num {
-  font-family: var(--f-display); font-weight: 400;
-  font-size: clamp(2.4rem, 4vw, 3.4rem); line-height: 1; letter-spacing: .01em;
-  background: linear-gradient(180deg,#f5cf7a 0%,#e6b34a 60%,#a47a23 100%);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
-}
-.stat .lbl { color: #fff; font-size: .78rem; font-weight: 500; margin-top: .5rem; letter-spacing: .18em; text-transform: uppercase }
 
 /* ── CTA ── */
 .cta-section { padding: 4rem 0 6rem }

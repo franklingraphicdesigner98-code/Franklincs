@@ -2,12 +2,12 @@
   <section class="s especialidades" id="servicios">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow reveal">¿Qué hacemos?</span>
+        <span class="eyebrow reveal">{{ t('services.eyebrow') }}</span>
         <h2 class="display reveal reveal-1" style="font-size:clamp(2rem, 4vw, 3rem)">
-          <span class="white">NUESTRAS</span><br /><span class="gold">ESPECIALIDADES</span>
+          <span class="white">{{ t('services.titleWhite') }}</span><br /><span class="gold">{{ t('services.titleGold') }}</span>
         </h2>
         <p class="lead reveal reveal-2">
-          Integramos branding, diseño, tecnología y fabricación digital para construir marcas con impacto.
+          {{ t('services.lead') }}
         </p>
       </div>
 
@@ -18,13 +18,13 @@
           :class="['glass spec-card reveal spec-card-link', i > 0 && `reveal-${i}`]"
         >
           <div class="card-image">
-            <img :src="s.image" :alt="s.alt" />
+            <img :src="s.image" :alt="t(`services.items.${s.key}.titleLine1`)" />
           </div>
           <div class="card-content">
-            <h3>{{ s.titleLine1 }}<br/>{{ s.titleLine2 }}</h3>
+            <h3>{{ t(`services.items.${s.key}.titleLine1`) }}<br/>{{ t(`services.items.${s.key}.titleLine2`) }}</h3>
             <div class="card-includes">
-              <span class="includes-label">Incluye:</span>
-              <span class="includes-list">{{ s.includes.join(' · ') }}</span>
+              <span class="includes-label">{{ t('services.incluye') }}</span>
+              <span class="includes-list">{{ tm(`services.items.${s.key}.includes`).join(' · ') }}</span>
             </div>
           </div>
         </router-link>
@@ -34,32 +34,15 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n';
+const { t, tm } = useI18n();
+
 const services = [
-  {
-    id: 2, link: '/identidad-marca', image: '/img/Portada_identidad.png', alt: 'Identidad de Marca',
-    titleLine1: 'IDENTIDAD', titleLine2: 'DE MARCA',
-    includes: ['Flyers y volantes', 'Piezas para redes sociales', 'Publicidad impresa', 'Piezas digitales']
-  },
-  {
-    id: 1, link: '/diseno-grafico', image: '/img/Portada-diseño.jpg', alt: 'Diseño Gráfico',
-    titleLine1: 'DISEÑO', titleLine2: 'GRÁFICO',
-    includes: ['Logotipo', 'Papelería corporativa', 'Menús y cartas', 'Señalética y ambientación de locales']
-  },
-  {
-    id: 3, link: '/diseno-empaques', image: '/img/Project 2.jpg', alt: 'Diseño de Empaques',
-    titleLine1: 'DISEÑO DE', titleLine2: 'EMPAQUES',
-    includes: ['Cajas y etiquetas', 'Bolsas y empaques', 'Línea de producto']
-  },
-  {
-    id: 4, link: '/impresion-3d', image: '/img/Impresion 3d.jpg', alt: 'Diseño e Impresión 3D',
-    titleLine1: 'DISEÑO E', titleLine2: 'IMPRESIÓN 3D',
-    includes: ['Modelado 3D', 'Prototipos', 'Merchandising y piezas']
-  },
-  {
-    id: 5, link: '/desarrollo-software', image: '/img/portada_Paginas web.jpg', alt: 'Páginas Web y Sistemas',
-    titleLine1: 'PÁGINAS WEB', titleLine2: 'Y SISTEMAS',
-    includes: ['Sitios web', 'Tiendas online', 'Sistemas a medida', 'Mantenimiento']
-  }
+  { id: 2, key: 'identidad', link: '/identidad-marca', image: '/img/Portada_identidad.png' },
+  { id: 1, key: 'diseno', link: '/diseno-grafico', image: '/img/Portada-diseño.jpg' },
+  { id: 3, key: 'empaques', link: '/diseno-empaques', image: '/img/Project 2.jpg' },
+  { id: 4, key: 'impresion', link: '/impresion-3d', image: '/img/Impresion 3d.jpg' },
+  { id: 5, key: 'web', link: '/desarrollo-software', image: '/img/portada_Paginas web.jpg' }
 ];
 </script>
 

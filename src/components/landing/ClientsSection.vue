@@ -2,9 +2,9 @@
   <section class="s clients-strip">
     <div class="container">
       <div class="glass-gold clients-panel reveal">
-        <span class="eyebrow">Marcas</span>
+        <span class="eyebrow">{{ t('clients.eyebrow') }}</span>
         <h2 class="display clients-title">
-          <span class="white">MARCAS CON LAS QUE</span> <span class="gold">HEMOS COLABORADO</span>
+          <span class="white">{{ t('clients.titleWhite') }}</span> <span class="gold">{{ t('clients.titleGold') }}</span>
         </h2>
         <div class="clients-row">
           <div v-for="(c, i) in clients" :key="i" class="client-logo">
@@ -17,6 +17,9 @@
 </template>
 
 <script setup>
+import { useI18n } from 'vue-i18n';
+const { t } = useI18n();
+
 const clients = [
   { name: 'Coomult Agro', image: '/img/logo_coomultagro-02.png' },
   { name: 'Cam Network', image: '/img/logo_cam.png' },
