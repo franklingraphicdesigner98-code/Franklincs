@@ -6,20 +6,27 @@
     </div>
     <div class="hero-content">
       <div class="glass-card">
-        <p class="eyebrow">{{ t('hero.eyebrow') }}</p>
-        <h1 class="hero-title">
-          {{ t('hero.title') }}
-        </h1>
-        <p class="hero-description">
-          {{ t('hero.description') }}
-        </p>
-        <a href="#servicios" class="cta-btn">
-          {{ t('hero.cta') }}
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </a>
+        <div class="glass-card-grid">
+          <div class="glass-card-text">
+            <p class="eyebrow">{{ t('hero.eyebrow') }}</p>
+            <h1 class="hero-title">
+              {{ t('hero.title') }}
+            </h1>
+            <p class="hero-description">
+              {{ t('hero.description') }}
+            </p>
+            <a href="#servicios" class="cta-btn">
+              {{ t('hero.cta') }}
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+          <div class="glass-card-vis">
+            <MomentsCarousel />
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -27,6 +34,7 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n';
+import MomentsCarousel from './MomentsCarousel.vue';
 const { t } = useI18n();
 </script>
 
@@ -78,10 +86,9 @@ const { t } = useI18n();
 }
 
 .glass-card {
-  text-align: center;
-  max-width: 650px;
+  max-width: 1080px;
   width: 90%;
-  padding: 2.2rem 2.5rem;
+  padding: 2.6rem 2.8rem;
   margin-top: 10px;
   background: rgba(8,8,8,.65);
   backdrop-filter: blur(25px) saturate(160%);
@@ -91,6 +98,10 @@ const { t } = useI18n();
   box-shadow: 0 20px 60px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.08);
   animation: slideInDown 0.8s ease-out 0.1s both;
 }
+
+.glass-card-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 2.4rem; align-items: center }
+.glass-card-text { text-align: center }
+.glass-card-vis { height: 320px }
 
 .eyebrow {
   display: block;
@@ -213,6 +224,10 @@ const { t } = useI18n();
     margin-top: 0;
   }
 
+  .glass-card-grid { grid-template-columns: 1fr; gap: 1.6rem }
+  .glass-card-text { text-align: center }
+  .glass-card-vis { height: 220px; order: -1 }
+
   .hero-title {
     font-size: clamp(1.6rem, 5vw, 3rem);
     margin-bottom: 0.7rem;
@@ -252,6 +267,8 @@ const { t } = useI18n();
     border-radius: 16px;
     margin-top: 0;
   }
+
+  .glass-card-vis { height: 180px }
 
   .hero-title {
     font-size: clamp(1.3rem, 5vw, 2.2rem);

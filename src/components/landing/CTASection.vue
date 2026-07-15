@@ -1,7 +1,5 @@
 <template>
-  <section class="s" id="contacto">
-    <div class="container">
-      <div class="glass-gold cta-card reveal">
+  <div id="contacto" class="glass-gold cta-card reveal">
         <span class="eyebrow" style="margin-bottom:1.4rem">{{ t('cta.eyebrow') }}</span>
         <h2 class="display h-cta">
           <span class="white">{{ t('cta.titleWhite1') }}</span> <span class="gold">{{ t('cta.titleGold') }}</span> <span class="white">{{ t('cta.titleWhite2') }}</span>
@@ -38,9 +36,7 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V9.55a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.98z"/></svg>
           </a>
         </div>
-      </div>
-    </div>
-  </section>
+  </div>
 </template>
 
 <script setup>
@@ -50,14 +46,15 @@ const { t } = useI18n();
 
 <style scoped>
 .cta-card {
-  padding: 5rem 4rem; text-align: center; position: relative; overflow: hidden;
+  height: 100%; box-sizing: border-box;
+  padding: 3.5rem 3rem; text-align: center; position: relative; overflow: hidden;
   background:
     radial-gradient(700px 400px at 50% 100%, rgba(230,179,74,.25), transparent 65%),
     var(--glass-bg-strong);
-  display: flex; flex-direction: column; align-items: center;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
 }
-.h-cta { font-size: clamp(2.6rem, 5.4vw, 4.6rem); margin-bottom: 1.5rem }
-.lead { margin: 0 auto 2.5rem; text-align: center; font-size: 1.1rem }
+.h-cta { font-size: clamp(2rem, 3.6vw, 3rem); margin-bottom: 1.2rem }
+.lead { margin: 0 auto 1.8rem; text-align: center; font-size: 1.05rem }
 .cta-btns { display: flex; flex-wrap: wrap; gap: .85rem; justify-content: center }
 
 .cta-socials { display: flex; gap: .6rem; justify-content: center; margin-top: 1.8rem }
