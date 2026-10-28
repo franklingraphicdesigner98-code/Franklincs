@@ -20,9 +20,9 @@ export default {
     titleGold: 'WORKED WITH'
   },
   services: {
-    eyebrow: 'What we do',
-    titleWhite: 'Our',
-    titleGold: 'services',
+    eyebrow: 'Our services',
+    titleWhite: 'Creative direction',
+    titleGold: 'for your brand',
     lead: 'From the logo to the internal system — everything your business needs to communicate well and run better.',
     incluye: 'Includes:',
     items: {
@@ -50,6 +50,11 @@ export default {
         titleLine1: 'WEBSITES', titleLine2: '& SYSTEMS',
         description: 'A digital presence that works for you.',
         includes: ['Websites', 'Online stores', 'Custom systems', 'Maintenance']
+      },
+      ia: {
+        titleLine1: 'Power up your brand', titleLine2: 'with AI',
+        description: 'Well-directed AI, working for your brand.',
+        includes: ['AI content', 'Automation', 'Team training']
       }
     }
   },
@@ -210,6 +215,37 @@ export default {
     verPortafolio: 'View full portfolio'
   },
 
+  iaCreativa: {
+    eyebrow: 'AI direction',
+    titleWhite: 'Power up your brand',
+    titleGold: 'in every area',
+    subtitle: 'AI doesn\'t replace your brand. Directed well, it makes it work faster and look more professional.',
+    diagEyebrow: 'Diagnosis',
+    diagTitleWhite: 'Where can AI',
+    diagTitleGold: 'help you?',
+    diagText: 'Understand where you can improve. Defining and scoping those areas is knowing where to start.',
+    areas: ['Design & content', 'Social media', 'Customer service', 'Internal processes', 'Automated agents', 'Data analysis', 'Team training'],
+    resultsEyebrow: 'Results',
+    resultsTitleWhite: 'What you can',
+    resultsTitleGold: 'achieve',
+    results: [
+      { title: 'Content that looks like you', description: 'Social media pieces, presentations and materials that keep your identity.' },
+      { title: 'Fewer repetitive tasks', description: 'More time for what matters, fewer hours on what a tool can do on its own.' },
+      { title: 'An independent team', description: 'Your team using AI without depending on you for every decision.' }
+    ],
+    stepsEyebrow: 'Process',
+    stepsTitleWhite: 'How we',
+    stepsTitleGold: 'work',
+    paso: 'Step',
+    steps: [
+      { title: 'We understand your business', description: 'Your identity, your team and how you operate today.' },
+      { title: 'We define the use', description: 'We map where AI creates real impact in your specific case.' },
+      { title: 'We apply it together', description: 'We guide you through implementing it in your product, service or team.' }
+    ],
+    ctaEyebrow: 'Let\'s talk',
+    ctaTitleWhite: 'What creative direction',
+    ctaTitleGold: 'does your company need?'
+  },
   desarrollo: {
     eyebrow: 'Digital',
     titleWhite: 'Development of ',

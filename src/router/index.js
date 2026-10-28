@@ -7,7 +7,7 @@ export const routes = [
     component: Home,
     meta: {
       title: 'Franklin Peña — Concept Studio | Branding, diseño y desarrollo a medida',
-      description: 'Integramos branding, diseño, tecnología y fabricación digital para construir marcas con impacto.'
+      description: 'Diseño, tecnología y sistemas que hacen que tu marca trabaje por ti — en todos los canales. Branding, diseño gráfico, empaques, impresión 3D, desarrollo web e IA — desde Colombia, en remoto para clientes de todo el mundo.'
     }
   },
   {
@@ -66,6 +66,15 @@ export const routes = [
     meta: {
       title: 'Consultoría Digital | Franklin Peña Concept Studio',
       description: 'Estrategias digitales que transforman negocios y optimizan procesos, con decisiones basadas en datos.'
+    }
+  },
+  {
+    path: '/ia-creativa',
+    name: 'ia-creativa',
+    component: () => import('../views/IaCreativa.vue'),
+    meta: {
+      title: 'Dirección de IA para tu marca | Franklin Peña Concept Studio',
+      description: 'La IA no reemplaza tu marca: bien dirigida, la hace trabajar más rápido y verse más profesional. Diseño y contenido, redes, atención al cliente, procesos, agentes automatizados, datos y capacitación — en remoto.'
     }
   },
   {

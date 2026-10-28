@@ -1,6 +1,6 @@
 <template>
   <component :is="rootTag" v-bind="rootAttrs" :class="['gcard', { 'gcard--muted': muted }]">
-    <div class="gcard-media" :style="{ aspectRatio: ratio }">
+    <div v-if="frames[0]" class="gcard-media" :style="{ aspectRatio: ratio }">
       <img
         v-for="(src, i) in frames" :key="src"
         :src="src" :alt="alt || title" loading="lazy"
@@ -31,7 +31,7 @@ import { RouterLink } from 'vue-router';
 const props = defineProps({
   href: { type: String, default: '' },          // enlace externo (abre en pestaña nueva)
   to: { type: [String, Object], default: '' },  // ruta interna
-  image: { type: String, default: '' },
+  image: { type: String, default: '' },          // opcional: sin imagen la tarjeta es solo texto
   images: { type: Array, default: () => [] },   // varias imágenes → carrusel con `frame`
   frame: { type: Number, default: 0 },
   alt: { type: String, default: '' },
@@ -98,9 +98,9 @@ const rootAttrs = computed(() => {
 .gcard-body {
   flex: 1; display: flex; flex-direction: column; align-items: flex-start;
   padding: 1.4rem 1.6rem 1.6rem;
-  border-top: 1px solid rgba(245,207,122,.18);
   overflow-wrap: anywhere;
 }
+.gcard-media + .gcard-body { border-top: 1px solid rgba(245,207,122,.18) }
 .gcard-cat { color: var(--gold); font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; margin-bottom: .6rem }
 .gcard-title { font-family: var(--f-display); font-weight: 400; font-size: 1.4rem; line-height: 1.1; letter-spacing: .02em; text-transform: uppercase; margin: 0 0 .5rem; color: #fff; transition: color .25s ease }
 .gcard-desc { color: var(--fg-dim); font-size: .9rem; line-height: 1.55; margin: 0 0 1.2rem }

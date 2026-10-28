@@ -39,7 +39,8 @@ const services = [
   { id: 1, key: 'diseno', link: '/diseno-grafico', image: '/img/Portada-diseño.jpg' },
   { id: 3, key: 'empaques', link: '/diseno-empaques', image: '/img/Project 2.jpg' },
   { id: 4, key: 'impresion', link: '/impresion-3d', image: '/img/Impresion 3d.jpg' },
-  { id: 5, key: 'web', link: '/desarrollo-software', image: '/img/portada_Paginas web.jpg' }
+  { id: 5, key: 'web', link: '/desarrollo-software', image: '/img/portada_Paginas web.jpg' },
+  { id: 6, key: 'ia', link: '/ia-creativa', image: '/img/hero-hands.jpg' }
 ];
 </script>
 
@@ -102,26 +103,10 @@ const services = [
   line-height: 1.55;
 }
 
-/* Grid layout: 3 columns top, 2 bottom center */
-.spec-card:nth-child(4) {
-  grid-column: 1 / 2;
-}
-
-.spec-card:nth-child(5) {
-  grid-column: 2 / 3;
-}
-
+/* 6 servicios: 3 + 3 en escritorio */
 @media (max-width: 1100px) {
   .spec-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .spec-card:nth-child(4) {
-    grid-column: auto;
-  }
-
-  .spec-card:nth-child(5) {
-    grid-column: auto;
   }
 }
 

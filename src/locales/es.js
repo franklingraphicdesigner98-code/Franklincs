@@ -22,9 +22,9 @@ export default {
     titleGold: 'HEMOS COLABORADO'
   },
   services: {
-    eyebrow: '¿Qué hacemos?',
-    titleWhite: 'Nuestros',
-    titleGold: 'servicios',
+    eyebrow: 'Nuestros servicios',
+    titleWhite: 'Direcciones creativas',
+    titleGold: 'para tu marca',
     lead: 'Desde el logo hasta el sistema interno — todo para que tu negocio comunique bien y opere mejor.',
     incluye: 'Incluye:',
     items: {
@@ -52,6 +52,11 @@ export default {
         titleLine1: 'Web para tus clientes.', titleLine2: 'Sistemas internos para tu equipo.',
         description: 'Tu presencia digital que trabaja por ti.',
         includes: ['Sitios web', 'Tiendas online', 'Sistemas a medida', 'Mantenimiento']
+      },
+      ia: {
+        titleLine1: 'Potencia tu marca', titleLine2: 'con IA',
+        description: 'IA bien dirigida, al servicio de tu marca.',
+        includes: ['Contenido con IA', 'Automatización', 'Capacitación de equipos']
       }
     }
   },
@@ -212,6 +217,37 @@ export default {
     verPortafolio: 'Ver portafolio completo'
   },
 
+  iaCreativa: {
+    eyebrow: 'Dirección de IA',
+    titleWhite: 'Potencia tu marca',
+    titleGold: 'en todos los ámbitos',
+    subtitle: 'La IA no reemplaza tu marca. Bien dirigida, la hace trabajar más rápido y verse más profesional.',
+    diagEyebrow: 'Diagnóstico',
+    diagTitleWhite: '¿En qué ámbitos puede',
+    diagTitleGold: 'ayudarte la IA?',
+    diagText: 'Entiende cuáles son tus puntos a mejorar. Definirlos y delimitarlos es saber por dónde empezar.',
+    areas: ['Diseño y contenido', 'Redes sociales', 'Atención al cliente', 'Procesos internos', 'Agentes automatizados', 'Análisis de datos', 'Capacitación del equipo'],
+    resultsEyebrow: 'Resultados',
+    resultsTitleWhite: 'Qué puedes',
+    resultsTitleGold: 'lograr',
+    results: [
+      { title: 'Contenido que se ve tuyo', description: 'Piezas para redes, presentaciones y materiales que mantienen tu identidad.' },
+      { title: 'Menos tareas repetitivas', description: 'Más tiempo para lo que importa, menos horas en lo que una herramienta puede hacer sola.' },
+      { title: 'Un equipo autónomo', description: 'Tu equipo usando la IA sin depender de ti para cada decisión.' }
+    ],
+    stepsEyebrow: 'Proceso',
+    stepsTitleWhite: 'Cómo',
+    stepsTitleGold: 'trabajamos',
+    paso: 'Paso',
+    steps: [
+      { title: 'Entendemos tu negocio', description: 'Tu identidad, tu equipo y cómo operas hoy.' },
+      { title: 'Definimos el uso', description: 'Mapeamos dónde la IA genera impacto real en tu caso específico.' },
+      { title: 'Lo aplicamos juntos', description: 'Te acompañamos a implementarlo en tu producto, servicio o equipo.' }
+    ],
+    ctaEyebrow: 'Hablemos',
+    ctaTitleWhite: '¿Qué dirección creativa',
+    ctaTitleGold: 'necesita tu empresa?'
+  },
   desarrollo: {
     eyebrow: 'Digital',
     titleWhite: 'Desarrollo de ',
