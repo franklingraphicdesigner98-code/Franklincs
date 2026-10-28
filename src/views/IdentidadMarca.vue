@@ -51,28 +51,19 @@
         </p>
       </div>
 
-      <div class="mockups-grid">
-        <component
-          :is="!m.link ? 'article' : isExternal(m.link) ? 'a' : 'router-link'"
+      <GlassGrid>
+        <GlassCard
           v-for="(m, i) in mockups" :key="m.key"
-          :href="m.link && isExternal(m.link) ? m.link : undefined"
-          :to="m.link && !isExternal(m.link) ? m.link : undefined"
-          :target="m.link && isExternal(m.link) ? '_blank' : undefined"
-          :rel="m.link && isExternal(m.link) ? 'noopener noreferrer' : undefined"
-          :class="['mockup reveal', m.span, `reveal-${i % 4}`, { 'mockup-clickable': m.link }]"
-        >
-          <img v-if="!m.images" :src="m.image" :alt="t(`identidadMarca.mockups.${m.key}.title`)" loading="lazy" />
-          <img
-            v-for="(src, idx) in (m.images || [])" :key="src"
-            :src="src" :alt="t(`identidadMarca.mockups.${m.key}.title`)" loading="lazy"
-            :class="['carousel-frame', { active: idx === frame % m.images.length }]"
-          />
-          <div class="mockup-overlay">
-            <span class="mockup-tag">{{ platformTag(m) }}</span>
-            <h3>{{ t(`identidadMarca.mockups.${m.key}.title`) }}</h3>
-          </div>
-        </component>
-      </div>
+          :class="['reveal', `reveal-${i % 4}`]"
+          :href="m.link && isExternal(m.link) ? m.link : ''"
+          :to="m.link && !isExternal(m.link) ? m.link : ''"
+          :image="m.image" :images="m.images" :frame="frame"
+          :category="t(`identidadMarca.mockups.${m.key}.tag`)"
+          :title="t(`identidadMarca.mockups.${m.key}.title`)"
+          :description="t(`identidadMarca.mockups.${m.key}.description`)"
+          :cta="m.link ? linkLabel(m) : ''"
+        />
+      </GlassGrid>
     </div>
   </section>
 
@@ -88,7 +79,7 @@
           {{ t('identidadMarca.ctaLead') }}
         </p>
         <div class="cta-btns">
-          <a href="https://api.whatsapp.com/send/?phone=%2B573223003840&text=Hola%2C%20quiero%20un%20proyecto%20de%20identidad%20de%20marca" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
+          <a href="https://api.whatsapp.com/send/?phone=%2B573223003840&text=Hola%2C%20quiero%20un%20proyecto%20de%20dise%C3%B1o%20gr%C3%A1fico" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
             {{ t('cta.whatsapp') }}
           </a>
@@ -113,8 +104,9 @@
       <small>{{ t('footer.copyrightShort') }}</small>
       <nav>
         <a href="https://www.behance.net/gallery/220454209/Portfolio" target="_blank" rel="noopener noreferrer">Behance</a>
-        <a href="https://www.instagram.com/franklinp.cs/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://www.linkedin.com/in/franklin-pe%C3%B1a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.instagram.com/yeffrey_fr/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.linkedin.com/in/franklin-pe%C3%B1a-832873252/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.tiktok.com/@franklin_designer" target="_blank" rel="noopener noreferrer">TikTok</a>
       </nav>
     </div>
   </footer>
@@ -125,6 +117,8 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import AppBackdrop from '../components/landing/AppBackdrop.vue';
 import LanguageSwitcher from '../components/landing/LanguageSwitcher.vue';
+import GlassCard from '../components/ui/GlassCard.vue';
+import GlassGrid from '../components/ui/GlassGrid.vue';
 import { useReveal } from '../composables/useReveal.js';
 
 useReveal();
@@ -143,11 +137,10 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll));
 
 const isExternal = (link) => /^https?:\/\//.test(link);
 
-const platformTag = (m) => {
-  if (!m.link) return t(`identidadMarca.mockups.${m.key}.tag`);
+const linkLabel = (m) => {
   if (m.link.includes('instagram.com')) return t('identidadMarca.verEnInstagram');
   if (m.link.includes('tiktok.com')) return t('identidadMarca.verEnTiktok');
-  return t(`identidadMarca.mockups.${m.key}.tag`);
+  return t('identidadMarca.verMas');
 };
 
 /* ── Carrusel de imágenes dentro de una tarjeta ── */
@@ -158,15 +151,14 @@ onUnmounted(() => clearInterval(carouselTimer));
 
 /* ── Mockups / aplicaciones de marca ── */
 const mockups = [
-  { key: 'logotipo', span: 'span-half mockup-hero', image: '/img/logo_socios.png', link: 'https://www.instagram.com/reel/DXSfA-0jmPG/' },
-  { key: 'sistemaVisual', span: 'span-half mockup-hero', image: '/img/Papeleria variedades.jpg' },
-  { key: 'tarjetas', span: 'span-third', images: ['/img/Tarjetas de presentacion yolima.png', '/img/redes_sociales_cam_network (2).jpg', '/img/tarjetas_abogada.png'] },
-  { key: 'menus', span: 'span-third', image: '/img/menu_mr_cream.png', link: 'https://www.instagram.com/mrcream35/' },
-  { key: 'ambientacion', span: 'span-third', image: '/img/socios-02.jpg', link: 'https://www.tiktok.com/@franklin_designer/video/7642957503138909448' },
-  { key: 'packaging', span: 'span-quarter', image: '/img/portada_packaging.jpg', link: '/diseno-empaques' },
-  { key: 'piezasDigitales', span: 'span-quarter', image: '/img/redes_sociales_cam_network.jpg' },
-  { key: 'senaletica', span: 'span-quarter', image: '/img/Señaletica.png' },
-  { key: 'granFormato', span: 'span-quarter', image: '/img/Project 5.jpg' },
+  { key: 'sistemaVisual', image: '/img/Papeleria variedades.jpg' },
+  { key: 'tarjetas', images: ['/img/Tarjetas de presentacion yolima.png', '/img/redes_sociales_cam_network (2).jpg', '/img/tarjetas_abogada.png'] },
+  { key: 'menus', image: '/img/menu_mr_cream.png', link: 'https://www.instagram.com/mrcream35/' },
+  { key: 'ambientacion', image: '/img/portada_socios.jpg', link: 'https://www.tiktok.com/@franklin_designer/video/7642957503138909448' },
+  { key: 'packaging', image: '/img/portada_packaging.jpg', link: '/diseno-empaques' },
+  { key: 'piezasDigitales', image: '/img/redes_sociales_cam_network.jpg' },
+  { key: 'senaletica', image: '/img/Señaletica.png' },
+  { key: 'granFormato', image: '/img/Project 5.jpg' },
 ];
 </script>
 
@@ -228,39 +220,6 @@ const mockups = [
 
 /* ── Mockups section ── */
 .mockups-section { padding: 2rem 0 5rem }
-.mockups-grid {
-  display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.4rem;
-  grid-auto-rows: minmax(160px, auto);
-}
-.mockup {
-  position: relative; border-radius: var(--r-lg); overflow: hidden;
-  min-height: 320px; isolation: isolate;
-  transition: transform .4s ease, box-shadow .4s ease;
-  display: block;
-}
-.mockup-clickable { cursor: pointer }
-.mockup:hover { transform: translateY(-6px); box-shadow: 0 30px 70px rgba(0,0,0,.7), 0 0 0 1px rgba(230,179,74,.25) }
-.mockup img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  transition: transform .8s ease, filter .4s ease;
-  filter: saturate(.9) brightness(.85);
-}
-.mockup:hover img { transform: scale(1.06); filter: saturate(1.1) brightness(1) }
-.mockup img.carousel-frame { opacity: 0; transition: opacity 1.2s ease, transform .8s ease, filter .4s ease }
-.mockup img.carousel-frame.active { opacity: 1 }
-.mockup::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.75) 100%);
-  pointer-events: none;
-}
-.mockup-overlay { position: absolute; left: 1.4rem; right: 1.4rem; bottom: 1.2rem; z-index: 2 }
-.mockup-tag { display: inline-block; padding: .3rem .7rem; border-radius: 999px; background: rgba(0,0,0,.55); backdrop-filter: blur(8px); border: 1px solid rgba(230,179,74,.35); color: var(--gold); font-size: .68rem; font-weight: 600; letter-spacing: .06em; margin-bottom: .6rem }
-.mockup-overlay h3 { font-family: var(--f-display); font-weight: 400; font-size: 1.35rem; letter-spacing: .02em; text-transform: uppercase; margin: 0; color: #fff }
-
-.span-half  { grid-column: span 6 }
-.span-third { grid-column: span 4 }
-.span-quarter { grid-column: span 3 }
-.mockup-hero { min-height: 440px }
 
 /* ── CTA ── */
 .cta-section { padding: 2rem 0 6rem }
@@ -294,14 +253,11 @@ const mockups = [
 @media (max-width: 1080px) {
   .hero .inner { grid-template-columns: 1fr; gap: 2.5rem }
   .hero-image { order: -1 }
-  .span-half, .span-third, .span-quarter { grid-column: span 6 }
 }
 @media (max-width: 720px) {
   .back-btn { padding: .5rem .8rem; font-size: .75rem; top: 10px; left: 16px }
   .hero { padding: 7rem 0 4rem }
   .hero .inner { padding: 0 16px }
-  .span-half, .span-third, .span-quarter { grid-column: span 12 }
-  .mockup-hero { min-height: 320px }
   .cta-card { padding: 3rem 1.5rem }
 }
 </style>

@@ -21,29 +21,34 @@ export default {
   },
   services: {
     eyebrow: 'What we do',
-    titleWhite: 'OUR',
-    titleGold: 'SPECIALTIES',
-    lead: 'We combine branding, design, technology and digital fabrication to build brands with impact.',
+    titleWhite: 'Our',
+    titleGold: 'services',
+    lead: 'From the logo to the internal system — everything your business needs to communicate well and run better.',
     incluye: 'Includes:',
     items: {
       identidad: {
         titleLine1: 'BRAND', titleLine2: 'IDENTITY',
+        description: 'Strengthen your brand identity',
         includes: ['Logo', 'Color Palette', 'Typography', 'Graphic Elements']
       },
       diseno: {
         titleLine1: 'GRAPHIC', titleLine2: 'DESIGN',
+        description: 'Everything your business needs to communicate.',
         includes: ['Flyers & Leaflets', 'Corporate ID Cards', 'Printed Advertising', 'Social Media Pieces']
       },
       empaques: {
         titleLine1: 'PACKAGING', titleLine2: 'DESIGN',
+        description: 'Packaging that sells before it’s opened.',
         includes: ['Boxes & labels', 'Bags & packaging', 'Product line']
       },
       impresion: {
         titleLine1: '3D DESIGN', titleLine2: '& PRINTING',
+        description: 'From idea to physical object.',
         includes: ['3D modeling', 'Prototypes', 'Merch & pieces']
       },
       web: {
         titleLine1: 'WEBSITES', titleLine2: '& SYSTEMS',
+        description: 'A digital presence that works for you.',
         includes: ['Websites', 'Online stores', 'Custom systems', 'Maintenance']
       }
     }
@@ -77,38 +82,40 @@ export default {
   },
 
   identidadMarca: {
-    eyebrow: 'Specialty · 01',
-    titleWhite: 'Brand',
-    titleGold: 'Identity',
-    lead: 'A brand isn\'t just a logo: it\'s how your business looks, feels, and is remembered at every touchpoint. We build complete visual systems — strategy, concept and application — so your identity is consistent, memorable and trustworthy.',
-    mockupsEyebrow: 'Real applications',
-    mockupsTitleWhite: 'VISUAL SYSTEM IN',
-    mockupsTitleGold: 'ACTION',
-    mockupsLead: 'This is what a brand identity looks like applied to real pieces: business cards, menus, stationery, packaging and spatial branding — all speaking the same visual language.',
+    eyebrow: 'Graphic',
+    titleWhite: 'Graphic',
+    titleGold: 'Design',
+    lead: 'Everything your business needs to communicate. We design social media pieces, menus, stationery, signage and printed materials that grab attention, explain your offer and make your business look professional on every channel.',
+    mockupsEyebrow: 'Real work',
+    mockupsTitleWhite: 'DESIGN WITH',
+    mockupsTitleGold: 'INTENT',
+    mockupsLead: 'Social media pieces, menus, business cards, signage and large format — each one built to deliver a clear message and help you sell.',
     verEnInstagram: 'View on Instagram',
     verEnTiktok: 'View on TikTok',
+    verMas: 'See more',
     mockups: {
       logotipo: { title: 'Logo & Identifier', tag: 'Branding' },
-      sistemaVisual: { title: 'Complete Visual System', tag: 'Identity' },
-      tarjetas: { title: 'Business Cards', tag: 'Stationery' },
-      menus: { title: 'Menus & Printed Materials', tag: 'Editorial' },
-      ambientacion: { title: 'Spatial Branding', tag: 'Space' },
-      packaging: { title: 'Packaging', tag: 'Product' },
-      piezasDigitales: { title: 'Digital Pieces', tag: 'Social Media' },
-      senaletica: { title: 'Signage', tag: 'Environment' },
-      granFormato: { title: 'Large Format Printing', tag: 'Printing' }
+      sistemaVisual: { title: 'Corporate Stationery', tag: 'Stationery', description: 'Letterheads, envelopes and folders with a consistent, professional look.' },
+      tarjetas: { title: 'Business Cards', tag: 'Stationery', description: 'Cards that make a great first impression every time you hand one out.' },
+      menus: { title: 'Menus & Printed Materials', tag: 'Editorial', description: 'Clear, appealing menus that make choosing easy and help you sell more.' },
+      ambientacion: { title: 'Spatial Branding', tag: 'Space', description: 'Graphics for walls and spaces that bring your brand to life in your venue.' },
+      packaging: { title: 'Packaging', tag: 'Product', description: 'Packaging that stands out on the shelf and brings customers back.' },
+      piezasDigitales: { title: 'Digital Pieces', tag: 'Social Media', description: 'Posts, stories and ads for social media that grab attention.' },
+      senaletica: { title: 'Signage', tag: 'Environment', description: 'Clear signs that guide your customers and reinforce your image.' },
+      granFormato: { title: 'Large Format Printing', tag: 'Printing', description: 'Banners, billboards and signs designed to be seen from afar.' }
     },
     ctaEyebrow: 'Let\'s talk',
-    ctaTitleWhite: 'Ready to build',
-    ctaTitleGold: 'your identity?',
-    ctaLead: 'Let\'s develop your brand\'s complete visual system together — from the concept to every piece of stationery, packaging and spatial branding.',
+    ctaTitleWhite: 'Need pieces that',
+    ctaTitleGold: 'communicate?',
+    ctaLead: 'Tell us what you need — a post, a menu, a sign or a full campaign — and we\'ll design it so your business looks and sounds professional.',
     verPortafolio: 'View full portfolio'
   },
 
   disenoGrafico: {
-    eyebrow: 'Portfolio · Design',
-    titleWhite: 'Graphic ',
+    eyebrow: 'Portfolio · Identity',
+    titleWhite: 'Identity ',
     lead: 'We create unique visual identities that communicate the essence of each brand. From the initial concept to the final implementation, every project is a carefully crafted visual story.',
+    subtitle: 'Brands deserve an identity that speaks for itself.',
     proyectosEntregados: 'Delivered projects',
     categorias: 'Categories',
     aniosExperiencia: 'Years of experience',
@@ -159,7 +166,7 @@ export default {
   },
 
   disenoEmpaques: {
-    eyebrow: 'Specialty · 03',
+    eyebrow: 'Packaging',
     titleWhite: 'Packaging',
     titleGold: 'Design',
     lead: 'Packaging is the first physical contact between your product and your customer. We design packaging that protects, communicates and sells — from the structure and die-line to the final graphic finish.',
@@ -168,11 +175,11 @@ export default {
     mockupsTitleGold: 'ACTION',
     mockupsLead: 'From coffee bags to product packaging and its technical structure — every project considers brand, function and production.',
     mockups: {
-      montessia: { title: 'Bag & cup · Montessia', tag: 'Food & Beverage' },
-      tech: { title: 'Tech packaging · Street style', tag: 'Technology' },
-      audifonos: { title: 'Headphone packaging · Space theme', tag: 'Technology' },
-      smartwatch: { title: 'Smart Watch · Product packaging', tag: 'Product' },
-      carne: { title: 'Meat packaging · Los Socios', tag: 'Food & Beverage' }
+      montessia: { title: 'Bag & cup · Montessia', tag: 'Food & Beverage', description: 'Coffee bag and to-go cup that carry the brand into every purchase.' },
+      tech: { title: 'Tech packaging · Street style', tag: 'Technology', description: 'Urban-style box designed for a young, digital audience.' },
+      audifonos: { title: 'Headphone packaging · Space theme', tag: 'Technology', description: 'A space concept that turns unboxing into an experience.' },
+      smartwatch: { title: 'Smart Watch · Product packaging', tag: 'Product', description: 'Premium box that protects the watch and raises its perceived value.' },
+      carne: { title: 'Meat packaging · Los Socios', tag: 'Food & Beverage', description: 'Packaging for meat cuts that brings the Los Socios identity to the table.' }
     },
     ctaEyebrow: 'Let\'s talk',
     ctaTitleWhite: 'Ready to package',
@@ -182,7 +189,7 @@ export default {
   },
 
   impresion3d: {
-    eyebrow: 'Specialty · 04',
+    eyebrow: 'Fabrication',
     titleWhite: '3D Design &',
     titleGold: 'Printing',
     lead: 'We turn ideas into physical objects. We model, prototype and print custom pieces — from quick design validations to on-demand short-run production.',
@@ -192,9 +199,9 @@ export default {
     videosLead: 'From the digital model to the finished piece — this is what 3D modeling and printing look like in action.',
     verEnTiktok: 'View on TikTok',
     videos: {
-      llavero: { title: 'Nail-art keychain' },
-      anillos: { title: 'Ring modeling' },
-      impresora: { title: '3D printer in action' }
+      llavero: { title: 'Nail-art keychain', tag: '3D Printing', description: 'Custom keychains, perfect as merchandise for your business.' },
+      anillos: { title: 'Ring modeling', tag: '3D Modeling', description: 'From sketch to digital model, ready to prototype or manufacture.' },
+      impresora: { title: '3D printer in action', tag: 'Process', description: 'This is how a piece takes shape, layer by layer, in our workshop.' }
     },
     ctaEyebrow: 'Let\'s talk',
     ctaTitleWhite: 'Ready to print',
@@ -204,7 +211,7 @@ export default {
   },
 
   desarrollo: {
-    eyebrow: 'Portfolio · Development',
+    eyebrow: 'Digital',
     titleWhite: 'Development of ',
     lead: 'We build custom digital products — from websites to complete platforms. Clean code, functional design and results that drive your business forward.',
     tecnologias: 'Technologies',

@@ -51,20 +51,16 @@
         </p>
       </div>
 
-      <div class="mockups-grid">
-        <article v-for="(m, i) in mockups" :key="m.key" :class="['mockup reveal', m.span, `reveal-${i % 4}`]">
-          <img v-if="!m.images" :src="m.image" :alt="t(`disenoEmpaques.mockups.${m.key}.title`)" loading="lazy" />
-          <img
-            v-for="(src, idx) in (m.images || [])" :key="src"
-            :src="src" :alt="t(`disenoEmpaques.mockups.${m.key}.title`)" loading="lazy"
-            :class="['carousel-frame', { active: idx === frame % m.images.length }]"
-          />
-          <div class="mockup-overlay">
-            <span class="mockup-tag">{{ t(`disenoEmpaques.mockups.${m.key}.tag`) }}</span>
-            <h3>{{ t(`disenoEmpaques.mockups.${m.key}.title`) }}</h3>
-          </div>
-        </article>
-      </div>
+      <GlassGrid>
+        <GlassCard
+          v-for="(m, i) in mockups" :key="m.key"
+          :class="['reveal', `reveal-${i % 4}`]"
+          :image="m.image" :images="m.images" :frame="frame"
+          :category="t(`disenoEmpaques.mockups.${m.key}.tag`)"
+          :title="t(`disenoEmpaques.mockups.${m.key}.title`)"
+          :description="t(`disenoEmpaques.mockups.${m.key}.description`)"
+        />
+      </GlassGrid>
     </div>
   </section>
 
@@ -105,8 +101,9 @@
       <small>{{ t('footer.copyrightShort') }}</small>
       <nav>
         <a href="https://www.behance.net/gallery/220454209/Portfolio" target="_blank" rel="noopener noreferrer">Behance</a>
-        <a href="https://www.instagram.com/franklinp.cs/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://www.linkedin.com/in/franklin-pe%C3%B1a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.instagram.com/yeffrey_fr/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.linkedin.com/in/franklin-pe%C3%B1a-832873252/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.tiktok.com/@franklin_designer" target="_blank" rel="noopener noreferrer">TikTok</a>
       </nav>
     </div>
   </footer>
@@ -117,6 +114,8 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import AppBackdrop from '../components/landing/AppBackdrop.vue';
 import LanguageSwitcher from '../components/landing/LanguageSwitcher.vue';
+import GlassCard from '../components/ui/GlassCard.vue';
+import GlassGrid from '../components/ui/GlassGrid.vue';
 import { useReveal } from '../composables/useReveal.js';
 
 useReveal();
@@ -141,11 +140,11 @@ onUnmounted(() => clearInterval(carouselTimer));
 
 /* ── Mockups / proyectos de empaques ── */
 const mockups = [
-  { key: 'montessia', span: 'span-half', images: ['/img/Project 4.jpg', '/img/Project 3.jpg'] },
-  { key: 'smartwatch', span: 'span-half', images: ['/img/Caja_reloj.png', '/img/caja_reloj_morado.png'] },
-  { key: 'tech', span: 'span-third', image: '/img/graffiti_audifono.jpg' },
-  { key: 'audifonos', span: 'span-third', image: '/img/espacio_audifono.jpg' },
-  { key: 'carne', span: 'span-third', image: '/img/empaque_carne.jpg' },
+  { key: 'montessia', images: ['/img/Project 4.jpg', '/img/Project 3.jpg'] },
+  { key: 'smartwatch', images: ['/img/Caja_reloj.png', '/img/caja_reloj_morado.png'] },
+  { key: 'tech', image: '/img/graffiti_audifono.jpg' },
+  { key: 'audifonos', image: '/img/espacio_audifono.jpg' },
+  { key: 'carne', image: '/img/empaque_carne.jpg' },
 ];
 </script>
 
@@ -207,35 +206,6 @@ const mockups = [
 
 /* ── Mockups section ── */
 .mockups-section { padding: 2rem 0 5rem }
-.mockups-grid {
-  display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.4rem;
-  grid-auto-rows: minmax(160px, auto);
-}
-.mockup {
-  position: relative; border-radius: var(--r-lg); overflow: hidden;
-  min-height: 320px; isolation: isolate;
-  transition: transform .4s ease, box-shadow .4s ease;
-}
-.mockup:hover { transform: translateY(-6px); box-shadow: 0 30px 70px rgba(0,0,0,.7), 0 0 0 1px rgba(230,179,74,.25) }
-.mockup img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  transition: transform .8s ease, filter .4s ease;
-  filter: saturate(.9) brightness(.85);
-}
-.mockup:hover img { transform: scale(1.06); filter: saturate(1.1) brightness(1) }
-.mockup img.carousel-frame { opacity: 0; transition: opacity 1.2s ease, transform .8s ease, filter .4s ease }
-.mockup img.carousel-frame.active { opacity: 1 }
-.mockup::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.75) 100%);
-  pointer-events: none;
-}
-.mockup-overlay { position: absolute; left: 1.4rem; right: 1.4rem; bottom: 1.2rem; z-index: 2 }
-.mockup-tag { display: inline-block; padding: .3rem .7rem; border-radius: 999px; background: rgba(0,0,0,.55); backdrop-filter: blur(8px); border: 1px solid rgba(230,179,74,.35); color: var(--gold); font-size: .68rem; font-weight: 600; letter-spacing: .06em; margin-bottom: .6rem }
-.mockup-overlay h3 { font-family: var(--f-display); font-weight: 400; font-size: 1.35rem; letter-spacing: .02em; text-transform: uppercase; margin: 0; color: #fff }
-
-.span-half  { grid-column: span 6 }
-.span-third { grid-column: span 4 }
 
 /* ── CTA ── */
 .cta-section { padding: 2rem 0 6rem }
@@ -269,13 +239,11 @@ const mockups = [
 @media (max-width: 1080px) {
   .hero .inner { grid-template-columns: 1fr; gap: 2.5rem }
   .hero-image { order: -1 }
-  .span-half, .span-third { grid-column: span 6 }
 }
 @media (max-width: 720px) {
   .back-btn { padding: .5rem .8rem; font-size: .75rem; top: 10px; left: 16px }
   .hero { padding: 7rem 0 4rem }
   .hero .inner { padding: 0 16px }
-  .span-half, .span-third { grid-column: span 12 }
   .cta-card { padding: 3rem 1.5rem }
 }
 </style>

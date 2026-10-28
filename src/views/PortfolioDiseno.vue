@@ -1,9 +1,10 @@
 <template>
   <!-- Backdrop -->
   <AppBackdrop />
+  <div class="page-bg" aria-hidden="true"></div>
 
   <!-- Back button -->
-  <router-link to="/" class="back-btn" @click="closeModal">
+  <router-link v-show="!modalOpen" to="/" class="back-btn" @click="closeModal">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
     {{ t('nav.volver') }}
   </router-link>
@@ -23,73 +24,31 @@
   <!-- Hero -->
   <header class="hero">
     <div class="inner">
-      <div>
-        <span class="eyebrow">{{ t('disenoGrafico.eyebrow') }}</span>
-        <h1 class="display hero-display">
-          <span class="line">
-            <span class="white">{{ t('disenoGrafico.titleWhite') }}</span><span class="gold typed-word">{{ typedText }}<span class="cursor"></span></span>
-          </span>
-        </h1>
-        <p class="lead">
-          {{ t('disenoGrafico.lead') }}
-        </p>
-      </div>
-      <div class="hero-meta">
-        <div class="glass hero-meta-item">
-          <div>
-            <small>{{ t('disenoGrafico.proyectosEntregados') }}</small>
-            <strong>200+</strong>
-          </div>
-          <div class="accent-bar"></div>
-        </div>
-        <div class="glass hero-meta-item">
-          <div>
-            <small>{{ t('disenoGrafico.categorias') }}</small>
-            <strong>Digital · {{ locale === 'en' ? 'Printing' : 'Impresión' }} · Packaging · Branding</strong>
-          </div>
-          <div class="accent-bar"></div>
-        </div>
-        <div class="glass hero-meta-item">
-          <div>
-            <small>{{ t('disenoGrafico.aniosExperiencia') }}</small>
-            <strong>{{ t('disenoGrafico.desde') }}</strong>
-          </div>
-          <div class="accent-bar"></div>
-        </div>
-      </div>
+      <span class="eyebrow">{{ t('disenoGrafico.eyebrow') }}</span>
+      <h1 class="display hero-display">
+        <span class="line">
+          <span class="white">{{ t('disenoGrafico.titleWhite') }}</span><span class="gold typed-word">{{ typedText }}<span class="cursor"></span></span>
+        </span>
+      </h1>
+      <p class="hero-sub">{{ t('disenoGrafico.subtitle') }}</p>
     </div>
   </header>
 
   <!-- Projects Grid -->
   <section class="projects-section">
     <div class="container">
-      <div class="projects-grid">
-        <article
+      <GlassGrid>
+        <GlassCard
           v-for="p in allProjects" :key="p.id"
-          :class="['project reveal', p.span]"
+          class="reveal"
+          :image="p.image"
+          :category="`${p.category} · '${p.year.slice(-2)}`"
+          :title="t(`disenoGrafico.projects.${p.key}.title`)"
+          :description="t(`disenoGrafico.projects.${p.key}.subtitle`)"
+          :cta="t('disenoGrafico.verProyecto')"
           @click="openModal(p)"
-        >
-          <div class="img-wrap">
-            <img :src="p.image" :alt="p.title" loading="lazy" />
-            <div class="year-badge">'{{ p.year.slice(-2) }}</div>
-            <div class="tags">
-              <span v-for="t in p.tags" :key="t" class="tag">{{ t }}</span>
-            </div>
-          </div>
-          <div class="body">
-            <div class="cat-row">
-              <span class="cat">{{ p.category }}</span>
-              <span class="client-sm">{{ p.client }}</span>
-            </div>
-            <h3>{{ t(`disenoGrafico.projects.${p.key}.title`) }}</h3>
-            <p class="client">{{ t(`disenoGrafico.projects.${p.key}.subtitle`) }}</p>
-            <p class="desc">{{ t(`disenoGrafico.projects.${p.key}.description`) }}</p>
-            <span class="view">{{ t('disenoGrafico.verProyecto') }}
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </span>
-          </div>
-        </article>
-      </div>
+        />
+      </GlassGrid>
 
     </div>
   </section>
@@ -131,8 +90,9 @@
       <small>{{ t('footer.copyrightShort') }}</small>
       <nav>
         <a href="https://www.behance.net/gallery/220454209/Portfolio" target="_blank" rel="noopener noreferrer">Behance</a>
-        <a href="https://www.instagram.com/franklinp.cs/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://www.linkedin.com/in/franklin-pe%C3%B1a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.instagram.com/yeffrey_fr/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.linkedin.com/in/franklin-pe%C3%B1a-832873252/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.tiktok.com/@franklin_designer" target="_blank" rel="noopener noreferrer">TikTok</a>
       </nav>
     </div>
   </footer>
@@ -186,6 +146,15 @@
               <div class="modal-tags">
                 <span v-for="tag in activeProject?.tags" :key="tag">{{ tag }}</span>
               </div>
+              <a
+                v-if="activeProject?.instagram"
+                :href="activeProject.instagram"
+                target="_blank" rel="noopener noreferrer"
+                class="ig-link"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+                {{ t('identidadMarca.verEnInstagram') }}
+              </a>
             </div>
             <div>
               <h4>{{ t('disenoGrafico.detalles') }}</h4>
@@ -207,6 +176,8 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import AppBackdrop from '../components/landing/AppBackdrop.vue';
 import LanguageSwitcher from '../components/landing/LanguageSwitcher.vue';
+import GlassCard from '../components/ui/GlassCard.vue';
+import GlassGrid from '../components/ui/GlassGrid.vue';
 import { imgCard, imgGallery } from '../utils/cloudinary.js';
 import { useReveal } from '../composables/useReveal.js';
 
@@ -215,7 +186,7 @@ const { t, locale } = useI18n();
 
 /* ── Typewriter ── */
 const typedText = ref('');
-const phrases = ['Gráfico', '& Branding', 'Editorial', '& Packaging'];
+const phrases = ['Visual', 'de Marca', '& Branding', 'Completa'];
 let phraseIdx = 0, charIdx = 0, isDeleting = false, typeTimer = null;
 const tick = () => {
   const cur = phrases[phraseIdx];
@@ -302,9 +273,11 @@ const allProjects = [
     id: 5, key: 'socios', span: 'span-third', category: 'Branding', year: '2026',
     client: 'Los Socios',
     tags: ['Identidad Visual', 'Logo', 'Branding'],
+    instagram: 'https://www.instagram.com/reel/DXSfA-0jmPG/',
     image: imgCard('franklincs/socios-cover', '/img/portada_socios.jpg'),
     gallery: [
       imgGallery('franklincs/socios-cover', '/img/portada_socios.jpg'),
+      '/img/logo_socios.png',
       imgGallery('franklincs/socios-g1', '/img/Tarjetas_socios.jpg'),
       imgGallery('franklincs/socios-g2', '/img/socios-02.jpg'),
     ]
@@ -355,6 +328,14 @@ onUnmounted(() => { document.body.style.overflow = ''; });
 </script>
 
 <style scoped>
+/* ── Fondo: imagen de las manos (la misma del Hero de inicio), oscurecida ── */
+.page-bg {
+  position: fixed; inset: 0; z-index: -2; pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(0,0,0,.78) 0%, rgba(0,0,0,.6) 50%, rgba(0,0,0,.78) 100%),
+    url('/img/hero-hands.jpg') center / cover no-repeat;
+}
+
 /* ── Back button ── */
 .back-btn {
   position: fixed; top: 14px; left: 24px; z-index: 200;
@@ -373,11 +354,20 @@ onUnmounted(() => { document.body.style.overflow = ''; });
 /* ── Nav ── */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-  background: rgba(8,8,8,.78);
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  border-bottom: 1px solid rgba(230,179,74,.10);
+  /* Glassmorphism: vidrio ahumado con canto dorado */
+  background: rgba(12,10,6,.4);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border-bottom: 1px solid rgba(245,207,122,.3);
+  box-shadow: 0 8px 32px rgba(0,0,0,.4), inset 0 -1px 0 rgba(255,240,210,.06);
   transition: transform .3s ease;
+}
+/* Línea de luz dorada bajo la barra */
+.nav::after {
+  content: ""; position: absolute; left: 35%; right: 35%; bottom: -1px; height: 2px;
+  pointer-events: none; border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #f5cf7a, transparent);
+  box-shadow: 0 0 16px 3px rgba(230,179,74,.45);
 }
 .nav.hidden { transform: translateY(-100%) }
 .nav .inner {
@@ -392,12 +382,12 @@ onUnmounted(() => { document.body.style.overflow = ''; });
 .brand .b2 { color: var(--gold) }
 
 /* ── Hero ── */
-.hero { position: relative; padding: 9rem 0 6rem }
+/* Hero mínimo y compacto: el grid de proyectos queda visible sin scroll */
+.hero { position: relative; padding: 7rem 0 1.5rem }
 .hero .inner {
   max-width: 1280px; margin: 0 auto; padding: 0 32px;
-  display: grid; grid-template-columns: 1.3fr 1fr; gap: 4rem; align-items: end;
 }
-.hero-display { font-size: clamp(2.2rem, 5.5vw, 4.8rem); margin-top: 1.5rem }
+.hero-display { font-size: clamp(2rem, 4.5vw, 3.6rem); margin-top: 1rem }
 .hero-display .line { display: block; overflow: visible }
 .hero-display .line > span { display: inline }
 .typed-word { display: inline }
@@ -407,76 +397,30 @@ onUnmounted(() => { document.body.style.overflow = ''; });
   animation: blink .75s step-end infinite;
 }
 @keyframes blink { 0%,100% { opacity: 1 } 50% { opacity: 0 } }
-.hero p.lead { margin-top: 1.5rem; font-size: 1.05rem; color: var(--fg-dim); line-height: 1.75 }
-.hero-meta { display: grid; gap: 1.4rem }
-.hero-meta-item { padding: 1.2rem 1.4rem; display: flex; justify-content: space-between; align-items: center }
-.hero-meta-item small { display: block; color: var(--fg-mute); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; margin-bottom: .25rem }
-.hero-meta-item strong { font-family: var(--f-display); font-size: 1.4rem; font-weight: 400; letter-spacing: .04em; color: #fff }
-.accent-bar { width: 3px; height: 40px; background: linear-gradient(180deg, var(--gold-2), var(--gold-3)); border-radius: 2px; box-shadow: 0 0 8px var(--gold-glow) }
+.hero-sub { margin: .8rem 0 0; font-size: 1.05rem; color: var(--fg-dim); line-height: 1.5 }
 
 /* ── Projects grid ── */
-.projects-section { padding: 4rem 0 6rem }
-.projects-grid {
-  display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.4rem;
-  grid-auto-rows: minmax(140px, auto);
-}
-.project {
-  position: relative; border-radius: var(--r-lg); overflow: hidden;
-  background: #0a0a0a; cursor: pointer;
-  transition: transform .4s ease, box-shadow .4s ease;
-  isolation: isolate; min-height: 380px;
-  display: flex; flex-direction: column;
-}
-.project:hover { transform: translateY(-6px); box-shadow: 0 30px 70px rgba(0,0,0,.7), 0 0 0 1px rgba(230,179,74,.25) }
-.img-wrap { position: relative; flex: 1; min-height: 240px; overflow: hidden }
-.img-wrap img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  transition: transform .8s ease, filter .4s ease;
-  filter: saturate(.9) brightness(.85);
-}
-.project:hover .img-wrap img { transform: scale(1.07); filter: saturate(1.1) brightness(1) }
-.img-wrap::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,.7) 100%);
-  pointer-events: none;
-}
-.tags { position: absolute; left: 1rem; right: 1rem; bottom: 1rem; z-index: 2; display: flex; flex-wrap: wrap; gap: .35rem }
-.tag { padding: .3rem .7rem; border-radius: 999px; background: rgba(0,0,0,.55); backdrop-filter: blur(8px); border: 1px solid rgba(230,179,74,.35); color: var(--gold); font-size: .68rem; font-weight: 600; letter-spacing: .06em }
-.year-badge {
-  position: absolute; top: 1rem; right: 1rem; z-index: 2;
-  width: 54px; height: 54px; border-radius: 50%;
-  background: rgba(0,0,0,.55); backdrop-filter: blur(10px); border: 1px solid rgba(230,179,74,.3);
-  display: grid; place-items: center;
-  font-family: var(--f-display); font-size: .9rem; color: var(--gold); line-height: 1; text-align: center; letter-spacing: .02em;
-}
-.body {
-  padding: 1.4rem 1.6rem 1.6rem;
-  background: rgba(255,255,255,.025);
-  border-top: 1px solid rgba(255,255,255,.06);
-  backdrop-filter: blur(10px);
-}
-.cat-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: .6rem }
-.cat { color: var(--gold); font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase }
-.client-sm { color: var(--fg-mute); font-size: .78rem }
-.project h3 { font-family: var(--f-display); font-weight: 400; font-size: 1.6rem; letter-spacing: .02em; text-transform: uppercase; margin: 0 0 .3rem; color: #fff; transition: color .25s ease }
-.project:hover h3 { color: var(--gold-2) }
-.client { color: var(--fg-dim); font-size: .85rem; font-weight: 500; margin-bottom: .6rem }
-.desc { color: var(--fg-mute); font-size: .88rem; line-height: 1.55; margin: 0 0 1.2rem; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden }
-.view { display: inline-flex; align-items: center; gap: .5rem; color: var(--gold); font-size: .85rem; font-weight: 600; letter-spacing: .04em; transition: gap .25s ease }
-.project:hover .view { gap: .85rem }
-
-/* spans */
-.span-tall  { grid-column: span 6; grid-row: span 2 }
-.span-wide  { grid-column: span 6 }
-.span-third { grid-column: span 4 }
-.span-half  { grid-column: span 6 }
-
+.projects-section { padding: 1.5rem 0 6rem }
 /* ── CTA ── */
 .cta-section { padding: 4rem 0 6rem }
 .cta-card {
   padding: 5rem 4rem; text-align: center; position: relative; overflow: hidden;
-  background: radial-gradient(700px 400px at 50% 100%, rgba(230,179,74,.25), transparent 65%), var(--glass-bg-strong);
+  /* Glassmorphism: vidrio ahumado con resplandor dorado */
+  background:
+    radial-gradient(ellipse 40% 40% at 0% 0%, rgba(230,179,74,.16), transparent 70%),
+    radial-gradient(700px 400px at 50% 100%, rgba(230,179,74,.2), transparent 65%),
+    rgba(12,10,6,.35);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  box-shadow: 0 25px 60px rgba(0,0,0,.5), 0 0 50px rgba(230,179,74,.08), inset 0 1px 0 rgba(255,240,210,.18);
   display: flex; flex-direction: column; align-items: center;
+}
+/* Destello de luz dorada en el borde inferior */
+.cta-card::after {
+  content: ""; position: absolute; left: 30%; right: 30%; bottom: 0; height: 2px;
+  pointer-events: none; border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #f5cf7a, transparent);
+  box-shadow: 0 0 18px 3px rgba(230,179,74,.45);
 }
 .h-cta { font-size: clamp(2.4rem, 5vw, 4.4rem); margin-bottom: 1.5rem }
 .cta-card .lead { margin: 0 auto 2.5rem; text-align: center; color: var(--fg-dim); font-size: 1.05rem; line-height: 1.75; max-width: 62ch }
@@ -565,9 +509,24 @@ onUnmounted(() => { document.body.style.overflow = ''; });
 .details-grid h4 { font-family: var(--f-display); font-weight: 400; font-size: 1rem; text-transform: uppercase; letter-spacing: .06em; color: #fff; margin: 0 0 .8rem }
 .details-grid p.desc { color: var(--fg-dim); font-size: .92rem; line-height: 1.7; margin: 0 0 1rem }
 .modal-tags { display: flex; flex-wrap: wrap; gap: .4rem }
+.ig-link {
+  display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.1rem;
+  padding: .55rem 1.1rem; border-radius: 999px;
+  background: rgba(12,10,6,.35);
+  border: 1px solid rgba(245,207,122,.55);
+  color: var(--gold-2); font-size: .82rem; font-weight: 600; letter-spacing: .04em;
+  transition: all .25s ease;
+}
+.ig-link:hover { background: rgba(230,179,74,.18); box-shadow: 0 0 18px rgba(230,179,74,.3) }
 .modal-tags span { padding: .3rem .75rem; border-radius: 999px; background: rgba(230,179,74,.1); color: var(--gold); border: 1px solid rgba(230,179,74,.3); font-size: .7rem; font-weight: 600; letter-spacing: .06em }
 .info-list { display: grid; gap: .75rem }
-.info-row { padding: .75rem .9rem; border-radius: 10px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06) }
+.info-row {
+  padding: .75rem .9rem; border-radius: 12px;
+  background: rgba(12,10,6,.35);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(245,207,122,.25);
+  box-shadow: inset 0 1px 0 rgba(255,240,210,.1);
+}
 .info-row small { color: var(--fg-mute); font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; display: block; margin-bottom: .2rem }
 .info-row strong { font-family: var(--f-display); font-weight: 400; font-size: 1rem; color: #fff; letter-spacing: .02em }
 
@@ -577,8 +536,6 @@ onUnmounted(() => { document.body.style.overflow = ''; });
 
 /* ── Responsive ── */
 @media (max-width: 1080px) {
-  .hero .inner { grid-template-columns: 1fr; gap: 2.5rem; align-items: start }
-  .span-tall, .span-wide, .span-third, .span-half { grid-column: span 6 }
   .stats { grid-template-columns: repeat(2,1fr); gap: 2rem }
   .stat + .stat::before { display: none }
   .modal-body { flex-direction: column }
@@ -586,11 +543,9 @@ onUnmounted(() => { document.body.style.overflow = ''; });
 }
 @media (max-width: 720px) {
   .back-btn { padding: .5rem .8rem; font-size: .75rem; top: 10px; left: 16px }
-  .hero { padding: 7rem 0 4rem }
+  .hero { padding: 6rem 0 1.2rem }
   .hero .inner { padding: 0 16px }
-  .hero-meta-item { padding: .9rem 1rem }
-  .hero-meta-item strong { font-size: 1rem }
-  .span-tall, .span-wide, .span-third, .span-half { grid-column: span 12 }
+  .hero-sub { font-size: .95rem }
   .stats { grid-template-columns: 1fr 1fr; padding: 1.8rem; gap: 1.2rem }
   .cta-card { padding: 3rem 1.5rem }
   .modal-head { padding: .75rem 1rem }
@@ -600,7 +555,5 @@ onUnmounted(() => { document.body.style.overflow = ''; });
 }
 @media (max-width: 480px) {
   .hero-display { font-size: clamp(1.8rem, 7.5vw, 2.8rem) }
-  .hero-meta-item strong { font-size: .88rem; word-break: break-word }
-  .hero-meta-item small { font-size: .65rem }
 }
 </style>

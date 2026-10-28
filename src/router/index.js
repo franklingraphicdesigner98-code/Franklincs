@@ -11,26 +11,25 @@ export const routes = [
     }
   },
   {
-    // Muestra el portafolio de casos de estudio de diseño (PortfolioDiseno.vue):
-    // Montessia, CoRay Dev, Los Socios, etc. El meta describe ese contenido real,
-    // aunque el slug de la URL diga "identidad-marca".
+    // Muestra los casos de estudio de identidad de marca (PortfolioDiseno.vue):
+    // Montessia, CoRay Dev, Los Socios, etc.
     path: '/identidad-marca',
     name: 'identidad-marca',
     component: () => import('../views/PortfolioDiseno.vue'),
     meta: {
-      title: 'Portafolio de Diseño Gráfico | Franklin Peña Concept Studio',
+      title: 'Identidad de Marca | Franklin Peña Concept Studio',
       description: 'Identidades visuales únicas que comunican la esencia de cada marca, desde el concepto inicial hasta la implementación final.'
     }
   },
   {
-    // Muestra las piezas y mockups de identidad de marca (IdentidadMarca.vue):
-    // logotipo, papelería, menús, señalética, packaging, etc.
+    // Muestra las piezas de diseño gráfico (IdentidadMarca.vue):
+    // redes sociales, menús, papelería, señalética, gran formato, etc.
     path: '/diseno-grafico',
     name: 'diseno-grafico',
     component: () => import('../views/IdentidadMarca.vue'),
     meta: {
-      title: 'Identidad de Marca | Franklin Peña Concept Studio',
-      description: 'Sistemas visuales completos — estrategia, concepto y aplicación — para una identidad de marca coherente, memorable y confiable.'
+      title: 'Diseño Gráfico | Franklin Peña Concept Studio',
+      description: 'Piezas para redes sociales, menús, papelería, señalética y material impreso que comunican con intención y hacen que tu negocio se vea profesional.'
     }
   },
   {

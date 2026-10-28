@@ -43,9 +43,9 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 
 .display {
   font-family: var(--f-display);
-  font-weight: 400;
-  letter-spacing: .005em;
-  line-height: .92;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  line-height: 1;
   text-transform: uppercase;
   margin: 0;
 }

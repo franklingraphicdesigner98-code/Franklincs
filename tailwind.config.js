@@ -23,7 +23,7 @@ export default {
         },
       },
       fontFamily: {
-        display: ['Anton', 'Inter', 'sans-serif'],
+        display: ['Outfit', 'Inter', 'sans-serif'],
         sans:    ['Inter', 'system-ui', 'sans-serif'],
         script:  ['Allura', 'cursive'],
       },

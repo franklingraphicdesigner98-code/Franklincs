@@ -9,10 +9,12 @@ export default {
     volverInicio: '← Volver al Inicio'
   },
   hero: {
-    eyebrow: 'MATERIALIZA TUS IDEAS',
-    title: '¿Tu marca habla visualmente?',
-    description: 'Integramos branding, diseño, tecnología y fabricación digital para construir marcas con impacto.',
-    cta: 'CONOCE MAS'
+    eyebrow: 'EL DISEÑO TRABAJA POR TI',
+    title: '¿Tu marca {impacta} o solo {existe}?',
+    titleImpacta: 'impacta',
+    titleExiste: 'existe',
+    description: 'Diseño, tecnología y sistemas que hacen que tu marca trabaje por ti — en todos los canales.',
+    cta: 'Empieza aquí'
   },
   clients: {
     eyebrow: 'Marcas',
@@ -21,29 +23,34 @@ export default {
   },
   services: {
     eyebrow: '¿Qué hacemos?',
-    titleWhite: 'NUESTRAS',
-    titleGold: 'ESPECIALIDADES',
-    lead: 'Integramos branding, diseño, tecnología y fabricación digital para construir marcas con impacto.',
+    titleWhite: 'Nuestros',
+    titleGold: 'servicios',
+    lead: 'Desde el logo hasta el sistema interno — todo para que tu negocio comunique bien y opere mejor.',
     incluye: 'Incluye:',
     items: {
       identidad: {
-        titleLine1: 'IDENTIDAD', titleLine2: 'DE MARCA',
+        titleLine1: 'No hay segunda', titleLine2: 'primera impresión',
+        description: 'Solidifica la identidad de tu marca',
         includes: ['Logotipo', 'Paleta de Color', 'Tipografía', 'Elementos Gráficos']
       },
       diseno: {
-        titleLine1: 'DISEÑO', titleLine2: 'GRÁFICO',
+        titleLine1: 'Diseño', titleLine2: 'con intención',
+        description: 'Todo lo que tu negocio necesita para comunicar.',
         includes: ['Flyers y Volantes', 'Carnets Corporativos', 'Publicidad Impresa', 'Piezas para Redes Sociales']
       },
       empaques: {
-        titleLine1: 'DISEÑO DE', titleLine2: 'EMPAQUES',
+        titleLine1: 'Que te compren', titleLine2: 'de nuevo',
+        description: 'El empaque que vende antes de que lo abran.',
         includes: ['Cajas y etiquetas', 'Bolsas y empaques', 'Línea de producto']
       },
       impresion: {
-        titleLine1: 'DISEÑO E', titleLine2: 'IMPRESIÓN 3D',
+        titleLine1: 'De pantalla', titleLine2: 'a tus manos',
+        description: 'De la idea al objeto físico.',
         includes: ['Modelado 3D', 'Prototipos', 'Merchandising y piezas']
       },
       web: {
-        titleLine1: 'PÁGINAS WEB', titleLine2: 'Y SISTEMAS',
+        titleLine1: 'Web para tus clientes.', titleLine2: 'Sistemas internos para tu equipo.',
+        description: 'Tu presencia digital que trabaja por ti.',
         includes: ['Sitios web', 'Tiendas online', 'Sistemas a medida', 'Mantenimiento']
       }
     }
@@ -77,38 +84,40 @@ export default {
   },
 
   identidadMarca: {
-    eyebrow: 'Especialidad · 01',
-    titleWhite: 'Identidad',
-    titleGold: 'de Marca',
-    lead: 'Una marca no es solo un logo: es la manera en que tu negocio se ve, se siente y se recuerda en cada punto de contacto. Construimos sistemas visuales completos — estrategia, concepto y aplicación — para que tu identidad sea coherente, memorable y confiable.',
-    mockupsEyebrow: 'Aplicaciones reales',
-    mockupsTitleWhite: 'SISTEMA VISUAL EN',
-    mockupsTitleGold: 'ACCIÓN',
-    mockupsLead: 'Así se ve una identidad de marca llevada a sus piezas: tarjetas de presentación, menús, papelería, empaques y ambientación gráfica — todo hablando el mismo idioma visual.',
+    eyebrow: 'Gráfico',
+    titleWhite: 'Diseño',
+    titleGold: 'Gráfico',
+    lead: 'Todo lo que tu negocio necesita para comunicar. Diseñamos piezas para redes sociales, menús, papelería, señalética y material impreso que captan la atención, explican tu oferta y hacen que tu negocio se vea profesional en cada canal.',
+    mockupsEyebrow: 'Trabajos reales',
+    mockupsTitleWhite: 'DISEÑO CON',
+    mockupsTitleGold: 'INTENCIÓN',
+    mockupsLead: 'Piezas para redes sociales, menús, tarjetas de presentación, señalética y gran formato — cada una pensada para comunicar un mensaje claro y ayudarte a vender.',
     verEnInstagram: 'Ver en Instagram',
     verEnTiktok: 'Ver en TikTok',
+    verMas: 'Ver más',
     mockups: {
       logotipo: { title: 'Logotipo & identificador', tag: 'Branding' },
-      sistemaVisual: { title: 'Sistema visual completo', tag: 'Identidad' },
-      tarjetas: { title: 'Tarjetas de presentación', tag: 'Papelería' },
-      menus: { title: 'Menús & material impreso', tag: 'Editorial' },
-      ambientacion: { title: 'Ambientación gráfica', tag: 'Espacio' },
-      packaging: { title: 'Packaging', tag: 'Producto' },
-      piezasDigitales: { title: 'Piezas digitales', tag: 'Social Media' },
-      senaletica: { title: 'Señalética', tag: 'Ambientación' },
-      granFormato: { title: 'Diseño Gran Formato', tag: 'Impresión' }
+      sistemaVisual: { title: 'Papelería corporativa', tag: 'Papelería', description: 'Hojas membretadas, sobres y carpetas con una imagen coherente y profesional.' },
+      tarjetas: { title: 'Tarjetas de presentación', tag: 'Papelería', description: 'Tarjetas que dejan una buena primera impresión en cada entrega.' },
+      menus: { title: 'Menús & material impreso', tag: 'Editorial', description: 'Menús claros y atractivos que facilitan la elección y ayudan a vender más.' },
+      ambientacion: { title: 'Ambientación gráfica', tag: 'Espacio', description: 'Gráficas para paredes y espacios que hacen vivir la marca en tu local.' },
+      packaging: { title: 'Packaging', tag: 'Producto', description: 'Empaques que destacan en el estante y hacen que te compren de nuevo.' },
+      piezasDigitales: { title: 'Piezas digitales', tag: 'Social Media', description: 'Posts, historias y anuncios para redes que captan la atención.' },
+      senaletica: { title: 'Señalética', tag: 'Ambientación', description: 'Señales claras que orientan a tus clientes y refuerzan tu imagen.' },
+      granFormato: { title: 'Diseño Gran Formato', tag: 'Impresión', description: 'Pendones, vallas y avisos pensados para verse desde lejos.' }
     },
     ctaEyebrow: 'Hablemos',
-    ctaTitleWhite: '¿Listo para construir',
-    ctaTitleGold: 'tu identidad?',
-    ctaLead: 'Desarrollemos juntos el sistema visual completo de tu marca — desde el concepto hasta cada pieza de papelería, packaging y ambientación gráfica.',
+    ctaTitleWhite: '¿Necesitas piezas que',
+    ctaTitleGold: 'comuniquen?',
+    ctaLead: 'Cuéntanos qué necesitas — un post, un menú, un aviso o una campaña completa — y lo diseñamos para que tu negocio se vea y se escuche profesional.',
     verPortafolio: 'Ver portafolio completo'
   },
 
   disenoGrafico: {
-    eyebrow: 'Portafolio · Diseño',
-    titleWhite: 'Diseño ',
+    eyebrow: 'Portafolio · Identidad',
+    titleWhite: 'Identidad ',
     lead: 'Creamos identidades visuales únicas que comunican la esencia de cada marca. Desde el concepto inicial hasta la implementación final, cada proyecto es una historia visual cuidadosamente elaborada.',
+    subtitle: 'Las marcas merecen una identidad que hable por sí sola.',
     proyectosEntregados: 'Proyectos entregados',
     categorias: 'Categorías',
     aniosExperiencia: 'Años de experiencia',
@@ -159,7 +168,7 @@ export default {
   },
 
   disenoEmpaques: {
-    eyebrow: 'Especialidad · 03',
+    eyebrow: 'Packaging',
     titleWhite: 'Diseño de',
     titleGold: 'Empaques',
     lead: 'El empaque es el primer contacto físico entre tu producto y tu cliente. Diseñamos packaging que protege, comunica y vende — desde la estructura y el troquel hasta el acabado gráfico final.',
@@ -168,11 +177,11 @@ export default {
     mockupsTitleGold: 'ACCIÓN',
     mockupsLead: 'Desde bolsas de café hasta empaques de producto y su estructura técnica — cada proyecto piensa en marca, función y producción.',
     mockups: {
-      montessia: { title: 'Bolsa & vaso · Montessia', tag: 'Gastronomía' },
-      tech: { title: 'Empaque tech · Street style', tag: 'Tecnología' },
-      audifonos: { title: 'Empaque audífonos · Espacial', tag: 'Tecnología' },
-      smartwatch: { title: 'Smart Watch · Empaque de producto', tag: 'Producto' },
-      carne: { title: 'Empaque carne · Los Socios', tag: 'Gastronomía' }
+      montessia: { title: 'Bolsa & vaso · Montessia', tag: 'Gastronomía', description: 'Bolsa de café y vaso para llevar que extienden la marca a cada compra.' },
+      tech: { title: 'Empaque tech · Street style', tag: 'Tecnología', description: 'Caja con estética urbana pensada para un público joven y digital.' },
+      audifonos: { title: 'Empaque audífonos · Espacial', tag: 'Tecnología', description: 'Concepto espacial que convierte el unboxing en una experiencia.' },
+      smartwatch: { title: 'Smart Watch · Empaque de producto', tag: 'Producto', description: 'Caja premium que protege el reloj y eleva su valor percibido.' },
+      carne: { title: 'Empaque carne · Los Socios', tag: 'Gastronomía', description: 'Empaque para cortes de carne que lleva la identidad de Los Socios a la mesa.' }
     },
     ctaEyebrow: 'Hablemos',
     ctaTitleWhite: '¿Listo para empacar',
@@ -182,7 +191,7 @@ export default {
   },
 
   impresion3d: {
-    eyebrow: 'Especialidad · 04',
+    eyebrow: 'Fabricación',
     titleWhite: 'Diseño e',
     titleGold: 'Impresión 3D',
     lead: 'Convertimos ideas en objetos físicos. Modelamos, prototipamos e imprimimos piezas a medida — desde validaciones rápidas de diseño hasta producción de series cortas bajo demanda.',
@@ -192,9 +201,9 @@ export default {
     videosLead: 'Del modelo digital a la pieza terminada — así se ve el modelado y la impresión 3D en acción.',
     verEnTiktok: 'Ver en TikTok',
     videos: {
-      llavero: { title: 'Llavero con diseño de uñas' },
-      anillos: { title: 'Modelado de anillos' },
-      impresora: { title: 'Impresora 3D en acción' }
+      llavero: { title: 'Llavero con diseño de uñas', tag: 'Impresión 3D', description: 'Llaveros personalizados, ideales como merchandising para tu negocio.' },
+      anillos: { title: 'Modelado de anillos', tag: 'Modelado 3D', description: 'Del boceto al modelo digital, listo para prototipar o fabricar.' },
+      impresora: { title: 'Impresora 3D en acción', tag: 'Proceso', description: 'Así toma forma una pieza, capa por capa, en nuestro taller.' }
     },
     ctaEyebrow: 'Hablemos',
     ctaTitleWhite: '¿Listo para imprimir',
@@ -204,7 +213,7 @@ export default {
   },
 
   desarrollo: {
-    eyebrow: 'Portafolio · Desarrollo',
+    eyebrow: 'Digital',
     titleWhite: 'Desarrollo de ',
     lead: 'Construimos productos digitales a medida — desde sitios web hasta plataformas completas. Código limpio, diseño funcional y resultados que impulsan tu negocio.',
     tecnologias: 'Tecnologías',

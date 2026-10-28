@@ -12,22 +12,18 @@
       </div>
 
       <div class="spec-grid">
-        <router-link
+        <GlassCard
           v-for="(s, i) in services" :key="s.id"
-          :to="s.link"
-          :class="['glass spec-card reveal spec-card-link', i > 0 && `reveal-${i}`]"
+          :to="s.link" :image="s.image" ratio="16 / 10" :muted="false"
+          :alt="t(`services.items.${s.key}.titleLine1`)"
+          :class="['spec-card reveal', i > 0 && `reveal-${i}`]"
         >
-          <div class="card-image">
-            <img :src="s.image" :alt="t(`services.items.${s.key}.titleLine1`)" />
+          <h3>{{ t(`services.items.${s.key}.titleLine1`) }}<br/><span class="gold">{{ t(`services.items.${s.key}.titleLine2`) }}</span></h3>
+          <div class="card-includes">
+            <span class="includes-desc">{{ t(`services.items.${s.key}.description`) }}</span>
+            <span class="includes-list">{{ tm(`services.items.${s.key}.includes`).join(' · ') }}</span>
           </div>
-          <div class="card-content">
-            <h3>{{ t(`services.items.${s.key}.titleLine1`) }}<br/>{{ t(`services.items.${s.key}.titleLine2`) }}</h3>
-            <div class="card-includes">
-              <span class="includes-label">{{ t('services.incluye') }}</span>
-              <span class="includes-list">{{ tm(`services.items.${s.key}.includes`).join(' · ') }}</span>
-            </div>
-          </div>
-        </router-link>
+        </GlassCard>
       </div>
     </div>
   </section>
@@ -35,6 +31,7 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n';
+import GlassCard from '../ui/GlassCard.vue';
 const { t, tm } = useI18n();
 
 const services = [
@@ -57,112 +54,33 @@ const services = [
   gap: 1.5rem;
 }
 
-.spec-card {
-  padding: 0;
-  position: relative;
-  overflow: hidden;
-  min-height: 480px;
-  display: flex;
-  flex-direction: column;
-  transition: all 0.35s ease;
-  border: 1px solid rgba(230,179,74,.2);
-  border-radius: 24px;
-  background: rgba(8,8,8,.5);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-
-.spec-card-link {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-}
-
-.spec-card::before {
-  content: "";
-  position: absolute;
-  right: -100px;
-  top: -100px;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(230,179,74,.15), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 0;
-}
-
-/* Hover-only effects gated behind (hover: hover) so touch devices don't
-   require a "first tap = hover, second tap = click" sequence (iOS Safari). */
-@media (hover: hover) and (pointer: fine) {
-  .spec-card:hover {
-    transform: translateY(-10px);
-    border-color: rgba(230,179,74,.45);
-    background: rgba(8,8,8,.65);
-    box-shadow: 0 25px 60px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
-  }
-
-  .spec-card:hover::before {
-    opacity: 1;
-  }
-}
-
-.spec-card > * {
-  position: relative;
-  z-index: 1;
-}
-
-.card-image {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,.25);
-}
-
-.card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.4s ease;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .spec-card:hover .card-image img {
-    transform: scale(1.05);
-  }
-}
-
-.card-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 2rem 2rem 2.2rem;
-}
+/* El vidrio, el canto dorado y el hover vienen de GlassCard */
+.spec-card { min-height: 480px }
 
 .spec-card h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  align-self: stretch;
+  font-family: var(--f-display);
+  font-size: 1.7rem;
+  font-weight: 400;
+  letter-spacing: .005em;
   color: #fff;
+  text-shadow: 0 2px 30px rgba(255,255,255,.08);
   margin: 0 0 0.8rem;
-  line-height: 1.3;
+  line-height: 1.05;
   text-transform: uppercase;
+  text-align: center;
 }
 
-.card-content p {
-  font-size: 0.95rem;
-  color: rgba(255,255,255,.8);
-  line-height: 1.6;
-  margin: 0;
-  flex-grow: 1;
+.spec-card h3 .gold {
+  color: transparent;
+  background: linear-gradient(180deg, #f5cf7a 0%, #e6b34a 40%, #a47a23 100%);
+  -webkit-background-clip: text; background-clip: text;
+  text-shadow: 0 0 80px rgba(230,179,74,.25);
+  -webkit-text-stroke: .5px rgba(255,220,140,.15);
 }
 
 .card-includes {
+  align-self: stretch;
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -171,11 +89,10 @@ const services = [
   border-top: 1px solid rgba(230,179,74,.15);
 }
 
-.includes-label {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.includes-desc {
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.4;
   color: var(--gold);
 }
 
@@ -183,31 +100,6 @@ const services = [
   font-size: 0.82rem;
   color: rgba(255,255,255,.6);
   line-height: 1.55;
-}
-
-.card-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 2px solid rgba(230,179,74,.3);
-  color: var(--gold);
-  transition: all 0.3s ease;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.card-link:hover {
-  border-color: var(--gold);
-  background: rgba(230,179,74,.1);
-  transform: translateX(4px);
-}
-
-.card-link svg {
-  stroke: currentColor;
-  stroke-width: 2.5;
 }
 
 /* Grid layout: 3 columns top, 2 bottom center */
@@ -245,21 +137,11 @@ const services = [
 
   .spec-card {
     min-height: 380px;
-    grid-template-rows: 1fr 1fr;
-  }
-
-  .card-content {
-    padding: 1.8rem;
   }
 
   .spec-card h3 {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     margin-bottom: 0.7rem;
-  }
-
-  .card-content p {
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
   }
 
   .includes-list {
@@ -270,21 +152,11 @@ const services = [
 @media (max-width: 480px) {
   .spec-card {
     min-height: 360px;
-    grid-template-rows: 1fr 1fr;
-  }
-
-  .card-content {
-    padding: 1.5rem;
   }
 
   .spec-card h3 {
-    font-size: 1rem;
+    font-size: 1.35rem;
     margin-bottom: 0.6rem;
-  }
-
-  .card-content p {
-    font-size: 0.88rem;
-    margin-bottom: 0.8rem;
   }
 
   .card-includes {

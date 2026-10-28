@@ -63,33 +63,19 @@
   <!-- Projects Grid -->
   <section class="projects-section">
     <div class="container">
-      <div class="projects-grid">
-        <article
+      <GlassGrid class="projects-grid">
+        <GlassCard
           v-for="p in filteredProjects" :key="p.id"
-          :class="['project reveal', p.span]"
-          @click="p.link ? openLink(p.link) : openModal(p)"
-        >
-          <div class="img-wrap">
-            <img :src="p.image" :alt="p.title" loading="lazy" />
-            <div class="year-badge">'{{ p.year.slice(-2) }}</div>
-            <div class="tags">
-              <span v-for="t in p.tags" :key="t" class="tag">{{ t }}</span>
-            </div>
-          </div>
-          <div class="body">
-            <div class="cat-row">
-              <span class="cat">{{ p.category }}</span>
-              <span class="client-sm">{{ p.client }}</span>
-            </div>
-            <h3>{{ t(`desarrollo.projects.${p.key}.title`) }}</h3>
-            <p class="client">{{ t(`desarrollo.projects.${p.key}.subtitle`) }}</p>
-            <p class="desc">{{ t(`desarrollo.projects.${p.key}.description`) }}</p>
-            <span class="view">{{ t('desarrollo.verProyecto') }}
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </span>
-          </div>
-        </article>
-      </div>
+          class="reveal"
+          :href="p.link"
+          :image="p.image"
+          :category="`${p.category} · '${p.year.slice(-2)}`"
+          :title="t(`desarrollo.projects.${p.key}.title`)"
+          :description="t(`desarrollo.projects.${p.key}.subtitle`)"
+          :cta="t('desarrollo.verProyecto')"
+          @click="!p.link && openModal(p)"
+        />
+      </GlassGrid>
 
     </div>
   </section>
@@ -131,8 +117,9 @@
       <small>{{ t('footer.copyrightShort') }}</small>
       <nav>
         <a href="https://www.behance.net/gallery/220454209/Portfolio" target="_blank" rel="noopener noreferrer">Behance</a>
-        <a href="https://www.instagram.com/franklinp.cs/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://www.linkedin.com/in/franklin-pe%C3%B1a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.instagram.com/yeffrey_fr/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.linkedin.com/in/franklin-pe%C3%B1a-832873252/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.tiktok.com/@franklin_designer" target="_blank" rel="noopener noreferrer">TikTok</a>
       </nav>
     </div>
   </footer>
@@ -221,6 +208,8 @@ const tick = () => {
 import { useI18n } from 'vue-i18n';
 import AppBackdrop from '../components/landing/AppBackdrop.vue';
 import LanguageSwitcher from '../components/landing/LanguageSwitcher.vue';
+import GlassCard from '../components/ui/GlassCard.vue';
+import GlassGrid from '../components/ui/GlassGrid.vue';
 import { imgCard, imgGallery } from '../utils/cloudinary.js';
 import { useReveal } from '../composables/useReveal.js';
 
@@ -295,8 +284,6 @@ watch(filteredProjects, () => {
 const modalOpen = ref(false);
 const activeProject = ref(null);
 const imgIdx = ref(0);
-
-const openLink = (url) => window.open(url, '_blank', 'noopener,noreferrer');
 
 const openModal = (p) => {
   activeProject.value = p;
@@ -415,60 +402,6 @@ onUnmounted(() => { document.body.style.overflow = ''; });
 
 /* ── Projects grid ── */
 .projects-section { padding: 4rem 0 6rem }
-.projects-grid {
-  display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.4rem;
-  grid-auto-rows: minmax(140px, auto);
-}
-.project {
-  position: relative; border-radius: var(--r-lg); overflow: hidden;
-  background: #0a0a0a; cursor: pointer;
-  transition: transform .4s ease, box-shadow .4s ease;
-  isolation: isolate; min-height: 380px;
-  display: flex; flex-direction: column;
-}
-.project:hover { transform: translateY(-6px); box-shadow: 0 30px 70px rgba(0,0,0,.7), 0 0 0 1px rgba(230,179,74,.25) }
-.img-wrap { position: relative; flex: 1; min-height: 240px; overflow: hidden }
-.img-wrap img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  transition: transform .8s ease, filter .4s ease;
-  filter: saturate(.9) brightness(.85);
-}
-.project:hover .img-wrap img { transform: scale(1.07); filter: saturate(1.1) brightness(1) }
-.img-wrap::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,.7) 100%);
-  pointer-events: none;
-}
-.tags { position: absolute; left: 1rem; right: 1rem; bottom: 1rem; z-index: 2; display: flex; flex-wrap: wrap; gap: .35rem }
-.tag { padding: .3rem .7rem; border-radius: 999px; background: rgba(0,0,0,.55); backdrop-filter: blur(8px); border: 1px solid rgba(230,179,74,.35); color: var(--gold); font-size: .68rem; font-weight: 600; letter-spacing: .06em }
-.year-badge {
-  position: absolute; top: 1rem; right: 1rem; z-index: 2;
-  width: 54px; height: 54px; border-radius: 50%;
-  background: rgba(0,0,0,.55); backdrop-filter: blur(10px); border: 1px solid rgba(230,179,74,.3);
-  display: grid; place-items: center;
-  font-family: var(--f-display); font-size: .9rem; color: var(--gold); line-height: 1; text-align: center; letter-spacing: .02em;
-}
-.body {
-  padding: 1.4rem 1.6rem 1.6rem;
-  background: rgba(255,255,255,.025);
-  border-top: 1px solid rgba(255,255,255,.06);
-  backdrop-filter: blur(10px);
-}
-.cat-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: .6rem }
-.cat { color: var(--gold); font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase }
-.client-sm { color: var(--fg-mute); font-size: .78rem }
-.project h3 { font-family: var(--f-display); font-weight: 400; font-size: 1.6rem; letter-spacing: .02em; text-transform: uppercase; margin: 0 0 .3rem; color: #fff; transition: color .25s ease }
-.project:hover h3 { color: var(--gold-2) }
-.client { color: var(--fg-dim); font-size: .85rem; font-weight: 500; margin-bottom: .6rem }
-.desc { color: var(--fg-mute); font-size: .88rem; line-height: 1.55; margin: 0 0 1.2rem; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden }
-.view { display: inline-flex; align-items: center; gap: .5rem; color: var(--gold); font-size: .85rem; font-weight: 600; letter-spacing: .04em; transition: gap .25s ease }
-.project:hover .view { gap: .85rem }
-
-/* spans */
-.span-tall  { grid-column: span 6; grid-row: span 2 }
-.span-wide  { grid-column: span 6 }
-.span-third { grid-column: span 4 }
-.span-half  { grid-column: span 6 }
 
 /* ── CTA ── */
 .cta-section { padding: 4rem 0 6rem }
@@ -575,7 +508,6 @@ onUnmounted(() => { document.body.style.overflow = ''; });
 /* ── Responsive ── */
 @media (max-width: 1080px) {
   .hero .inner { grid-template-columns: 1fr; gap: 2.5rem; align-items: start }
-  .span-tall, .span-wide, .span-third, .span-half { grid-column: span 6 }
   .stats { grid-template-columns: repeat(2,1fr); gap: 2rem }
   .stat + .stat::before { display: none }
   .modal-body { flex-direction: column }
@@ -589,7 +521,6 @@ onUnmounted(() => { document.body.style.overflow = ''; });
   .hero-meta-item strong { font-size: 1rem }
   .filters-wrap { top: 58px !important }
   .filters { padding: 0 16px }
-  .span-tall, .span-wide, .span-third, .span-half { grid-column: span 12 }
   .stats { grid-template-columns: 1fr 1fr; padding: 1.8rem; gap: 1.2rem }
   .cta-card { padding: 3rem 1.5rem }
   .modal-head { padding: .75rem 1rem }

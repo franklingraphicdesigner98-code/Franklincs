@@ -64,13 +64,26 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll));
 .inner {
   display: flex; align-items: center; justify-content: space-between;
   max-width: var(--container); margin: 0 auto; padding: 1rem 32px;
-  background: rgba(8,8,8,.75);
-  backdrop-filter: blur(20px) saturate(150%);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
-  border: 1px solid rgba(230,179,74,.25);
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.1);
+  position: relative;
+  background:
+    radial-gradient(ellipse 30% 120% at 50% 100%, rgba(230,179,74,.12), transparent 70%),
+    rgba(12,10,6,.4);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid rgba(245,207,122,.45);
+  border-radius: 999px;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,.4),
+    0 0 24px rgba(230,179,74,.12),
+    inset 0 1px 0 rgba(255,240,210,.2);
   transition: all .3s ease;
+}
+/* Línea de luz dorada bajo la barra */
+.inner::after {
+  content: ""; position: absolute; left: 32%; right: 32%; bottom: -1px; height: 2px;
+  pointer-events: none; border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #f5cf7a, transparent);
+  box-shadow: 0 0 16px 3px rgba(230,179,74,.45);
 }
 .brand {
   display: flex; align-items: center; gap: .5rem;

@@ -51,22 +51,23 @@
         </p>
       </div>
 
-      <div class="video-grid">
-        <a
+      <GlassGrid>
+        <GlassCard
           v-for="(v, i) in videos" :key="v.key"
-          :href="v.link" target="_blank" rel="noopener noreferrer"
           :class="['video-card reveal', `reveal-${i % 4}`]"
+          :href="v.link" :image="v.image"
+          :category="t(`impresion3d.videos.${v.key}.tag`)"
+          :title="t(`impresion3d.videos.${v.key}.title`)"
+          :description="t(`impresion3d.videos.${v.key}.description`)"
+          :cta="t('impresion3d.verEnTiktok')"
         >
-          <img :src="v.image" :alt="t(`impresion3d.videos.${v.key}.title`)" loading="lazy" />
-          <div class="video-play">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-          <div class="video-overlay">
-            <span class="mockup-tag">{{ t('impresion3d.verEnTiktok') }}</span>
-            <h3>{{ t(`impresion3d.videos.${v.key}.title`) }}</h3>
-          </div>
-        </a>
-      </div>
+          <template #media>
+            <div class="video-play">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </template>
+        </GlassCard>
+      </GlassGrid>
     </div>
   </section>
 
@@ -107,8 +108,9 @@
       <small>{{ t('footer.copyrightShort') }}</small>
       <nav>
         <a href="https://www.behance.net/gallery/220454209/Portfolio" target="_blank" rel="noopener noreferrer">Behance</a>
-        <a href="https://www.instagram.com/franklinp.cs/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://www.linkedin.com/in/franklin-pe%C3%B1a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.instagram.com/yeffrey_fr/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.linkedin.com/in/franklin-pe%C3%B1a-832873252/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.tiktok.com/@franklin_designer" target="_blank" rel="noopener noreferrer">TikTok</a>
       </nav>
     </div>
   </footer>
@@ -119,6 +121,8 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import AppBackdrop from '../components/landing/AppBackdrop.vue';
 import LanguageSwitcher from '../components/landing/LanguageSwitcher.vue';
+import GlassCard from '../components/ui/GlassCard.vue';
+import GlassGrid from '../components/ui/GlassGrid.vue';
 import { useReveal } from '../composables/useReveal.js';
 
 useReveal();
@@ -202,25 +206,6 @@ const videos = [
 
 /* ── Videos del proceso ── */
 .video-section { padding: 0 0 5rem }
-.video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem }
-.video-card {
-  position: relative; display: block; border-radius: var(--r-lg); overflow: hidden;
-  min-height: 340px; isolation: isolate;
-  border: 1px solid rgba(230,179,74,.2);
-  transition: transform .4s ease, box-shadow .4s ease;
-}
-.video-card:hover { transform: translateY(-6px); box-shadow: 0 30px 70px rgba(0,0,0,.7), 0 0 0 1px rgba(230,179,74,.25) }
-.video-card img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  transition: transform .8s ease, filter .4s ease;
-  filter: saturate(.95) brightness(.85);
-}
-.video-card:hover img { transform: scale(1.06); filter: saturate(1.1) brightness(1) }
-.video-card::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.75) 100%);
-  pointer-events: none;
-}
 .video-play {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;
   width: 60px; height: 60px; border-radius: 50%;
@@ -231,9 +216,6 @@ const videos = [
 }
 .video-card:hover .video-play { transform: translate(-50%, -50%) scale(1.1) }
 .video-play svg { margin-left: 3px }
-.video-overlay { position: absolute; left: 1.4rem; right: 1.4rem; bottom: 1.2rem; z-index: 2 }
-.mockup-tag { display: inline-block; padding: .3rem .7rem; border-radius: 999px; background: rgba(0,0,0,.55); backdrop-filter: blur(8px); border: 1px solid rgba(230,179,74,.35); color: var(--gold); font-size: .68rem; font-weight: 600; letter-spacing: .06em; margin-bottom: .6rem }
-.video-overlay h3 { font-family: var(--f-display); font-weight: 400; font-size: 1.3rem; letter-spacing: .02em; text-transform: uppercase; margin: 0; color: #fff }
 
 /* ── CTA ── */
 .cta-section { padding: 2rem 0 6rem }
@@ -267,13 +249,11 @@ const videos = [
 @media (max-width: 1080px) {
   .hero .inner { grid-template-columns: 1fr; gap: 2.5rem }
   .hero-image { order: -1 }
-  .video-grid { grid-template-columns: repeat(2, 1fr) }
 }
 @media (max-width: 720px) {
   .back-btn { padding: .5rem .8rem; font-size: .75rem; top: 10px; left: 16px }
   .hero { padding: 7rem 0 4rem }
   .hero .inner { padding: 0 16px }
-  .video-grid { grid-template-columns: 1fr }
   .cta-card { padding: 3rem 1.5rem }
 }
 </style>

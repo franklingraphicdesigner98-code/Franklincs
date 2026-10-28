@@ -10,7 +10,10 @@
           <div class="glass-card-text">
             <p class="eyebrow">{{ t('hero.eyebrow') }}</p>
             <h1 class="hero-title">
-              {{ t('hero.title') }}
+              <i18n-t keypath="hero.title">
+                <template #impacta><span class="gold">{{ t('hero.titleImpacta') }}</span></template>
+                <template #existe><span class="gold">{{ t('hero.titleExiste') }}</span></template>
+              </i18n-t>
             </h1>
             <p class="hero-description">
               {{ t('hero.description') }}
@@ -90,13 +93,39 @@ const { t } = useI18n();
   width: 90%;
   padding: 2.6rem 2.8rem;
   margin-top: 10px;
-  background: rgba(8,8,8,.65);
-  backdrop-filter: blur(25px) saturate(160%);
-  -webkit-backdrop-filter: blur(25px) saturate(160%);
-  border: 1.5px solid rgba(230,179,74,.35);
+  /* Glassmorphism: vidrio ahumado con canto de luz dorado */
+  position: relative;
+  background:
+    radial-gradient(ellipse 45% 40% at 0% 0%, rgba(230,179,74,.16), transparent 70%),
+    radial-gradient(ellipse 40% 30% at 50% 100%, rgba(230,179,74,.12), transparent 70%),
+    rgba(12,10,6,.35);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid transparent;
   border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.08);
+  box-shadow:
+    0 25px 60px rgba(0,0,0,.5),
+    0 0 50px rgba(230,179,74,.08),
+    inset 0 1px 0 rgba(255,240,210,.18);
   animation: slideInDown 0.8s ease-out 0.1s both;
+}
+
+/* Canto del vidrio: borde degradado dorado / plateado */
+.glass-card::before {
+  content: ""; position: absolute; inset: -1px; border-radius: inherit; pointer-events: none;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(245,207,122,.95) 0%, rgba(255,255,255,.28) 22%, rgba(255,255,255,.12) 55%, rgba(245,207,122,.55) 100%);
+  -webkit-mask: linear-gradient(#000,#000) content-box, linear-gradient(#000,#000);
+  mask: linear-gradient(#000,#000) content-box, linear-gradient(#000,#000);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+}
+
+/* Destello de luz dorada en el borde inferior */
+.glass-card::after {
+  content: ""; position: absolute; left: 30%; right: 30%; bottom: -1px; height: 2px;
+  pointer-events: none; border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #f5cf7a, transparent);
+  box-shadow: 0 0 18px 3px rgba(230,179,74,.45);
 }
 
 .glass-card-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 2.4rem; align-items: center }
@@ -115,14 +144,26 @@ const { t } = useI18n();
 }
 
 .hero-title {
-  font-size: clamp(1.8rem, 5vw, 3.5rem);
-  font-weight: 700;
-  line-height: 1.15;
+  /* Outfit: alternativa libre y similar a Ageo (geométrica) */
+  font-family: var(--f-display);
+  font-size: clamp(1.7rem, 4.4vw, 3.1rem);
+  font-weight: 800;
+  line-height: 1.05;
   color: #fff;
+  text-shadow: 0 2px 30px rgba(255,255,255,.08);
   margin-bottom: 0.8rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
   word-wrap: break-word;
   overflow-wrap: break-word;
+}
+
+.hero-title .gold {
+  color: transparent;
+  background: linear-gradient(180deg, #f5cf7a 0%, #e6b34a 40%, #a47a23 100%);
+  -webkit-background-clip: text; background-clip: text;
+  text-shadow: 0 0 80px rgba(230,179,74,.25);
+  -webkit-text-stroke: .5px rgba(255,220,140,.15);
 }
 
 .hero-description {
@@ -139,9 +180,9 @@ const { t } = useI18n();
   align-items: center;
   gap: 0.6rem;
   padding: 0.8rem 1.6rem;
-  background: var(--gold);
+  background: linear-gradient(180deg, #f8d888 0%, #e6b34a 55%, #c9952f 100%);
   color: #000;
-  border: 2px solid var(--gold);
+  border: 1px solid rgba(255,230,170,.8);
   border-radius: 999px;
   font-size: 0.82rem;
   font-weight: 700;
@@ -150,7 +191,7 @@ const { t } = useI18n();
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 28px rgba(230,179,74,0.4);
+  box-shadow: 0 0 30px rgba(230,179,74,0.5), 0 8px 28px rgba(230,179,74,0.35), inset 0 1px 0 rgba(255,255,255,.5);
   position: relative;
   overflow: hidden;
 }

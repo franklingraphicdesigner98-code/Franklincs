@@ -160,11 +160,14 @@
           <a href="https://www.behance.net/gallery/220454209/Portfolio" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-yellow-500 transition-colors">
             Behance
           </a>
-          <a href="https://www.instagram.com/franklin_designer/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-yellow-500 transition-colors">
+          <a href="https://www.instagram.com/yeffrey_fr/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-yellow-500 transition-colors">
             Instagram
           </a>
-          <a href="https://www.linkedin.com/in/franklin-pe%C3%B1a/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-yellow-500 transition-colors">
+          <a href="https://www.linkedin.com/in/franklin-pe%C3%B1a-832873252/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-yellow-500 transition-colors">
             LinkedIn
+          </a>
+          <a href="https://www.tiktok.com/@franklin_designer" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-yellow-500 transition-colors">
+            TikTok
           </a>
         </div>
       </div>

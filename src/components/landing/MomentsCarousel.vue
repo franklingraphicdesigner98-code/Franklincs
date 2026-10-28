@@ -32,8 +32,11 @@ onUnmounted(() => clearInterval(momentsTimer));
 .moments-carousel {
   position: relative; width: 100%; height: 100%; overflow: hidden;
   border-radius: var(--r-lg); isolation: isolate;
-  border: 1px solid rgba(230,179,74,.2);
-  box-shadow: 0 20px 50px rgba(0,0,0,.4);
+  border: 1.5px solid rgba(245,207,122,.75);
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.45),
+    0 0 28px rgba(230,179,74,.35),
+    inset 0 0 22px rgba(230,179,74,.18);
 }
 .moments-frame {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;

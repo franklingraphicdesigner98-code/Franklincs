@@ -25,7 +25,8 @@
   --r-lg: 24px;
   --r-xl: 32px;
 
-  --f-display: "Anton", "Inter", sans-serif;
+  /* Outfit se carga solo en 800, así todos los títulos salen en extra negrita */
+  --f-display: "Outfit", "Inter", sans-serif;
   --f-body: "Inter", system-ui, sans-serif;
   --f-script: "Allura", cursive;
 
