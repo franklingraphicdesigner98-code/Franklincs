@@ -89,5 +89,13 @@ export const routes = [
 ]
 
 export function scrollBehavior(to, from, savedPosition) {
-  return savedPosition || { top: 0, behavior: 'smooth' }
+  if (savedPosition) return savedPosition
+  // Enlaces a una sección (p. ej. "/#contacto" desde el menú móvil): esperar a que
+  // la página se pinte y bajar hasta ella, dejando espacio para la barra flotante.
+  if (to.hash) {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve({ el: to.hash, top: 96, behavior: 'smooth' }), from.path === to.path ? 0 : 350)
+    })
+  }
+  return { top: 0, behavior: 'smooth' }
 }

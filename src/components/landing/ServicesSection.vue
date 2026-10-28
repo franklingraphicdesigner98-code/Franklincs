@@ -11,7 +11,7 @@
         </p>
       </div>
 
-      <div class="spec-grid">
+      <div id="direcciones" class="spec-grid">
         <GlassCard
           v-for="(s, i) in services" :key="s.id"
           :to="s.link" :image="s.image" ratio="16 / 10" :muted="false"
@@ -50,6 +50,7 @@ const services = [
 .especialidades .section-head { margin-bottom: 2.5rem }
 
 .spec-grid {
+  scroll-margin-top: 110px; /* al llegar desde el botón de la barra, que no la tape */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;

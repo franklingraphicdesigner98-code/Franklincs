@@ -6,7 +6,18 @@ export default {
     contacto: 'Contact',
     marca: 'Brand',
     volver: 'Back',
-    volverInicio: '← Back to Home'
+    volverInicio: '← Back to Home',
+    idioma: 'Language',
+    direcciones: 'Creative direction',
+    menu: 'Menu',
+    menuServicios: {
+      identidad: 'Brand identity',
+      diseno: 'Graphic design',
+      empaques: 'Packaging design',
+      impresion: '3D design & printing',
+      web: 'Websites & systems',
+      ia: 'AI direction'
+    }
   },
   hero: {
     eyebrow: 'BRING YOUR IDEAS TO LIFE',

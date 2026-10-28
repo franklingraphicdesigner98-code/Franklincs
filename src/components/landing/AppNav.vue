@@ -8,27 +8,18 @@
       </a>
 
       <div class="nav-links">
-        <a href="#servicios">{{ t('nav.servicios') }}</a>
-        <a href="#proyectos">{{ t('nav.proyectos') }}</a>
-        <a href="#contacto">{{ t('nav.contacto') }}</a>
+        <a href="#direcciones" class="nav-cta" @click.prevent="goToServices">{{ t('nav.direcciones') }}</a>
         <LanguageSwitcher />
       </div>
 
       <!-- Mobile hamburger -->
-      <button class="hamburger" @click="menuOpen = !menuOpen" aria-label="Menú">
+      <button :class="['hamburger', { open: menuOpen }]" @click="menuOpen = !menuOpen" :aria-label="t('nav.menu')" :aria-expanded="menuOpen">
         <span></span><span></span><span></span>
       </button>
     </div>
 
-    <!-- Mobile menu -->
-    <div v-if="menuOpen" class="mobile-menu">
-      <a href="#marca" @click="menuOpen=false">{{ t('nav.marca') }}</a>
-      <a href="#servicios" @click="menuOpen=false">{{ t('nav.servicios') }}</a>
-      <a href="#proyectos" @click="menuOpen=false">{{ t('nav.proyectos') }}</a>
-      <a href="#proceso" @click="menuOpen=false">{{ t('nav.proceso') }}</a>
-      <a href="#contacto" @click="menuOpen=false">{{ t('nav.contacto') }}</a>
-      <div class="mobile-lang"><LanguageSwitcher /></div>
-    </div>
+    <!-- Mobile menu: idioma, servicios y contacto -->
+    <MobileMenu v-if="menuOpen" @close="menuOpen = false" />
   </nav>
 </template>
 
@@ -36,6 +27,7 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import LanguageSwitcher from './LanguageSwitcher.vue';
+import MobileMenu from '../ui/MobileMenu.vue';
 
 const { t } = useI18n();
 
@@ -43,6 +35,11 @@ const isScrolled = ref(false);
 const menuOpen = ref(false);
 
 const onScroll = () => { isScrolled.value = window.scrollY > 30; };
+
+// Baja hasta la cuadrícula de servicios (el espacio para la barra lo da scroll-margin-top en .spec-grid)
+const goToServices = () => {
+  document.getElementById('direcciones')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
 
 onMounted(() => {
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -99,18 +96,19 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll));
   background: linear-gradient(135deg, #f5cf7a, #a47a23);
   box-shadow: 0 0 14px var(--gold-glow); margin-right: .25rem;
 }
-.nav-links { display: flex; align-items: center; gap: 2.2rem }
-.nav-links a {
-  font-size: .88rem; color: rgba(255,255,255,.7); font-weight: 500;
-  transition: color .2s ease; position: relative; text-decoration: none;
+.nav-links { display: flex; align-items: center; gap: 1.6rem }
+/* Botón "Direcciones creativas": baja hasta la cuadrícula de servicios */
+.nav-cta {
+  display: inline-flex; align-items: center;
+  padding: .5rem 1.15rem; border-radius: 999px;
+  background: linear-gradient(135deg, #f5cf7a, #e6b34a 50%, #b8862c);
+  color: #1a1207; font-size: .82rem; font-weight: 700; letter-spacing: .04em;
+  box-shadow: 0 6px 18px rgba(230,179,74,.35), inset 0 1px 0 rgba(255,255,255,.35);
+  transition: box-shadow .25s ease, transform .25s ease;
 }
-.nav-links a:hover { color: #fff }
-.nav-links a::after {
-  content: ""; position: absolute; left: 0; bottom: -6px;
-  width: 0; height: 1.5px; background: var(--gold);
-  transition: width .25s ease; box-shadow: 0 0 8px var(--gold-glow);
+@media (hover: hover) and (pointer: fine) {
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(230,179,74,.55), inset 0 1px 0 rgba(255,255,255,.4) }
 }
-.nav-links a:hover::after { width: 100% }
 
 .save-btn {
   display: inline-flex; align-items: center; gap: .6rem;
@@ -143,24 +141,12 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll));
   border-radius: 2px; transition: background .2s;
 }
 .hamburger:hover span { background: var(--gold) }
-
-.mobile-menu {
-  display: flex; flex-direction: column; gap: 0;
-  position: fixed; top: 90px; left: 12px; right: 12px;
-  background: rgba(8,8,8,.85); backdrop-filter: blur(20px);
-  border: 1px solid rgba(230,179,74,.25);
-  border-radius: 16px;
-  padding: .5rem 0;
-  box-shadow: 0 8px 32px rgba(0,0,0,.4);
-}
-.mobile-menu a {
-  padding: .9rem 2rem; font-size: .95rem; color: rgba(255,255,255,.7);
-  border-bottom: 1px solid rgba(255,255,255,.04);
-  transition: color .2s, background .2s; text-decoration: none;
-}
-.mobile-menu a:last-child { border-bottom: none }
-.mobile-menu a:hover { color: var(--gold); background: rgba(230,179,74,.08) }
-.mobile-lang { padding: .9rem 2rem }
+/* Hamburguesa → X cuando el menú está abierto */
+.hamburger span { transition: transform .25s ease, opacity .2s ease, background .2s }
+.hamburger.open span { background: var(--gold) }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg) }
+.hamburger.open span:nth-child(2) { opacity: 0 }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg) }
 
 @media (max-width: 720px) {
   .nav-links { display: none }
@@ -171,7 +157,6 @@ onUnmounted(() => window.removeEventListener('scroll', onScroll));
 @media (max-width: 480px) {
   .nav { padding: 0.8rem 0.8rem }
   .inner { padding: 0.85rem 16px }
-  .mobile-menu a { padding: .85rem 1.4rem; font-size: .9rem }
   .brand { font-size: 0.95rem }
   .hamburger { width: 28px }
 }

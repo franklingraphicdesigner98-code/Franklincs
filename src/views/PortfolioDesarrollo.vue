@@ -2,23 +2,8 @@
   <!-- Backdrop -->
   <AppBackdrop />
 
-  <!-- Back button -->
-  <router-link to="/" class="back-btn" @click="closeModal">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-    {{ t('nav.volver') }}
-  </router-link>
-
-  <!-- Nav -->
-  <nav :class="['nav', { hidden: navHidden }]">
-    <div class="inner">
-      <a href="/" class="brand">
-        <span class="dot"></span>
-        <span class="b1">Franklin</span>
-        <span class="b2"> Studio</span>
-      </a>
-      <LanguageSwitcher class="page-lang" />
-    </div>
-  </nav>
+  <!-- Barra flotante (igual que el inicio) -->
+  <PageNav />
 
   <!-- Hero -->
   <header class="hero">
@@ -47,7 +32,7 @@
   </header>
 
   <!-- Filters -->
-  <div class="filters-wrap" :style="{ top: navHidden ? '0px' : '62px' }">
+  <div class="filters-wrap">
     <div class="filters">
       <div class="filter-pills">
         <button
@@ -92,10 +77,7 @@
           {{ t('desarrollo.ctaLead') }}
         </p>
         <div class="cta-btns">
-          <a href="https://api.whatsapp.com/send/?phone=%2B573223003840&text=Hola%2C%20quiero%20un%20proyecto%20de%20desarrollo%20de%20software" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
-            {{ t('cta.whatsapp') }}
-          </a>
+          <WhatsAppButton message="Hola, quiero un proyecto de desarrollo de software" />
           <a href="https://www.behance.net/gallery/220454209/Portfolio" target="_blank" rel="noopener noreferrer" class="btn btn-outline">{{ t('desarrollo.verBehance') }}</a>
         </div>
       </div>
@@ -206,8 +188,9 @@ const tick = () => {
   typeTimer = setTimeout(tick, delay);
 };
 import { useI18n } from 'vue-i18n';
+import WhatsAppButton from '../components/ui/WhatsAppButton.vue';
 import AppBackdrop from '../components/landing/AppBackdrop.vue';
-import LanguageSwitcher from '../components/landing/LanguageSwitcher.vue';
+import PageNav from '../components/ui/PageNav.vue';
 import GlassCard from '../components/ui/GlassCard.vue';
 import GlassGrid from '../components/ui/GlassGrid.vue';
 import { imgCard, imgGallery } from '../utils/cloudinary.js';
@@ -216,16 +199,8 @@ import { useReveal } from '../composables/useReveal.js';
 useReveal();
 const { t, locale } = useI18n();
 
-/* ── Nav hide on scroll ── */
-const navHidden = ref(false);
-let lastY = 0;
-const onScroll = () => {
-  const y = window.scrollY;
-  navHidden.value = y > lastY && y > 80;
-  lastY = y;
-};
-onMounted(() => { window.addEventListener('scroll', onScroll, { passive: true }); typeTimer = setTimeout(tick, 700); });
-onUnmounted(() => { window.removeEventListener('scroll', onScroll); clearTimeout(typeTimer); });
+onMounted(() => { typeTimer = setTimeout(tick, 700); });
+onUnmounted(() => { clearTimeout(typeTimer); });
 
 /* ── Keyboard ── */
 const onKey = (e) => {
@@ -311,42 +286,6 @@ onUnmounted(() => { document.body.style.overflow = ''; });
 </script>
 
 <style scoped>
-/* ── Back button ── */
-.back-btn {
-  position: fixed; top: 14px; left: 24px; z-index: 200;
-  display: inline-flex; align-items: center; gap: .5rem;
-  padding: .55rem .95rem; border-radius: 999px;
-  background: linear-gradient(135deg, #f5cf7a, #e6b34a 50%, #b8862c);
-  color: #1a1207; font-weight: 700; font-size: .8rem; letter-spacing: .04em;
-  box-shadow: 0 8px 24px rgba(230,179,74,.4), inset 0 1px 0 rgba(255,255,255,.35);
-  transition: all .25s ease;
-  pointer-events: auto;
-}
-.back-btn:hover { transform: translateX(-3px); box-shadow: 0 12px 32px rgba(230,179,74,.6), inset 0 1px 0 rgba(255,255,255,.4) }
-.back-btn svg { transition: transform .25s ease }
-.back-btn:hover svg { transform: translateX(-3px) }
-
-/* ── Nav ── */
-.nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-  background: rgba(8,8,8,.78);
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  border-bottom: 1px solid rgba(230,179,74,.10);
-  transition: transform .3s ease;
-}
-.nav.hidden { transform: translateY(-100%) }
-.nav .inner {
-  position: relative;
-  max-width: 1280px; margin: 0 auto;
-  padding: 1rem 32px; display: flex; justify-content: center; align-items: center; gap: .5rem;
-}
-.page-lang { position: absolute; right: 32px; top: 50%; transform: translateY(-50%) }
-.brand { font-size: 1.25rem; font-weight: 600; letter-spacing: -.01em; display: flex; align-items: center; gap: .5rem }
-.brand .dot { width: 9px; height: 9px; border-radius: 50%; background: linear-gradient(135deg,#f5cf7a,#a47a23); box-shadow: 0 0 14px var(--gold-glow) }
-.brand .b1 { color: #fff }
-.brand .b2 { color: var(--gold) }
-
 /* ── Hero ── */
 .hero { position: relative; padding: 9rem 0 6rem }
 .hero .inner {
@@ -374,8 +313,8 @@ onUnmounted(() => { document.body.style.overflow = ''; });
 
 /* ── Filters ── */
 .filters-wrap {
-  position: sticky; top: 62px; z-index: 60;
-  transition: top .3s ease;
+  /* se pega justo debajo de la barra flotante (PageNav) */
+  position: sticky; top: 84px; z-index: 60;
   background: rgba(8,8,8,.55);
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
@@ -514,12 +453,11 @@ onUnmounted(() => { document.body.style.overflow = ''; });
   .carousel { flex: 0 0 50%; border-right: none; border-bottom: 1px solid rgba(255,255,255,.06) }
 }
 @media (max-width: 720px) {
-  .back-btn { padding: .5rem .8rem; font-size: .75rem; top: 10px; left: 16px }
   .hero { padding: 7rem 0 4rem }
   .hero .inner { padding: 0 16px }
   .hero-meta-item { padding: .9rem 1rem }
   .hero-meta-item strong { font-size: 1rem }
-  .filters-wrap { top: 58px !important }
+  .filters-wrap { top: 76px }
   .filters { padding: 0 16px }
   .stats { grid-template-columns: 1fr 1fr; padding: 1.8rem; gap: 1.2rem }
   .cta-card { padding: 3rem 1.5rem }
@@ -529,6 +467,7 @@ onUnmounted(() => { document.body.style.overflow = ''; });
   .details-grid { padding: 1rem }
 }
 @media (max-width: 480px) {
+  .filters-wrap { top: 66px }
   .hero-display { font-size: clamp(1.8rem, 7.5vw, 2.8rem) }
   .hero-meta-item strong { font-size: .88rem; word-break: break-word }
   .hero-meta-item small { font-size: .65rem }

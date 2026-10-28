@@ -6,7 +6,18 @@ export default {
     contacto: 'Contacto',
     marca: 'Marca',
     volver: 'Volver',
-    volverInicio: '← Volver al Inicio'
+    volverInicio: '← Volver al Inicio',
+    idioma: 'Idioma',
+    direcciones: 'Direcciones creativas',
+    menu: 'Menú',
+    menuServicios: {
+      identidad: 'Identidad de marca',
+      diseno: 'Diseño gráfico',
+      empaques: 'Diseño de empaques',
+      impresion: 'Diseño e impresión 3D',
+      web: 'Páginas web y sistemas',
+      ia: 'Dirección de IA'
+    }
   },
   hero: {
     eyebrow: 'EL DISEÑO TRABAJA POR TI',
